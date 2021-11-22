@@ -1,0 +1,20 @@
+12 page-s
+index
+home
+login
+register
+my items
+add shoes (remove if owner)
+details (shoes)
+edit (shoes)
+buy shoes
+return shoes
+for company
+Terms of use 
+Contact 
+
+user entity 
+shoe entiti 
+category (kids/old enum)
+
+

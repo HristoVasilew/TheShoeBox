@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/static/css/style.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0053/4999/8661/files/SDotFavicon_32x32.png?v=1600905425"
+        type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <style>
+        .card-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            margin-top: -70px;
+        }
+
+        .img {
+            width: 100%;
+            display: block;
+        }
+
+        .img-display {
+            overflow: hidden;
+        }
+
+        .img-showcase {
+            display: flex;
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+
+        .img-showcase img {
+            min-width: 100%;
+        }
+
+        .img-select {
+            display: flex;
+        }
+
+        .img-item {
+            margin: 0.3rem;
+        }
+
+        .img-item:nth-child(1),
+        .img-item:nth-child(2),
+        .img-item:nth-child(3) {
+            margin-right: 0;
+        }
+
+        .img-item:hover {
+            opacity: 0.8;
+        }
+
+        .product-content {
+            padding: 2rem 1rem;
+        }
+
+        .product-title {
+            font-size: 3rem;
+            text-transform: capitalize;
+            font-weight: 700;
+            position: relative;
+            color: #12263a;
+            margin: 1rem 0;
+        }
+
+        .product-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 4px;
+            width: 80px;
+            background: #12263a;
+        }
+
+        .product-link {
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            background: #256eff;
+            color: #fff;
+            padding: 0 0.3rem;
+            transition: all 0.5s ease;
+        }
+
+        .product-link:hover {
+            opacity: 0.9;
+        }
+
+        .product-rating {
+            color: #ffc107;
+        }
+
+        .product-rating span {
+            font-weight: 600;
+            color: #252525;
+        }
+
+        .product-price {
+            margin: 1rem 0;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .product-price span {
+            font-weight: 400;
+        }
+
+        .last-price span {
+            color: #f64749;
+            text-decoration: line-through;
+        }
+
+        .new-price span {
+            color: #256eff;
+        }
+
+        .product-detail h2 {
+            text-transform: capitalize;
+            color: #12263a;
+            padding-bottom: 0.6rem;
+        }
+
+        .product-detail p {
+            font-size: 0.9rem;
+            padding: 0.3rem;
+            opacity: 0.8;
+        }
+
+        .product-detail ul {
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .product-detail ul li {
+            margin: 0;
+            list-style: none;
+            background: url(/images/cheked.png) left center no-repeat;
+            background-size: 18px;
+            padding-left: 1.7rem;
+            margin: 0.4rem 0;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .product-detail ul li span {
+            font-weight: 400;
+        }
+
+        .purchase-info {
+            margin: 1.5rem 0;
+        }
+
+        .purchase-info input,
+        .purchase-info .btn,
+        .purchase-info .btn2 {
+            border: 1.5px solid #ddd;
+            border-radius: 25px;
+            text-align: center;
+            padding: 0.45rem 0.8rem;
+            outline: 0;
+            margin-right: 0.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .purchase-info input {
+            width: 60px;
+        }
+
+        .purchase-info,
+        .btn,
+        .btn2 {
+            cursor: pointer;
+            color: #fff;
+        }
+
+        .purchase-info .btn:first-of-type {
+            background: #256eff;
+        }
+
+        .purchase-info .btn {
+            background: #f6b947;
+        }
+
+        .purchase-info .btn2 {
+            background: #ff0000;
+        }
+
+        .purchase-info .btn:hover {
+            opacity: 0.9;
+        }
+
+
+        @media screen and (min-width: 992px) {
+            .card {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 1.5rem;
+            }
+
+            .card-wrapper {
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .product-imgs {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .product-content {
+                padding-top: 0;
+            }
+        }
+    </style>
+
+    <title>The-Shoe-Box | Details Page</title>
+</head>
+
+<body style="background-color: #ac0212;;">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0, 0, 0, 0.2);">
+        <div class="container ">
+            <a href="/templates/index.html" class="navbar-brand">
+                <img src="https://ichef.bbci.co.uk/images/ic/1920x1080/p07hblcn.jpg" alt="logo" height="48" width="100"
+                    class="d-inline-block align-top" />
+                <span style="font-size: 30px;">Shoe-Box</span></a>
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-center " style="text-transform: uppercase;">
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/templates/">Home</a>
+                    </li>
+                    <li>
+                        <a class="nav-link active" aria-current="page" href="/templates/home.html">Collections</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="far fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="/templates/profile.html">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/templates/login.html">Login</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/templates/register.html">Register</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="/Logout">Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="nav-link active" href="/templates/add-to-cart.html"><i class="fa fa-shopping-cart"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="card-wrapper" style="margin-top: 100px;">
+        <div class="card">
+            <div class="product-imgs">
+                <div class="img-display">
+                    <div class="img-showcase">
+                        <img class="img" src="https://images.vans.com/is/image/Vans/VC0910-HERO?$CUSTOMS-PDP-MEDIUM$"
+                            alt="shoe image">
+                        <img class="img" src="https://images.vans.com/is/image/Vans/VC0910-ALT1?$CUSTOMS-PDP-MEDIUM$"
+                            alt="shoe image">
+                        <img class="img"
+                            src="https://www.vans.com/vfdp-customs-img-serv-prod/product_images/344c70a377dd39a5351bee6f6165d3e3/lg-square-white-top_square-344c70a377dd39a5351bee6f6165d3e3.jpg"
+                            alt="shoe image">
+                        <img class="img"
+                            src="https://www.vans.com/vfdp-customs-img-serv-prod/product_images/344c70a377dd39a5351bee6f6165d3e3/lg-square-white-back-344c70a377dd39a5351bee6f6165d3e3.jpg"
+                            alt="shoe image">
+                    </div>
+                </div>
+                <div class="img-select">
+                    <div class="img-item">
+                        <a href="#" data-id="1">
+                            <img class="img"
+                                src="https://images.vans.com/is/image/Vans/VC0910-HERO?$CUSTOMS-PDP-MEDIUM$"
+                                alt="shoe image">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="2">
+                            <img class="img"
+                                src="https://images.vans.com/is/image/Vans/VC0910-ALT1?$CUSTOMS-PDP-MEDIUM$"
+                                alt="shoe image">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="3">
+                            <img class="img"
+                                src="https://www.vans.com/vfdp-customs-img-serv-prod/product_images/344c70a377dd39a5351bee6f6165d3e3/lg-square-white-top_square-344c70a377dd39a5351bee6f6165d3e3.jpg"
+                                alt="shoe image">
+                        </a>
+                    </div>
+                    <div class="img-item">
+                        <a href="#" data-id="4">
+                            <img class="img"
+                                src="https://www.vans.com/vfdp-customs-img-serv-prod/product_images/344c70a377dd39a5351bee6f6165d3e3/lg-square-white-back-344c70a377dd39a5351bee6f6165d3e3.jpg"
+                                alt="shoe image">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="product-content">
+                <h2 class="product-title">Vans shoes</h2>
+                <a href="/templates/home.html" class="product-link">visit store</a>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>4.7(21)</span>
+                </div>
+
+                <div class="product-price">
+                    <p class="last-price">Old Price: <span>$257.00</span></p>
+                    <p class="new-price">New Price: <span>$249.00 (5%)</span></p>
+                </div>
+
+                <div class="product-detail">
+                    <h2>about this item: </h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo eveniet veniam tempora fuga
+                        tenetur placeat sapiente architecto illum soluta consequuntur, aspernatur quidem at sequi
+                        ipsa!</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, perferendis eius.
+                        Dignissimos, labore suscipit. Unde.</p>
+                    <ul>
+                        <li>Available: <span>in stock</span></li>
+                        <li>Location: <span> 86 ул. Републиканска
+                                Любимец, Хасково
+                            </span></li>
+                        <li>Shipping Area: <span>All over the world</span></li>
+                        <li>Shipping Fee: <span>3 lv</span></li>
+                    </ul>
+                </div>
+
+                <div class="purchase-info">
+
+                    <button type="button" class="btn" >
+                        <a class="text-white" href="/templates/add-to-cart.html">Add to cart!</a><i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button type="button" class="btn"><a href="/templates/edit.html">Edit</a></button>
+                    <button type="button" class="btn btn-danger"  style="background: red;">Delete!</button>
+
+                </div>
+            </div>
+        </div>
+        <script src="/static/js/script.js"></script>
+
+    </div> 
+    
+    <footer class="text-center text-lg-start bg-dark text-muted">
+        <!-- Section: Social media -->
+        <section
+          class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom color-muted"
+        >
+          <!-- Left -->
+          <div class="me-5 d-none d-lg-block">
+            <span>Get connected with us on social networks:</span>
+          </div>
+          <!-- Left -->
+      
+          <!-- Right -->
+          <div>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-google"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="" class="me-4 text-reset">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+          <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+      
+        <!-- Section: Links  -->
+        <section class="">
+          <div class="container text-center text-md-start mt-5">
+            <!-- Grid row -->
+            <div class="row mt-3">
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  <i class="fas fa-gem me-3"></i>The Shoe Box
+                </h6>
+                <p>
+                    Simple Shoes feature clean, wearable designs and sustainable materials. We have high top and low top sneakers and boots ranging from canvas to soft leather to suede. These are quality basic shoes that work with any style.
+                </p>
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Useful links
+                </h6>
+                <p>
+                  <a href="/templates/about.html" class="text-reset">About Us</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Privaci polici</a>
+                </p>
+                <p>
+                  <a href="/templates/newsletter.html" class="text-reset">Newsletter</a>
+                </p>
+                <p>
+                  <a href="#!" class="text-reset">Help</a>
+                </p>
+              </div>
+              <!-- Grid column -->
+      
+              <!-- Grid column -->
+              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                <!-- Links -->
+                <h6 class="text-uppercase fw-bold mb-4">
+                  Contact
+                </h6>
+                <p><i class="fas fa-home me-3"></i> КОМПЛЕКС ПРИКАЗКИТЕ ХАРМАНЛИ, Harmanli</p>
+                <p>
+                  <i class="fas fa-envelope me-3"></i>
+                  spring@project.com
+                </p>
+                <p><i class="fas fa-phone me-3"></i> +359 888 8888</p>
+                <p><i class="fas fa-print me-3"></i> +359 999 9999</p>
+              </div>
+              <!-- Grid column -->
+            </div>
+            <!-- Grid row -->
+          </div>
+        </section>
+        <!-- Section: Links  -->
+      
+        <!-- Copyright -->
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+            Copyright ©
+            <script>document.write(new Date().getFullYear());</script> All rights reserved |
+            This Website is Develop by Oci
+        </div>
+        <!-- Copyright -->
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
