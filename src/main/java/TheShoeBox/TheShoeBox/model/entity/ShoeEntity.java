@@ -32,6 +32,8 @@ public class ShoeEntity extends BaseEntity{
     private ShoeCategoryEnum category;
 
 
+
+
     public String getBrand() {
         return brand;
     }

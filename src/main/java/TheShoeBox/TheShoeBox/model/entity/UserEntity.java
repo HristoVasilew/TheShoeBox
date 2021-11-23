@@ -22,6 +22,9 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String lastName;
 
+    @Column(nullable = false)
+    private String profilePicture;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRoleEntity> roles = new HashSet<>();
 
@@ -76,6 +79,15 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setRoles(Set<UserRoleEntity> roles) {
         this.roles = roles;
+        return this;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public UserEntity setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
         return this;
     }
 }
