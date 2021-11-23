@@ -12,13 +12,12 @@ public class ShoeEntity extends BaseEntity{
 
     @Column(nullable = false)
     private String brand;
-
     @Column(nullable = false)
     private String model;
-
     @Column(nullable = false)
     private BigDecimal size;
-
+    @Column(nullable = false)
+    private BigDecimal price;
     @Column(nullable = false)
     private String location;
 
@@ -28,8 +27,11 @@ public class ShoeEntity extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private ConditionEnum condition;
 
-    @Enumerated(EnumType.STRING)
-    private ShoeCategoryEnum category;
+    @ManyToOne
+    private ShoeCategoryEntity category;
+
+    @ManyToOne
+    private UserEntity creator;
 
 
 
@@ -61,6 +63,15 @@ public class ShoeEntity extends BaseEntity{
         return this;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public ShoeEntity setPrice(BigDecimal price) {
+        this.price = price;
+        return this;
+    }
+
     public String getLocation() {
         return location;
     }
@@ -88,12 +99,21 @@ public class ShoeEntity extends BaseEntity{
         return this;
     }
 
-    public ShoeCategoryEnum getCategory() {
+    public ShoeCategoryEntity getCategory() {
         return category;
     }
 
-    public ShoeEntity setCategory(ShoeCategoryEnum category) {
+    public ShoeEntity setCategory(ShoeCategoryEntity category) {
         this.category = category;
+        return this;
+    }
+
+    public UserEntity getCreator() {
+        return creator;
+    }
+
+    public ShoeEntity setCreator(UserEntity creator) {
+        this.creator = creator;
         return this;
     }
 }

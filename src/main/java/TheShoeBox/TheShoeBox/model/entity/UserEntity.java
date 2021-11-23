@@ -28,6 +28,12 @@ public class UserEntity extends BaseEntity{
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRoleEntity> roles = new HashSet<>();
 
+    @OneToMany(mappedBy = "creator")
+    private Set<ShoeEntity> shoes;
+
+
+
+
     public String getUsername() {
         return username;
     }
