@@ -69,4 +69,13 @@ public class UserEntity extends BaseEntity{
         this.lastName = lastName;
         return this;
     }
+
+    public Set<UserRoleEntity> getRoles() {
+        return roles;
+    }
+
+    public UserEntity setRoles(Set<UserRoleEntity> roles) {
+        this.roles = roles;
+        return this;
+    }
 }
