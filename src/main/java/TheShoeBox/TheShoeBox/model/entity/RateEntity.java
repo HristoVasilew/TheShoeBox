@@ -1,5 +1,6 @@
 package TheShoeBox.TheShoeBox.model.entity;
 
+
 public class RateEntity {
 
         private float stars;

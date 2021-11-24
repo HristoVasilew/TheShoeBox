@@ -20,20 +20,14 @@ public class ShoeEntity extends BaseEntity{
     private BigDecimal price;
     @Column(nullable = false)
     private String location;
-
     @Column(nullable = false,columnDefinition = "TEXT")
     private String description;
 
-    @Enumerated(EnumType.STRING)
-    private ConditionEnum condition;
-
-    @ManyToOne
-    private ShoeCategoryEntity category;
+    @Enumerated(value = EnumType.STRING)
+    private ShoeCategoryEnum category;
 
     @ManyToOne
     private UserEntity creator;
-
-
 
 
     public String getBrand() {
@@ -90,20 +84,11 @@ public class ShoeEntity extends BaseEntity{
         return this;
     }
 
-    public ConditionEnum getCondition() {
-        return condition;
-    }
-
-    public ShoeEntity setCondition(ConditionEnum condition) {
-        this.condition = condition;
-        return this;
-    }
-
-    public ShoeCategoryEntity getCategory() {
+    public ShoeCategoryEnum getCategory() {
         return category;
     }
 
-    public ShoeEntity setCategory(ShoeCategoryEntity category) {
+    public ShoeEntity setCategory(ShoeCategoryEnum category) {
         this.category = category;
         return this;
     }

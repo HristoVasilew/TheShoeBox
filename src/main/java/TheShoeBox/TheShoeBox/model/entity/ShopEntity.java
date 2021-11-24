@@ -12,4 +12,22 @@ public class ShopEntity extends BaseEntity {
     @ManyToOne
     private ShoeEntity shoe;
 
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public ShopEntity setUser(UserEntity user) {
+        this.user = user;
+        return this;
+    }
+
+    public ShoeEntity getShoe() {
+    return shoe;
+    }
+
+    public ShopEntity setShoe(ShoeEntity shoe) {
+        this.shoe = shoe;
+        return this;
+    }
 }

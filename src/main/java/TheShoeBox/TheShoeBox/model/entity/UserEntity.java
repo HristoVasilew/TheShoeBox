@@ -1,7 +1,5 @@
 package TheShoeBox.TheShoeBox.model.entity;
 
-import TheShoeBox.TheShoeBox.model.entity.enums.UserRoleEnum;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.HashSet;
@@ -22,7 +20,7 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
+    @Column()
     private String profilePicture;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -30,9 +28,6 @@ public class UserEntity extends BaseEntity{
 
     @OneToMany(mappedBy = "creator")
     private Set<ShoeEntity> shoes;
-
-
-
 
     public String getUsername() {
         return username;
@@ -79,6 +74,15 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public UserEntity setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+        return this;
+    }
+
     public Set<UserRoleEntity> getRoles() {
         return roles;
     }
@@ -88,12 +92,12 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public String getProfilePicture() {
-        return profilePicture;
+    public Set<ShoeEntity> getShoes() {
+        return shoes;
     }
 
-    public UserEntity setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
+    public UserEntity setShoes(Set<ShoeEntity> shoes) {
+        this.shoes = shoes;
         return this;
     }
 }
