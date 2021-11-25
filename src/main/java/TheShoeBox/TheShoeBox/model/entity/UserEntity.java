@@ -20,14 +20,24 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String lastName;
 
-    @Column()
-    private String profilePicture;
-
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<UserRoleEntity> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "creator")
     private Set<ShoeEntity> shoes;
+
+    @ManyToOne
+    @JoinColumn(name = "collection_id")
+    private CollectionEntity collection;
+
+    public CollectionEntity getCollection() {
+        return collection;
+    }
+
+    public void setCollection(CollectionEntity collection) {
+        this.collection = collection;
+    }
+
 
     public String getUsername() {
         return username;
@@ -71,15 +81,6 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setLastName(String lastName) {
         this.lastName = lastName;
-        return this;
-    }
-
-    public String getProfilePicture() {
-        return profilePicture;
-    }
-
-    public UserEntity setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
         return this;
     }
 

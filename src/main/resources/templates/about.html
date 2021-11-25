@@ -91,51 +91,7 @@
     <div class="wrapper">
 
 
-        <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: rgba(0, 0, 0, 0.2);">
-            <div class="container ">
-                <a href="/templates/index.html" class="navbar-brand">
-                    <img src="https://ichef.bbci.co.uk/images/ic/1920x1080/p07hblcn.jpg" alt="logo" height="48"
-                        width="100" class="d-inline-block align-top" />
-                    <span style="font-size: 30px;">Shoe-Box</span></a>
-                <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto text-center " style="text-transform: uppercase;">
-                        <li>
-                            <a class="nav-link active" aria-current="page" href="/templates/">Home</a>
-                        </li>
-                        <li>
-                            <a class="nav-link active" aria-current="page" href="/templates/home.html">Collections</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="far fa-user"></i>
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <a class="dropdown-item" href="/templates/profile.html">Profile</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/templates/login.html">Login</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/templates/register.html">Register</a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/Logout">Logout</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a class="nav-link active" href="/templates/add-to-cart.html"><i class="fa fa-shopping-cart"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <nav th:replace="fragments/common::nav"></nav>
 
 
 

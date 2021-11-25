@@ -29,6 +29,18 @@ public class ShoeEntity extends BaseEntity{
     @ManyToOne
     private UserEntity creator;
 
+    @ManyToOne
+    @JoinColumn(name = "collection_id")
+    private CollectionEntity collection;
+
+    public CollectionEntity getCollection() {
+        return collection;
+    }
+
+    public void setCollection(CollectionEntity collection) {
+        this.collection = collection;
+    }
+
 
     public String getBrand() {
         return brand;
@@ -101,4 +113,6 @@ public class ShoeEntity extends BaseEntity{
         this.creator = creator;
         return this;
     }
+
+
 }
