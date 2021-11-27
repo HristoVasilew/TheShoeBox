@@ -35,7 +35,7 @@
 
 <div class="container p-5"
         style="background-color: rgb(212, 212, 212); border-radius: 20px; box-shadow: 10px 10px 27px 16px #000; margin-top: 100px;">
-        <form method="post">
+        <form th:action="@{/profile}" th:method="get" th:object="${user}">
             <div class="container-fluid " style="background-color: #fff; border-radius: 10px;">
 
                 <div class="row text-center">
@@ -58,15 +58,15 @@
                         <div class="col-md-11">
                             <div class="profile-head p-2">
                                 <h5 class="">
-                                    Mariika Dimitrova
+                                    <span th:text="*{firstname}">Pesho</span> <span th:text="*{lastname}"></span>
                                 </h5>
 
                                 <p class="proile-rating">USER RATING : <span>8/10</span></p>
                             </div>
                         </div>
                         <div class="col p-3 text-center">
-                            <button type="button" class="btn btn-success" ><a href="/templates/add-shoe.html" style="color: #fff;">Create product</a></button>
-                            <button type="button" class="btn btn-danger" style="background: red;"><a href="/templates/edit-profile.html" style="color: #fff;">Edit profile!</a></button>
+                            <button type="button" class="btn btn-success" ><a href="/collections/create-shoe" style="color: #fff;">Create product</a></button>
+                            <button type="button" class="btn btn-danger" style="background: red;"><a href="/profile/edit-profile" style="color: #fff;">Edit profile!</a></button>
                         </div>
 
                     </div>
@@ -81,20 +81,20 @@
                         </h1>
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>User Id</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>1</p>
-                                    </div>
-                                </div>
+<!--                                <div class="row">-->
+<!--                                    <div class="col-md-6">-->
+<!--                                        <label>User Id</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-md-6">-->
+<!--                                        <p th:text="${user.id}">1</p>-->
+<!--                                    </div>-->
+<!--                                </div>-->
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Name</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>Mariika Dimitrova</p>
+                                        <p ><span th:text="*{firstname}">Mariika</span> <span th:text="*{lastname}"> Dimitrova</span> </p>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -102,23 +102,18 @@
                                         <label>Email</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p>kshitighelani@gmail.com</p>
+                                        <p th:text="*{email}">kshitighelani@gmail.com</p>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Phone</label>
+                                        <label>Role/'s</label>
                                     </div>
-                                    <div class="col-md-6">
-                                        <p>123 456 7890</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Role</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>User</p>
+                                    <div class="col-md-6 mb-3">
+                                        <tr th:each="t : ${user.roles}" th:object="${t}">
+                                            <th th:text="*{getRole().name()}">No</th>
+                                        </tr>
                                     </div>
                                 </div>
                             </div>

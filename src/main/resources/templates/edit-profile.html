@@ -24,30 +24,30 @@
         <div class="container mb-5">
             <div class="row row1 g-0 justify-content-center" style="background-color: #fff; border-radius: 20px;">
                 <div class="col-lg-9 p-4">
-                    <h1 class="font-weight-bold mb-4">Edit Profile Info (userId-3)</h1>
-                    <form>
+                    <h1 class="font-weight-bold mb-4">Edit Profile Info</h1>
+                    <form th:action="@{/profile/edit-profile}" th:method="get" th:object="${user}">
                         <div class="row ">
                             <div class="col-lg-5" style="margin-right: 150px;">
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingInput" placeholder="name@example.com" value="name@example.com">
-                                    <label for="floatingInput">Email address<span class="text-danger">*</span></label>
-                                    <small id="lastnameHelpBlock" class="text-danger">
+                                        id="floatingemail" placeholder="name@example.com" th:value="*{email}">
+                                    <label for="floatingemail">Email address<span class="text-danger">*</span></label>
+                                    <small id="emailHelpBlock" class="text-danger">
                                         Your email must contains @ characters long!
                                     </small>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="firstName" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingInput" placeholder="Ivanov" value="Ivan">
-                                    <label for="floatingInput">First Name<span class="text-danger">*</span></label>
-                                    <small id="lastnameHelpBlock" class="text-danger">
+                                    <input  type="firstname" class="form-control" required minlength="4" maxlength="20"
+                                        id="floatingfirstname" placeholder="Ivanov" th:value="*{firstname}">
+                                    <label for="floatingfirstname">First Name<span class="text-danger">*</span></label>
+                                    <small id="firstnameHelpBlock" class="text-danger">
                                         Your first name must be 2-20 characters long!
                                     </small>
                                 </div>
                                 <div class="form-floating">
                                     <input type="password" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingPassword" placeholder="Password" value="******">
-                                    <label for="floatingPassword">Password<span class="text-danger">*</span></label>
+                                        id="floatingpassword" placeholder="Password" value="******">
+                                    <label for="floatingpassword">Password<span class="text-danger">*</span></label>
                                     <small id="passwordHelpBlock" class="text-danger">
                                         Your password must be 4-20 characters long!
                                     </small>
@@ -55,38 +55,38 @@
                             </div>
                             <div class="col-lg-5">
                                 <div class="form-floating mb-3">
-                                    <input type="username" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingInput" placeholder="Lecture" value="username">
-                                    <label for="floatingInput">Username<span class="text-danger">*</span></label>
-                                    <small id="lastnameHelpBlock" class="text-danger">
+                                    <input  type="username" class="form-control" required minlength="4" maxlength="20"
+                                        id="floatingusername" placeholder="Lecture" th:value="*{username}">
+                                    <label for="floatingusername">Username<span class="text-danger">*</span></label>
+                                    <small id="usernameHelpBlock" class="text-danger">
                                         Your username must be 2-20 characters long!
                                     </small>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="lastName" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingInput" placeholder="Ivanov" value="Ivanov">
-                                    <label for="floatingInput">Last Name<span class="text-danger">*</span></label>
+                                    <input  type="lastName" class="form-control" required minlength="4" maxlength="20"
+                                        id="floatinglastName" placeholder="Ivanov" th:value="*{lastname}">
+                                    <label for="floatinglastName">Last Name<span class="text-danger">*</span></label>
                                     <small id="lastnameHelpBlock" class="text-danger">
                                         Your last name must be 2-20 characters long!
                                     </small>
                                 </div>
                                 <div class="form-floating ">
                                     <input type="password" class="form-control" required minlength="4"
-                                        maxlength="20" id="floatingPassword" placeholder="ConfirmPassword" value="******">
+                                        maxlength="20" id="floatingConfirmPassword" placeholder="ConfirmPassword" value="******">
                                     <label for="floatingConfirmPassword">Confirm Password<span
                                             class="text-danger">*</span></label>
 
-                                    <small id="passwordHelpBlock" class="text-danger">
+                                    <small id="confirmPasswordHelpBlock" class="text-danger">
                                         Your password must be 4-20 characters long!
                                     </small>
                                 </div>
                                 <div class="form-floating ">
-                                    
-                                        <input type="lastName" class="form-control" accept="image/png, image/jpeg" required minlength="4" maxlength="20"
-                                        id="floatingInput" placeholder="image" value="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png">
-                                    <label for="floatingInput">Profile Picture</label>
 
-                                    <small id="imageeHelpBlock" class="text-danger">
+                                   <input type="image" class="form-control" accept="image/png, image/jpeg" required minlength="4" maxlength="20"
+                                   id="floatingimage" placeholder="image" >
+                                    <label for="floatingimage">Profile Picture</label>
+
+                                    <small id="imageHelpBlock" class="text-danger">
                                         Too big file!
                                     </small>
                                 </div>
@@ -94,7 +94,7 @@
                         </div>
                         <div class="form-row">
                             <div class="pt-1 mb-2">
-                                <form action="home.html" class="inline">
+                                <form action="users/profile" class="inline">
                                     <button class="btn btn-dark btn-lg btn-block" type="submit">Save
                                         changes</button>
                                 </form>
@@ -105,7 +105,7 @@
                                 <a href="#">Forgot password?</a>
                             </div>
                             <div class="col">
-                                <p>Back to <a href="/templates/home.html">SHOP</a></p>
+                                <p>Back to <a href="collections/all">SHOP</a></p>
                             </div>
                         </div>
                     </form>

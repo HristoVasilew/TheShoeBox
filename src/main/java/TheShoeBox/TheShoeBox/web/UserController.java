@@ -1,24 +1,23 @@
 package TheShoeBox.TheShoeBox.web;
 
 import TheShoeBox.TheShoeBox.model.bindng.UserRegisterBindingModel;
-import TheShoeBox.TheShoeBox.model.service.UserRegisterServiceModel;
+import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
+import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.IOException;
 
 @Controller
 public class UserController {
@@ -26,11 +25,13 @@ public class UserController {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final UserEntityService userEntityService;
+    private final UserEntityService userService;
 
-    public UserController(ModelMapper modelMapper, PasswordEncoder passwordEncoder, UserEntityService userEntityService) {
+    public UserController(ModelMapper modelMapper, PasswordEncoder passwordEncoder, UserEntityService userEntityService, UserEntityService userService) {
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.userEntityService = userEntityService;
+        this.userService = userService;
     }
 
     @GetMapping("/users/login")
@@ -72,17 +73,11 @@ public class UserController {
 
             return "redirect:/users/register";
         }
-        UserRegisterServiceModel user = modelMapper.map(userRegisterBindingModel, UserRegisterServiceModel.class);
+        UserServiceModel user = modelMapper.map(userRegisterBindingModel, UserServiceModel.class);
 
         userEntityService.registerUser(user);
 
-        return "redirect:/users/profile";
-    }
-
-
-    @GetMapping("/users/profile")
-    public String profile() {
-        return "profile";
+        return "redirect:profile";
     }
 
     @RequestMapping(value="/users/logout", method = RequestMethod.GET)

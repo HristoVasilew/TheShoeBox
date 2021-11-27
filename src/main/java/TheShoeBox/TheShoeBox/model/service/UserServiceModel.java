@@ -1,6 +1,6 @@
 package TheShoeBox.TheShoeBox.model.service;
 
-public class UserRegisterServiceModel {
+public class UserServiceModel {
     private Long id;
     private String username;
     private String firstname;
@@ -8,14 +8,14 @@ public class UserRegisterServiceModel {
     private String email;
     private String password;
 
-    public UserRegisterServiceModel() {
+    public UserServiceModel() {
     }
 
     public Long getId() {
         return id;
     }
 
-    public UserRegisterServiceModel setId(Long id) {
+    public UserServiceModel setId(Long id) {
         this.id = id;
         return this;
     }
@@ -24,7 +24,7 @@ public class UserRegisterServiceModel {
         return username;
     }
 
-    public UserRegisterServiceModel setUsername(String username) {
+    public UserServiceModel setUsername(String username) {
         this.username = username;
         return this;
     }
@@ -33,7 +33,7 @@ public class UserRegisterServiceModel {
         return firstname;
     }
 
-    public UserRegisterServiceModel setFirstname(String firstname) {
+    public UserServiceModel setFirstname(String firstname) {
         this.firstname = firstname;
         return this;
     }
@@ -42,7 +42,7 @@ public class UserRegisterServiceModel {
         return lastname;
     }
 
-    public UserRegisterServiceModel setLastname(String lastname) {
+    public UserServiceModel setLastname(String lastname) {
         this.lastname = lastname;
         return this;
     }
@@ -51,7 +51,7 @@ public class UserRegisterServiceModel {
         return email;
     }
 
-    public UserRegisterServiceModel setEmail(String email) {
+    public UserServiceModel setEmail(String email) {
         this.email = email;
         return this;
     }
@@ -60,7 +60,7 @@ public class UserRegisterServiceModel {
         return password;
     }
 
-    public UserRegisterServiceModel setPassword(String password) {
+    public UserServiceModel setPassword(String password) {
         this.password = password;
         return this;
     }

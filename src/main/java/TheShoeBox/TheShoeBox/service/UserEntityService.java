@@ -1,11 +1,15 @@
 package TheShoeBox.TheShoeBox.service;
 
-import TheShoeBox.TheShoeBox.model.service.UserRegisterServiceModel;
+import TheShoeBox.TheShoeBox.model.entity.UserEntity;
+import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
 
-import java.io.IOException;
+import java.util.Optional;
 
 public interface UserEntityService {
-    void registerUser(UserRegisterServiceModel userRegisterServiceModel);
+    void registerUser(UserServiceModel userServiceModel);
     void initUsers();
 
+    UserServiceModel findById(Long id);
+
+    Optional<UserEntity> findUserByEmail(String username);
 }
