@@ -35,20 +35,22 @@ public class UserController {
 
     @GetMapping("/users/login")
     public String login() {
+
+
         return "login";
     }
 
-//    @PostMapping("/login-error")
-//    public String failedLogin(
-//            @ModelAttribute("email")
-//                    String email,
-//            RedirectAttributes redirectAttributes) {
-//
-//        redirectAttributes.addFlashAttribute("bad_credentials", true);
-//        redirectAttributes.addFlashAttribute("email", email);
-//
-//        return "redirect:/login";
-//    }
+    @PostMapping("/login-error")
+    public String failedLogin(
+            @ModelAttribute("email")
+                    String email,
+            RedirectAttributes redirectAttributes) {
+
+        redirectAttributes.addFlashAttribute("bad_credentials", true);
+        redirectAttributes.addFlashAttribute("email", email);
+
+        return "redirect:/login";
+    }
 
     @GetMapping("/register")
     public String register() {
@@ -60,14 +62,12 @@ public class UserController {
         return new UserRegisterBindingModel();
     }
 
-
     @PostMapping("/register")
     public String register(
             @Valid UserRegisterBindingModel userRegisterBindingModel,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes){
 
-        System.out.println(bindingResult);
         if(bindingResult.hasErrors() || !userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())){
             redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel", bindingResult);
@@ -78,7 +78,7 @@ public class UserController {
 
         userEntityService.registerUser(user);
 
-        return "redirect:/";
+        return "redirect:/profile";
     }
 
 
@@ -93,7 +93,7 @@ public class UserController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/login?logout"; //You can redirect wherever you want, but generally it's a good practice to show login screen again.
+        return "redirect:/"; //You can redirect wherever you want, but generally it's a good practice to show login screen again.
     }
 
 }
