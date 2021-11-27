@@ -78,8 +78,8 @@ public class UserEntityServiceImpl implements UserEntityService {
 
         newUser.
                 setUsername(userRegisterServiceModel.getUsername()).
-                setFirstName(userRegisterServiceModel.getFirstName()).
-                setLastName(userRegisterServiceModel.getLastName()).
+                setFirstName(userRegisterServiceModel.getFirstname()).
+                setLastName(userRegisterServiceModel.getLastname()).
                 setEmail(userRegisterServiceModel.getEmail()).
                 setPassword(passwordEncoder.encode(userRegisterServiceModel.getPassword())).
                 setRoles(List.of(userRole));

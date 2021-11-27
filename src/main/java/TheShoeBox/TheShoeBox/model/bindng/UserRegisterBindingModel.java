@@ -7,13 +7,12 @@ import javax.validation.constraints.Size;
 
 public class UserRegisterBindingModel {
 
-
     private String username;
-    private String firstName;
-    private String lastName;
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
-    private String confirmPassword;
+     private String confirmPassword;
 
     public UserRegisterBindingModel() {
     }
@@ -27,21 +26,21 @@ public class UserRegisterBindingModel {
         return this;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public UserRegisterBindingModel setFirstName(String firstName) {
-        this.firstName = firstName;
+    public UserRegisterBindingModel setFirstname(String firstname) {
+        this.firstname = firstname;
         return this;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getLastname() {
+        return lastname;
     }
 
-    public UserRegisterBindingModel setLastName(String lastName) {
-        this.lastName = lastName;
+    public UserRegisterBindingModel setLastname(String lastname) {
+        this.lastname = lastname;
         return this;
     }
 

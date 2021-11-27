@@ -35,8 +35,6 @@ public class UserController {
 
     @GetMapping("/users/login")
     public String login() {
-
-
         return "login";
     }
 
@@ -49,10 +47,10 @@ public class UserController {
         redirectAttributes.addFlashAttribute("bad_credentials", true);
         redirectAttributes.addFlashAttribute("email", email);
 
-        return "redirect:/login";
+        return "redirect:/users/login";
     }
 
-    @GetMapping("/register")
+    @GetMapping("users/register")
     public String register() {
         return "register";
     }
@@ -62,7 +60,7 @@ public class UserController {
         return new UserRegisterBindingModel();
     }
 
-    @PostMapping("/register")
+    @PostMapping("/users/register")
     public String register(
             @Valid UserRegisterBindingModel userRegisterBindingModel,
             BindingResult bindingResult,
@@ -72,13 +70,13 @@ public class UserController {
             redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel", bindingResult);
 
-            return "redirect:/register";
+            return "redirect:/users/register";
         }
         UserRegisterServiceModel user = modelMapper.map(userRegisterBindingModel, UserRegisterServiceModel.class);
 
         userEntityService.registerUser(user);
 
-        return "redirect:/profile";
+        return "redirect:/users/profile";
     }
 
 
@@ -93,7 +91,7 @@ public class UserController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/"; //You can redirect wherever you want, but generally it's a good practice to show login screen again.
+        return "redirect:/users/login"; //You can redirect wherever you want, but generally it's a good practice to show login screen again.
     }
 
 }
