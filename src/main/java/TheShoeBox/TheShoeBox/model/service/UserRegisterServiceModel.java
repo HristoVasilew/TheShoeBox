@@ -1,12 +1,12 @@
 package TheShoeBox.TheShoeBox.model.service;
 
 public class UserRegisterServiceModel {
+    private Long id;
     private String username;
     private String firstName;
     private String lastName;
     private String email;
     private String password;
-    private String confirmPassword;
 
     public UserRegisterServiceModel() {
     }
@@ -51,11 +51,12 @@ public class UserRegisterServiceModel {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+    public Long getId() {
+        return id;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+    public UserRegisterServiceModel setId(Long id) {
+        this.id = id;
+        return this;
     }
 }

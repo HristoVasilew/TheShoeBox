@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -35,28 +35,28 @@
           <div class="col-lg-6 p-4 p-lg-5">
             <h1 class="font-weight-bold py-3">Login</h1>
             <h4 class="py-1">Sign into your account</h4>
-            <form>
+            <form th:action="@{/users/login}"
+                  th:method="post">
               <div class="form-floating mb-3">
-                <input type="email" class="form-control" required minlength="4" maxlength="20" id="floatingInput"
+                <input name="email" type="email" class="form-control" required id="floatingInput"
                   placeholder="name@example.com">
                 <label for="floatingInput">Email address<span class="text-danger">*</span></label>
-                <small id="lastnameHelpBlock" class="text-danger">
-                  Your email must contains @ characters long!
-                </small>
+
               </div>
               <div class="form-floating">
-                <input type="password" class="form-control" required minlength="4" maxlength="20" id="floatingPassword"
+                <input name="password" type="password" class="form-control" required id="floatingPassword"
                   placeholder="Password">
                 <label for="floatingPassword">Password<span class="text-danger">*</span></label>
-                <small id="passwordHelpBlock" class="text-danger">
-                  Your password must be 4-20 characters long!
-                </small>
+
               </div>
+
+<!--              <p th:if="${bad_credentials}" class="errors alert alert-danger">-->
+<!--                Invalid username or password.-->
+<!--              </p>-->
               <div class="form-row">
                 <div class="pt-1 mb-4">
-                  <form action="home.html" class="inline">
-                    <a href="/collections/all"><button class="btn btn-dark btn-lg btn-block"
-                        type="submit">Login</button> </a>
+                    <button type="submit" class="btn btn-dark btn-lg btn-block"
+                        >Login</button>
                 </div>
               </div>
               <div class="row">

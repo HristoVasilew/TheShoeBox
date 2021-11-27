@@ -3,6 +3,7 @@ package TheShoeBox.TheShoeBox.model.entity;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -12,20 +13,16 @@ public class UserEntity extends BaseEntity{
     private String username;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false)
-    @Email
+    @Column(nullable = false,unique = true)
     private String email;
     @Column(nullable = false)
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<UserRoleEntity> roles = new HashSet<>();
-
+    @ManyToMany(fetch=FetchType.EAGER)
+    private List<UserRoleEntity> roles;
     @OneToMany(mappedBy = "creator")
     private Set<ShoeEntity> shoes;
-
     @ManyToOne
     @JoinColumn(name = "collection_id")
     private CollectionEntity collection;
@@ -84,11 +81,11 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public Set<UserRoleEntity> getRoles() {
+    public List<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public UserEntity setRoles(Set<UserRoleEntity> roles) {
+    public UserEntity setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
         return this;
     }
