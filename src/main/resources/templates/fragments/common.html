@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
 
 
 <head th:fragment="head">
@@ -37,7 +38,7 @@
                         <li>
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
-                        <li>
+                        <li sec:authorize="isAuthenticated()">
                             <a class="nav-link active" aria-current="page" href="/collections/all">Collections</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -45,22 +46,26 @@
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="far fa-user"></i>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: rgb(255, 227, 70);">
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <th:block sec:authorize="isAuthenticated()">
                                 <li>
                                     <a class="dropdown-item text-white" href="/users/profile">Profile</a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item text-white" href="/users/logout">Logout</a>
+                                </li>
+                                </th:block>
+                                <th:block sec:authorize="!isAuthenticated()">
                                 <li>
                                     <a class="dropdown-item text-white" href="/users/login">Login</a>
                                 </li>
                                 <li>
                                     <a class="dropdown-item text-white" href="/users/register">Register</a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item text-white" href="/users/logout">Logout</a>
-                                </li>
+                                </th:block>
                             </ul>
                         </li>
-                        <li>
+                        <li sec:authorize="isAuthenticated()">
                             <a class="nav-link active" href="/templates/add-to-cart.html"><i class="fa fa-shopping-cart"></i><span
                                     class="badge rounded-pill badge-notification bg-danger">3</span></a>
                         </li>
@@ -131,13 +136,13 @@
                             Useful links
                         </h6>
                         <p>
-                            <a href="/about.html" class="text-reset">About Us</a>
+                            <a href="/shop/about" class="text-reset">About Us</a>
                         </p>
                         <p>
                             <a href="#!" class="text-reset">Privaci polici</a>
                         </p>
                         <p>
-                            <a href="/newsletter.html" class="text-reset">Newsletter</a>
+                            <a href="/shop/newsletter" class="text-reset">Newsletter</a>
                         </p>
                         <p>
                             <a href="#!" class="text-reset">Help</a>

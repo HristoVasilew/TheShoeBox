@@ -79,6 +79,12 @@ public class UserController {
         return "redirect:/";
     }
 
+
+    @GetMapping("/users/profile")
+    public String profile() {
+        return "profile";
+    }
+
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         httpSession.invalidate();
