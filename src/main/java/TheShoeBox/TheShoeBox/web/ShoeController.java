@@ -2,6 +2,7 @@ package TheShoeBox.TheShoeBox.web;
 
 import TheShoeBox.TheShoeBox.model.bindng.ShoeBindingModel;
 import TheShoeBox.TheShoeBox.model.service.ShoeServiceModel;
+import TheShoeBox.TheShoeBox.model.view.ShoeViewModel;
 import TheShoeBox.TheShoeBox.service.ShoeService;
 import TheShoeBox.TheShoeBox.service.impl.ShoeBoxUser;
 import org.modelmapper.ModelMapper;
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-@RequestMapping("")
 public class ShoeController {
 
     private final ModelMapper modelMapper;
@@ -31,7 +32,10 @@ public class ShoeController {
     }
 
     @GetMapping("/collections/all")
-    public String home() {
+    public String home(Model model) {
+        List<ShoeViewModel> shoes = shoeService.findAllShoes();
+        model.addAttribute("allShoes", shoes);
+
         return "home";
     }
 

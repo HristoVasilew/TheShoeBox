@@ -76,6 +76,14 @@ public class ProfileController {
         return "profile";
     }
 
+//    @GetMapping("/home")
+//    private String homePage(Model model,@AuthenticationPrincipal MyUser user){
+//        List<VehicleViewModel> myVehicles = this.vehicleService.findMyVehicles(user.getUserIdentifier());
+//        model.addAttribute("myVehicles", myVehicles);
+//        model.addAttribute("vehiclesCount", myVehicles.size());
+//        return "home";
+//    }
+
     private Optional<UserEntity> getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();

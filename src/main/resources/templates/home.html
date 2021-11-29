@@ -50,32 +50,34 @@
     </header>
 
 
-    <div class="container p-4" style="margin-top: 250px">
+    <div th:action="@{/collections/all}" th:method="get" th:object="${allShoes}" class="container p-4"
+         style="margin-top: 250px">
 
         <h1 class="masthead-heading text-uppercase p-5 text-center border-bottom" style="letter-spacing: 10px;font-weight: 600;
     line-height: 1.9;font-size: 42px;line-height: 48px;letter-spacing: 0.092em;font-weight: 600; font-style: italic;">
             All products
         </h1>
 
-        <div  class="row row-cols-md-3 g-3">
+        <div th:each="t : ${allShoes}" th:object="${t}" class="row row-cols-md-3 g-3">
             <div class="col">
                 <div class="card h-100">
                     <img src="https://images.vans.com/is/image/Vans/VC0910-HERO?$CUSTOMS-PDP-MEDIUM$"
                          class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Vans suits</h5>
-                        <p class="card-text">The Old Skool, the Vans classic skate...</p>
+                        <h5 class="card-title"><span th:text="*{brand}">Vans</span> <span
+                                th:text="*{model}"> Suit</span></h5>
+                        <p class="card-text" th:text="*{description}">The Old Skool, the Vans classic skate...</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Available</li>
-                        <li class="list-group-item">Price: $249.00</li>
+                        <li class="list-group-item" th:text="*{price}">Price: $249.00</li>
                     </ul>
                     <div class="card-body">
                         <a href="/collections/add-to-cart" class="card-link">Add to cart!</a>
                         <a href="/collections/details" class="card-link">Details</a>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Last updated 1 hour ago</small>
+                        <small class="text-muted" th:text="|Last updated *{createdOn.getHour()} hours ago|">Last updated 1 hour ago</small>
                     </div>
                 </div>
             </div>
@@ -84,9 +86,10 @@
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
                 crossorigin="anonymous"></script>
 
-
-        <footer th:replace="fragments/common::footer"></footer>
     </div>
+    <footer th:replace="fragments/common::footer"></footer>
+</div>
+
 </body>
 
 </html>

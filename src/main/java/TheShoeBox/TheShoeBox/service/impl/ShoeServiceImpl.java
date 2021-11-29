@@ -5,6 +5,7 @@ import TheShoeBox.TheShoeBox.model.entity.ShoeCategoryEntity;
 import TheShoeBox.TheShoeBox.model.entity.ShoeEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.service.ShoeServiceModel;
+import TheShoeBox.TheShoeBox.model.view.ShoeViewModel;
 import TheShoeBox.TheShoeBox.repository.CategoryRepository;
 import TheShoeBox.TheShoeBox.repository.ShoeRepository;
 import TheShoeBox.TheShoeBox.repository.UserRepository;
@@ -15,6 +16,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ShoeServiceImpl implements ShoeService {
@@ -51,5 +54,13 @@ public class ShoeServiceImpl implements ShoeService {
         ShoeEntity savedShoe = shoeRepository.save(shoe);
 
         return modelMapper.map(savedShoe, ShoeServiceModel.class);
+    }
+
+    @Override
+    public List<ShoeViewModel> findAllShoes() {
+        return shoeRepository.findAll()
+                .stream().map(s-> modelMapper.map(s, ShoeViewModel.class))
+                .collect(Collectors.toList());
+
     }
 }
