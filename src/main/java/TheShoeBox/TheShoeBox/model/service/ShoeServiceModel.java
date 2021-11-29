@@ -20,6 +20,7 @@ public class ShoeServiceModel {
     private ShoeCategoryEnum shoeCategoryEnum;
     private LocalDateTime createdOn;
     private UserEntity user;
+    private String imageUrl;
 
     public String getBrand() {
         return brand;
@@ -31,6 +32,16 @@ public class ShoeServiceModel {
 
     public ShoeServiceModel setShoeCategoryEnum(ShoeCategoryEnum shoeCategoryEnum) {
         this.shoeCategoryEnum = shoeCategoryEnum;
+        return this;
+    }
+
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public ShoeServiceModel setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 

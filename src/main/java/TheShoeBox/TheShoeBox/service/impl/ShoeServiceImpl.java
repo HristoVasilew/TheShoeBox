@@ -50,6 +50,7 @@ public class ShoeServiceImpl implements ShoeService {
         shoe.setCreator(userEntity);
         ShoeCategoryEntity cat = categoryRepository.findShoeCategoryEntityByName(shoeBindingModel.getShoeCategoryEnum());
         shoe.setShoeCategoryEntity(cat);
+        shoe.setImageUrl(shoeBindingModel.getImageUrl());
 
         ShoeEntity savedShoe = shoeRepository.save(shoe);
 

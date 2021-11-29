@@ -30,6 +30,7 @@ public class ShoeBindingModel {
     private String location;
     @Size(min = 2, max = 40)
     private String description;
+    private String imageUrl;
 
     private ShoeCategoryEnum shoeCategoryEnum;
 
@@ -39,6 +40,15 @@ public class ShoeBindingModel {
 
     public ShoeBindingModel setBrand(String brand) {
         this.brand = brand;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public ShoeBindingModel setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 

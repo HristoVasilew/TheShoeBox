@@ -61,8 +61,8 @@
         <div th:each="t : ${allShoes}" th:object="${t}" class="row row-cols-md-3 g-3">
             <div class="col">
                 <div class="card h-100">
-                    <img src="https://images.vans.com/is/image/Vans/VC0910-HERO?$CUSTOMS-PDP-MEDIUM$"
-                         class="card-img-top" alt="...">
+                    <img th:src="*{getImageUrl()}"
+                         class="card-img-top" alt="shoe photo">
                     <div class="card-body">
                         <h5 class="card-title"><span th:text="*{brand}">Vans</span> <span
                                 th:text="*{model}"> Suit</span></h5>

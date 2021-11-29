@@ -24,7 +24,7 @@ public class ShoeEntity extends BaseEntity{
     private String location;
     @Column(nullable = false,columnDefinition = "TEXT")
     private String description;
-
+    private String imageUrl;
     private LocalDateTime createdOn;
 
     @ManyToOne
@@ -37,6 +37,14 @@ public class ShoeEntity extends BaseEntity{
     @JoinColumn(name = "collection_id")
     private CollectionEntity collection;
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public ShoeEntity setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
 
     public CollectionEntity getCollection() {
         return collection;

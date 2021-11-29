@@ -9,6 +9,7 @@ public class ShoeViewModel {
     private String brand;
     private String model;
     private BigDecimal price;
+    private String imageUrl;
     private String description;
     private LocalDateTime createdOn;
 
@@ -19,6 +20,15 @@ public class ShoeViewModel {
 
     public LocalDateTime getCreatedOn() {
         return createdOn;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public ShoeViewModel setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
     }
 
     public ShoeViewModel setCreatedOn(LocalDateTime createdOn) {
