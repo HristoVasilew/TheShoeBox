@@ -1,7 +1,12 @@
 package TheShoeBox.TheShoeBox.model.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +31,8 @@ public class UserEntity extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "collection_id")
     private CollectionEntity collection;
+
+    private LocalDateTime sinceFrom = LocalDateTime.now();
 
     public CollectionEntity getCollection() {
         return collection;
@@ -96,6 +103,15 @@ public class UserEntity extends BaseEntity{
 
     public UserEntity setShoes(Set<ShoeEntity> shoes) {
         this.shoes = shoes;
+        return this;
+    }
+
+    public LocalDateTime getSinceFrom() {
+        return sinceFrom;
+    }
+
+    public UserEntity setSinceFrom(LocalDateTime sinceFrom) {
+        this.sinceFrom = sinceFrom;
         return this;
     }
 }

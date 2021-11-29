@@ -39,4 +39,9 @@ public class CategoryEntityServiceImpl implements CategoryEntityService {
     public ShoeCategoryEntity getCategoryByName(ShoeCategoryEnum name) {
         return categoryRepository.getCategoryEntityByName(name);
     }
+
+    @Override
+    public ShoeCategoryEntity findShoeCategoryEntityByName(ShoeCategoryEnum name) {
+        return categoryRepository.findShoeCategoryEntityByName(name);
+    }
 }

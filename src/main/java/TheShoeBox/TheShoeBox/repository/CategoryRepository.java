@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CategoryRepository extends JpaRepository<ShoeCategoryEntity, Long> {
     ShoeCategoryEntity getCategoryEntityByName(ShoeCategoryEnum name);
+
+
+    ShoeCategoryEntity findShoeCategoryEntityByName(ShoeCategoryEnum name);
 }

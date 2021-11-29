@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 @Controller
@@ -45,11 +47,13 @@ public class ProfileController {
         Optional<UserEntity> userEntity = getCurrentUser();
 
         UserProfileView user = new UserProfileView();
+        user.setId(userEntity.get().getId());
         user.setFirstname(userEntity.get().getFirstName());
         user.setLastname(userEntity.get().getLastName());
         user.setEmail(userEntity.get().getEmail());
         user.setRoles(userEntity.get().getRoles());
         user.setUsername(userEntity.get().getUsername());
+
         model.addAttribute("user", user);
         return "edit-profile";
     }
@@ -60,11 +64,13 @@ public class ProfileController {
         Optional<UserEntity> userEntity = getCurrentUser();
 
         UserProfileView user = new UserProfileView();
+        user.setId(userEntity.get().getId());
         user.setFirstname(userEntity.get().getFirstName());
         user.setLastname(userEntity.get().getLastName());
         user.setEmail(userEntity.get().getEmail());
         user.setRoles(userEntity.get().getRoles());
         user.setUsername(userEntity.get().getUsername());
+        user.setSinceFrom(LocalDateTime.parse(userEntity.get().getSinceFrom().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'hh:mm"))));
         model.addAttribute("user", user);
 
         return "profile";

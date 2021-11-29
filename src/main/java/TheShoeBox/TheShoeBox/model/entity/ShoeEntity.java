@@ -5,6 +5,8 @@ import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "shoes")
@@ -23,8 +25,10 @@ public class ShoeEntity extends BaseEntity{
     @Column(nullable = false,columnDefinition = "TEXT")
     private String description;
 
-    @Enumerated(value = EnumType.STRING)
-    private ShoeCategoryEnum category;
+    private LocalDateTime createdOn;
+
+    @ManyToOne
+    private ShoeCategoryEntity shoeCategoryEntity;
 
     @ManyToOne
     private UserEntity creator;
@@ -32,6 +36,7 @@ public class ShoeEntity extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "collection_id")
     private CollectionEntity collection;
+
 
     public CollectionEntity getCollection() {
         return collection;
@@ -41,6 +46,14 @@ public class ShoeEntity extends BaseEntity{
         this.collection = collection;
     }
 
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public ShoeEntity setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
+        return this;
+    }
 
     public String getBrand() {
         return brand;
@@ -96,15 +109,6 @@ public class ShoeEntity extends BaseEntity{
         return this;
     }
 
-    public ShoeCategoryEnum getCategory() {
-        return category;
-    }
-
-    public ShoeEntity setCategory(ShoeCategoryEnum category) {
-        this.category = category;
-        return this;
-    }
-
     public UserEntity getCreator() {
         return creator;
     }
@@ -114,5 +118,12 @@ public class ShoeEntity extends BaseEntity{
         return this;
     }
 
+    public ShoeCategoryEntity getShoeCategoryEntity() {
+        return shoeCategoryEntity;
+    }
 
+    public ShoeEntity setShoeCategoryEntity(ShoeCategoryEntity shoeCategoryEntity) {
+        this.shoeCategoryEntity = shoeCategoryEntity;
+        return this;
+    }
 }

@@ -5,8 +5,7 @@ public class RateEntity {
 
         private float stars;
 
-        public RateEntity() {
-        }
+        public RateEntity() {}
 
         public float getStars() {
             return stars;

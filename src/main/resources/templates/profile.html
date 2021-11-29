@@ -81,14 +81,14 @@
                         </h1>
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-<!--                                <div class="row">-->
-<!--                                    <div class="col-md-6">-->
-<!--                                        <label>User Id</label>-->
-<!--                                    </div>-->
-<!--                                    <div class="col-md-6">-->
-<!--                                        <p th:text="${user.id}">1</p>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>User Id</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p th:text="*{id}">1</p>
+                                    </div>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Name</label>
@@ -122,7 +122,7 @@
                                     <label>Since year</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p>6 months</p>
+                                    <p th:text="*{sinceFrom}">6 months</p>
                                 </div>
                             </div>
                             <div class="row">

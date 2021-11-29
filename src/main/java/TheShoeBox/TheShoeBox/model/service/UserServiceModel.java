@@ -1,5 +1,7 @@
 package TheShoeBox.TheShoeBox.model.service;
 
+import java.time.LocalDateTime;
+
 public class UserServiceModel {
     private Long id;
     private String username;
@@ -7,6 +9,7 @@ public class UserServiceModel {
     private String lastname;
     private String email;
     private String password;
+    private LocalDateTime sinceFrom;
 
     public UserServiceModel() {
     }
@@ -21,7 +24,9 @@ public class UserServiceModel {
     }
 
     public String getUsername() {
-        return username;
+        return username != null ?
+                username.trim() :
+                null;
     }
 
     public UserServiceModel setUsername(String username) {
@@ -62,6 +67,15 @@ public class UserServiceModel {
 
     public UserServiceModel setPassword(String password) {
         this.password = password;
+        return this;
+    }
+
+    public LocalDateTime getSinceFrom() {
+        return sinceFrom;
+    }
+
+    public UserServiceModel setSinceFrom(LocalDateTime sinceFrom) {
+        this.sinceFrom = sinceFrom;
         return this;
     }
 }

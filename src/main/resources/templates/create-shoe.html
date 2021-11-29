@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 
 <head th:replace="fragments/common::head">
     <title>The-Shoe-Box | Add-shoe</title>
@@ -27,30 +27,30 @@
                 <div class="col-lg-9 p-4">
                     <h1 class="font-weight-bold py-">Create product</h1>
 
-                    <form>
-                        <div class="row ">
+                    <form th:action="@{/collections/create-shoe}" th:method="POST" th:object="${shoeBindingModel}">
+                        <div class="row">
                             <div class="col-lg-5" style="margin-right: 150px;">
                                 <div class="form-floating mb-3">
-                                    <input type="brand" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingInput" placeholder="name@example.com">
-                                    <label for="floatingInput">Brand name<span class="text-danger">*</span></label>
-                                    <small id="brandHelpBlock" class="text-danger">
+                                    <input name="brand" type="brand" class="form-control" required minlength="4" maxlength="20"
+                                        id="floatingbrand">
+                                    <label for="floatingbrand">Brand name<span class="text-danger">*</span></label>
+                                    <small id="brandHelpBlock" class="invalid-feedback text-danger">
                                         Brand must must be 4-20 characters long!
                                     </small>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="model" class="form-control" required minlength="2" maxlength="20"
-                                        id="floatingInput" placeholder="Ivanov">
-                                    <label for="floatingInput">Model Name<span class="text-danger">*</span></label>
-                                    <small id="ModelHelpBlock" class="text-danger">
+                                    <input name="model" type="model" class="form-control" required minlength="2" maxlength="20"
+                                        id="floatingmodel">
+                                    <label for="floatingmodel">Model Name<span class="text-danger">*</span></label>
+                                    <small id="ModelHelpBlock" class="invalid-feedback text-danger">
                                         Model name must be 2-20 characters long!
                                     </small>
                                 </div>
                                 <div class="form-floating mb-2">
-                                    <input type="size" class="form-control" required minlength="1 " maxlength="20"
-                                        id="floatingsize" placeholder="Size">
+                                    <input name="size" type="size" class="form-control" required minlength="1 " maxlength="20"
+                                        id="floatingsize">
                                     <label for="floatingsize">Size<span class="text-danger">*</span></label>
-                                    <small id="sizeHelpBlock" class="text-danger">
+                                    <small id="sizeHelpBlock" class="invalid-feedback text-danger">
                                         Need to choose min one size!
                                     </small>
                                 </div>
@@ -79,43 +79,34 @@
                             </div>
                             <div class="col-lg-5">
                                 <div class="form mb-4 ">
-                                    <label class="visually-hidden" for="autoSizingSelect">Preference</label>
-                                    <select class="form-select" id="autoSizingSelect">
-                                        <option selected>Choose type of sneakers...</option>
-                                        <option value=1>Plimsoll</option>
-                                        <option value=2>High Top Basketball</option>
-                                        <option value=3>Athletic</option>
-                                        <option value=4>SlipOn</option>
-                                        <option value=5>Authentic</option>
-                                        <option value=6>Leather</option>
-                                        <option value=7>Canvas</option>
-                                        <option value=8>Velcro</option>
-                                        <option value=9>Designer</option>
-                                        <option value=10>Synthetic</option>
+                                    <label class="visually-hidden" for="shoeCategoryEntity">Preference</label>
+                                    <select class="form-select" id="shoeCategoryEntity" name="shoeCategoryEntity">
+                                        <option value="" selected>Choose type of sneakers...</option>
+                                        <option th:each="c : ${T(TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum).values()}" th:value="${c}" th:text="${c}" th:selected="${c} == *{shoeCategoryEnum}">Category</option>
                                     </select>
                                 </div>
 
                                 <div class="form-floating mb-3">
-                                    <input type="location" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingInput" placeholder="location">
-                                    <label for="floatingInput">Location<span class="text-danger">*</span></label>
-                                    <small id="locationHelpBlock" class="text-danger">
+                                    <input name="location" type="location" class="form-control" required minlength="4" maxlength="140"
+                                        id="floatinglocation" placeholder="location">
+                                    <label for="floatinglocation">Location<span class="text-danger">*</span></label>
+                                    <small id="locationHelpBlock" class="invalid-feedback text-danger">
                                         Your location must be 10-30 characters long!
                                     </small>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="description" class="form-control" required minlength="4" maxlength="40"
-                                        id="floatingInput" placeholder="description">
-                                    <label for="floatingInput">Description<span class="text-danger">*</span></label>
-                                    <small id="descriptionHelpBlock" class="text-danger">
+                                    <input name="description" type="description" class="form-control" required minlength="4" maxlength="140"
+                                        id="floatingdescription" placeholder="description">
+                                    <label for="floatingdescription">Description<span class="text-danger">*</span></label>
+                                    <small id="descriptionHelpBlock" class="invalid-feedback text-danger">
                                         Your description must be 2-40 characters long!
                                     </small>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="description" class="form-control" required minlength="4" maxlength="40"
-                                        id="floatingInput" placeholder="description">
-                                    <label for="floatingInput">Price<span class="text-danger">*</span></label>
-                                    <small id="descriptionHelpBlock" class="text-danger">
+                                    <input name="price" type="price" class="form-control" required minlength="1" maxlength="4"
+                                        id="floatingprice" placeholder="price">
+                                    <label for="floatingprice">Price<span class="invalid-feedback text-danger">*</span></label>
+                                    <small id="priceHelpBlock" class="invalid-feedback text-danger">
                                         Price must be positive!
                                     </small>
                                 </div>
@@ -123,10 +114,10 @@
                                     <div class="mb-0 ">
                                         <label for="formFileMultiple" class="form-label">Images</label>
                                         <span class="text-danger">*</span>
-                                        <input class="form-control" type="file" accept="image/png, image/jpeg" id="formFileMultiple" multiple>
+                                        <input name="image" class="form-control" type="file" accept="image/png, image/jpeg" id="formFileMultiple" multiple>
                                     </div>
 
-                                    <small id="imageeHelpBlock" class="text-danger">
+                                    <small id="imageeHelpBlock" class="invalid-feedback text-danger">
                                         Too big file!
                                     </small>
                                 </div>
@@ -135,9 +126,9 @@
                         </div>
                         <div class="form-row">
                             <div class="pt-1 mb-2">
-                                <form action="home.html" class="inline">
-                                    <button class="btn btn-dark btn-lg btn-block" type="submit">Create</button>
-                                </form>
+<!--                                <form action="/collections/details" class="inline">-->
+                                    <button type="submit" class="btn btn-dark btn-lg btn-block">Create</button>
+<!--                                </form>-->
                             </div>
                         </div>
                         <div class="row">
@@ -145,7 +136,7 @@
                                 <a href="#">Forgot password?</a>
                             </div>
                             <div class="col">
-                                <p>Back to <a href="/templates/home.html">SHOP</a></p>
+                                <p>Back to <a href="/collections/all">SHOP</a></p>
                             </div>
                         </div>
                     </form>

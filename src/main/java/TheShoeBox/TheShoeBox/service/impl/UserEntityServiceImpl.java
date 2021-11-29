@@ -83,6 +83,13 @@ public class UserEntityServiceImpl implements UserEntityService {
     }
 
     @Override
+    public UserServiceModel findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .map(user -> modelMapper.map(user, UserServiceModel.class))
+                .orElse(null);
+    }
+
+    @Override
     public void registerUser(UserServiceModel userServiceModel){
 
         UserRoleEntity userRole = roleRepository.findByRole(UserRoleEnum.USER);
