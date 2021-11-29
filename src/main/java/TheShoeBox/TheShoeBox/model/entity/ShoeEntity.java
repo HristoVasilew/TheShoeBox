@@ -31,6 +31,9 @@ public class ShoeEntity extends BaseEntity{
     private ShoeCategoryEntity shoeCategoryEntity;
 
     @ManyToOne
+    private ShoeConditionEntity shoeConditionEntity;
+
+    @ManyToOne
     private UserEntity creator;
 
     @ManyToOne
@@ -45,6 +48,9 @@ public class ShoeEntity extends BaseEntity{
         this.imageUrl = imageUrl;
         return this;
     }
+
+
+
 
     public CollectionEntity getCollection() {
         return collection;
@@ -132,6 +138,15 @@ public class ShoeEntity extends BaseEntity{
 
     public ShoeEntity setShoeCategoryEntity(ShoeCategoryEntity shoeCategoryEntity) {
         this.shoeCategoryEntity = shoeCategoryEntity;
+        return this;
+    }
+
+    public ShoeConditionEntity getShoeConditionEntity() {
+        return shoeConditionEntity;
+    }
+
+    public ShoeEntity setShoeConditionEntity(ShoeConditionEntity shoeConditionEntity) {
+        this.shoeConditionEntity = shoeConditionEntity;
         return this;
     }
 }

@@ -64,7 +64,7 @@ public class ShoeController {
 
         ShoeServiceModel saved = shoeService.addShoe(shoeBindingModel, username);
 
-        return "redirect:/collections/" + saved + "/details";
+        return "redirect:/collections/all";
     }
 
     @GetMapping("/collections/add-to-cart")

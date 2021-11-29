@@ -3,9 +3,7 @@ package TheShoeBox.TheShoeBox.model.entity;
 import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -26,4 +24,12 @@ public class ShoeCategoryEntity extends BaseEntity{
         return this;
     }
 
+    public List<ShoeEntity> getShoe() {
+        return shoe;
+    }
+
+    public ShoeCategoryEntity setShoe(List<ShoeEntity> shoe) {
+        this.shoe = shoe;
+        return this;
+    }
 }
