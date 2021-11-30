@@ -77,7 +77,7 @@
                         <a href="/collections/details" class="card-link">Details</a>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted" th:text="|Last updated *{createdOn.getHour()} hours ago|">Last updated 1 hour ago</small>
+                        <small class="text-muted" th:text="|Last updated *{createdOn.getHour()} : *{createdOn.getMinute()}|">Last updated 1 hour ago</small>
                     </div>
                 </div>
             </div>
