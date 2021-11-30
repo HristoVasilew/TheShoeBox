@@ -5,7 +5,6 @@ import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -48,9 +47,6 @@ public class ShoeEntity extends BaseEntity{
         this.imageUrl = imageUrl;
         return this;
     }
-
-
-
 
     public CollectionEntity getCollection() {
         return collection;

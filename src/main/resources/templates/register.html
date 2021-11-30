@@ -34,61 +34,108 @@
           <div class="col-lg-6 p-4 p-lg-1">
             <h1 class="font-weight-bold py-">Register</h1>
             <h4>Sign into your account</h4>
-            <form th:action="@{/users/register}" th:method="post">
+            <form th:action="@{/users/register}" th:method="post" th:object="${userRegisterBindingModel}" >
               <div class="row">
                 <div class="col-md-5">
                   <div class="form-floating mb-3">
-                    <input name="email" type="email" class="form-control" required minlength="4" maxlength="20" id="floatingemail"
+
+                    <input
+                            th:field="*{email}"
+                            th:errorclass="is-invalid"
+                            name="email"
+                            type="text"
+                            class="form-control"
+                            required minlength="6" maxlength="20"
+                            id="email"
                       placeholder="name@example.com">
-                    <label for="floatingemail">Email address<span class="text-danger">*</span></label>
+
+                    <label for="email">Email address<span class="text-danger">*</span></label>
+<!--<p class="invalid-feedback errors alert alert-danger">-->
                     <small id="emailHelpBlock" class="invalid-feedback text-danger">
-                      Your email must contains @ characters long!
+                      Wrong pattern for email!
                     </small>
                   </div>
                   <div class="form-floating mb-3">
-                    <input name="firstname" type="firstName" class="form-control" required minlength="4" maxlength="20"
-                      id="floatingfirstname" placeholder="Ivanov">
-                    <label for="floatingfirstname">First Name<span class="text-danger">*</span></label>
+                    <input
+                            th:field="*{firstname}"
+                            th:errorclass="is-invalid"
+                            name="firstname"
+                            type="text"
+                            class="form-control"
+                            required minlength="2" maxlength="20"
+                            id="firstname">
+                    <label for="firstname">First Name<span class="text-danger">*</span></label>
                     <small id="firstnameHelpBlock" class="invalid-feedback text-danger">
                       Your first name must be 2-20 characters long!
                     </small>
                   </div>
                   <div class="form-floating">
-                    <input name="password" type="password" class="form-control" required minlength="4" maxlength="20"
-                      id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password<span class="text-danger">*</span></label>
+                    <input
+                            th:field="*{password}"
+                            th:errorclass="is-invalid"
+                            name="password"
+                            type="text"
+                            class="form-control"
+                            required minlength="4" maxlength="20"
+                            id="password"
+                            placeholder="Password">
+                    <label for="password">Password<span class="text-danger">*</span></label>
                     <small id="passwordHelpBlock" class="invalid-feedback text-danger">
                       Your password must be 4-20 characters long!
                     </small>
                   </div>
                   <div class="mb-3">
-                    <input field="privacyPolicy" type="checkbox" name="privacyPolicy" id="privacy-policy" required>
-                    <label for="privacy-policy" class="text-start">Confirm our
+                    <input field="privacyPolicy"
+                           type="checkbox"
+                           name="privacyPolicy"
+                           id="privacy-policy" required>
+                    <label for="privacy-policy"
+                           class="text-start">Confirm our
                       <a href="/conditions" class="text-dark">privacy policy.</a>
                       <span class="text-danger">*</span></label>
                   </div>
                 </div>
                 <div class="col-md-5">
                   <div class="form-floating mb-3">
-                    <input name="username" type="username" class="form-control" required minlength="4" maxlength="20" id="floatingusername"
-                      placeholder="Lecture">
-                    <label for="floatingusername">Username<span class="text-danger">*</span></label>
+                    <input
+                            th:field="*{username}"
+                            th:errorclass="is-invalid"
+                            name="username"
+                            type="text"
+                            class="form-control"
+                            required minlength="4" maxlength="20"
+                            id="username"
+                            placeholder="username">
+                    <label for="username">Username<span class="text-danger">*</span></label>
                     <small id="usernameHelpBlock" class="invalid-feedback text-danger">
-                      Your username must be 2-20 characters long!
+                      Your username must be 4-20 characters long!
                     </small>
                   </div>
                   <div class="form-floating mb-3">
-                    <input name="lastname" type="lastname" class="form-control" required minlength="4" maxlength="20" id="floatinglastname"
+                    <input
+                            th:field="*{lastname}"
+                            th:errorclass="is-invalid"
+                            name="lastname"
+                           type="text" class="form-control"
+                           required minlength="4" maxlength="20"
+                           id="lastname"
                       placeholder="Ivanov">
-                    <label for="floatinglastname">Last Name<span class="text-danger">*</span></label>
+                    <label for="lastname">Last Name<span class="text-danger">*</span></label>
                     <small id="lastnameHelpBlock" class="invalid-feedback text-danger">
-                      Your last name must be 2-20 characters long!
+                      Your last name must be 4-20 characters long!
                     </small>
                   </div>
                   <div class="form-floating ">
-                    <input name="confirmPassword" type="confirmPassword" class="form-control" required minlength="4" maxlength="20"
-                      id="floatingconfirmPassword" placeholder="Password">
-                    <label for="floatingconfirmPassword">Confirm Password<span class="text-danger">*</span></label>
+                    <input
+                            th:field="*{confirmPassword}"
+                            th:errorclass="is-invalid"
+                            name="confirmPassword"
+                            type="password"
+                            class="form-control"
+                            required minlength="4" maxlength="20"
+                            id="confirmPassword"
+                            placeholder="Password">
+                    <label for="confirmPassword">Confirm Password<span class="text-danger">*</span></label>
 
                     <small id="confirmPasswordHelpBlock" class="invalid-feedback text-danger">
                       Your password must be 4-20 characters long!

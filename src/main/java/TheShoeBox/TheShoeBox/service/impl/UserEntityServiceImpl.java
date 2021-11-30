@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserEntityServiceImpl implements UserEntityService {
@@ -39,35 +40,31 @@ public class UserEntityServiceImpl implements UserEntityService {
 
     @Override
     public void initUsers() {
-
-//        if (userRepository.count() > 0) {
-//            return;
+//        if (userRepository.count() == 0) {
+//
+//            UserRoleEntity adminRole = roleRepository.findByRole(UserRoleEnum.ADMIN);
+//            UserRoleEntity userRole = roleRepository.findByRole(UserRoleEnum.USER);
+//
+//            UserEntity admin = new UserEntity();
+//            admin
+//                    .setUsername("admin")
+//                    .setPassword(passwordEncoder.encode("11111"))
+//                    .setFirstName("Admin")
+//                    .setLastName("Adminov")
+//                    .setEmail("admin@admin.com");
+//            admin.setRoles(Set.of(adminRole,userRole));
+//            userRepository.save(admin);
+//
+//            UserEntity pesho = new UserEntity();
+//            pesho
+//                    .setUsername("pesho")
+//                    .setPassword(passwordEncoder.encode("11111"))
+//                    .setFirstName("Pesho")
+//                    .setLastName("Petrov")
+//                    .setEmail("pesho@peso.com");
+//            pesho.setRoles(Set.of( modelMapper.map(UserRoleEnum.USER, UserRoleEntity.class)));
+//            userRepository.save(pesho);
 //        }
-//
-//        UserRoleEntity adminRole = roleRepository.findByRole(UserRoleEnum.ADMIN);
-//        UserRoleEntity userRole = roleRepository.findByRole(UserRoleEnum.USER);
-//
-//        UserEntity admin = new UserEntity();
-//        admin
-//                .setUsername("admin")
-//                .setFirstName("Admin")
-//                .setLastName("Adminov")
-//                .setEmail("admin@abv.bg")
-//                .setPassword(passwordEncoder.encode("admin"));
-//
-//        admin.setRoles(List.of(adminRole, userRole));
-//        userRepository.save(admin);
-//
-//        UserEntity user = new UserEntity();
-//        user.setUsername("pesho")
-//                .setFirstName("Petyr")
-//                .setLastName("Petrov")
-//                .setEmail("peshko@mail.bg")
-//                .setPassword(passwordEncoder.encode("12345"));
-//
-//
-//        user.setRoles(List.of(userRole));
-//        userRepository.save(user);
     }
 
     @Override
@@ -90,7 +87,7 @@ public class UserEntityServiceImpl implements UserEntityService {
     }
 
     @Override
-    public void registerUser(UserServiceModel userServiceModel){
+    public void registerUser(UserServiceModel userServiceModel) {
 
         UserRoleEntity userRole = roleRepository.findByRole(UserRoleEnum.USER);
 
@@ -102,7 +99,7 @@ public class UserEntityServiceImpl implements UserEntityService {
                 setLastName(userServiceModel.getLastname()).
                 setEmail(userServiceModel.getEmail()).
                 setPassword(passwordEncoder.encode(userServiceModel.getPassword())).
-                setRoles(List.of(userRole));
+                setRoles(Set.of(userRole));
 
         newUser = userRepository.save(newUser);
 

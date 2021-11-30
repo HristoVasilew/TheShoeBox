@@ -37,8 +37,11 @@
             <h4 class="py-1">Sign into your account</h4>
             <form th:action="@{/users/login}"
                   th:method="post">
+              <p th:if="${bad_credentials}" class="error alert alert-danger">
+                Invalid email or password.
+              </p>
               <div class="form-floating mb-3">
-                <input name="email" type="email" class="form-control" required id="floatingInput"
+                <input  name="email" type="email" class="form-control" required id="floatingInput"
                   placeholder="name@example.com">
                 <label for="floatingInput">Email address<span class="text-danger">*</span></label>
 

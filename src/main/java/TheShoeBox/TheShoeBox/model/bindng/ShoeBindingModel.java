@@ -1,16 +1,10 @@
 package TheShoeBox.TheShoeBox.model.bindng;
 
-import TheShoeBox.TheShoeBox.model.entity.ShoeCategoryEntity;
+import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
 import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 public class ShoeBindingModel {
 
@@ -32,6 +26,8 @@ public class ShoeBindingModel {
     private String description;
     private String imageUrl;
 
+    private ConditionEnum conditionEnum;
+
     private ShoeCategoryEnum shoeCategoryEnum;
 
     public String getBrand() {
@@ -40,6 +36,16 @@ public class ShoeBindingModel {
 
     public ShoeBindingModel setBrand(String brand) {
         this.brand = brand;
+        return this;
+    }
+
+
+    public ConditionEnum getConditionEnum() {
+        return conditionEnum;
+    }
+
+    public ShoeBindingModel setConditionEnum(ConditionEnum conditionEnum) {
+        this.conditionEnum = conditionEnum;
         return this;
     }
 

@@ -8,6 +8,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -36,17 +37,18 @@ public class UserController {
 
     @GetMapping("/users/login")
     public String login() {
+
         return "login";
     }
 
-    @PostMapping("/login-error")
+    @PostMapping("/users/login-error")
     public String failedLogin(
-            @ModelAttribute("email")
-                    String email,
-            RedirectAttributes redirectAttributes) {
+            @ModelAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY)
+                    String userName,
+            RedirectAttributes attributes) {
 
-        redirectAttributes.addFlashAttribute("bad_credentials", true);
-        redirectAttributes.addFlashAttribute("email", email);
+        attributes.addFlashAttribute("bad_credentials", true);
+        attributes.addFlashAttribute("username", userName);
 
         return "redirect:/users/login";
     }
@@ -57,7 +59,7 @@ public class UserController {
     }
 
     @ModelAttribute("userRegisterBindingModel")
-    public UserRegisterBindingModel userRegisterBindingModel(){
+    public UserRegisterBindingModel userRegisterBindingModel() {
         return new UserRegisterBindingModel();
     }
 
@@ -65,9 +67,9 @@ public class UserController {
     public String register(
             @Valid UserRegisterBindingModel userRegisterBindingModel,
             BindingResult bindingResult,
-            RedirectAttributes redirectAttributes){
+            RedirectAttributes redirectAttributes) {
 
-        if(bindingResult.hasErrors() || !userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())){
+        if (bindingResult.hasErrors() || !userRegisterBindingModel.getPassword().equals(userRegisterBindingModel.getConfirmPassword())) {
             redirectAttributes.addFlashAttribute("userRegisterBindingModel", userRegisterBindingModel);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterBindingModel", bindingResult);
 
@@ -77,18 +79,17 @@ public class UserController {
 
         userEntityService.registerUser(user);
 
-        return "redirect:profile";
+        return "redirect:/profile";
     }
 
-    @RequestMapping(value="/users/logout", method = RequestMethod.GET)
-    public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "/users/logout", method = RequestMethod.GET)
+    public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null){
+        if (auth != null) {
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
         return "redirect:/users/login";
     }
-
 
 
 //    @RequestMapping(value="/updateUserInfo", method=RequestMethod.POST)

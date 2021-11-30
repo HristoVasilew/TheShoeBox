@@ -2,6 +2,7 @@ package TheShoeBox.TheShoeBox.model.service;
 
 import TheShoeBox.TheShoeBox.model.entity.ShoeCategoryEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
+import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
 import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 
 import javax.persistence.Column;
@@ -18,6 +19,7 @@ public class ShoeServiceModel {
     private String location;
     private String description;
     private ShoeCategoryEnum shoeCategoryEnum;
+    private ConditionEnum conditionEnum;
     private LocalDateTime createdOn;
     private UserEntity user;
     private String imageUrl;
@@ -35,6 +37,14 @@ public class ShoeServiceModel {
         return this;
     }
 
+    public ConditionEnum getConditionEnum() {
+        return conditionEnum;
+    }
+
+    public ShoeServiceModel setConditionEnum(ConditionEnum conditionEnum) {
+        this.conditionEnum = conditionEnum;
+        return this;
+    }
 
     public String getImageUrl() {
         return imageUrl;

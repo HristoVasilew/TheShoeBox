@@ -5,6 +5,7 @@ import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public class UserProfileView {
     private Long id;
@@ -12,7 +13,7 @@ public class UserProfileView {
     private String firstname;
     private String lastname;
     private String email;
-    private List<UserRoleEntity> roles;
+    private Set<UserRoleEntity> roles;
     private LocalDateTime sinceFrom;
 
     public UserProfileView() {
@@ -73,11 +74,11 @@ public class UserProfileView {
         return this;
     }
 
-    public List<UserRoleEntity> getRoles() {
+    public Set<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public UserProfileView setRoles(List<UserRoleEntity> roles) {
+    public UserProfileView setRoles(Set<UserRoleEntity> roles) {
         this.roles = roles;
         return this;
     }

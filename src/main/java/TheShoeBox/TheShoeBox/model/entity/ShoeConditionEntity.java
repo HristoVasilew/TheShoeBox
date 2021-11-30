@@ -7,29 +7,32 @@ import java.util.List;
 
 @Entity
 @Table(name = "conditions")
-public class ShoeConditionEntity extends BaseEntity {
+public class ShoeConditionEntity extends BaseEntity{
 
-    @Enumerated(value = EnumType.STRING)
-    private ConditionEnum condition;
+    @Enumerated(EnumType.STRING)
+    private ConditionEnum name;
 
     @OneToMany(mappedBy = "shoeConditionEntity")
-    private List<ShoeEntity> shoeEntities;
+    private List<ShoeEntity> shoe;
 
-    public ConditionEnum getCondition() {
-        return condition;
+    public ShoeConditionEntity() {
     }
 
-    public ShoeConditionEntity setCondition(ConditionEnum condition) {
-        this.condition = condition;
+    public ConditionEnum getName() {
+        return name;
+    }
+
+    public ShoeConditionEntity setName(ConditionEnum condition) {
+        this.name = condition;
         return this;
     }
 
-    public List<ShoeEntity> getShoeEntities() {
-        return shoeEntities;
+    public List<ShoeEntity> getShoe() {
+        return shoe;
     }
 
-    public ShoeConditionEntity setShoeEntities(List<ShoeEntity> shoeEntities) {
-        this.shoeEntities = shoeEntities;
+    public ShoeConditionEntity setShoe(List<ShoeEntity> shoe) {
+        this.shoe = shoe;
         return this;
     }
 }

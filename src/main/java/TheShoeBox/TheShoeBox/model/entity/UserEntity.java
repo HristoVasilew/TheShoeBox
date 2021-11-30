@@ -25,7 +25,7 @@ public class UserEntity extends BaseEntity{
     @Column(nullable = false)
     private String lastName;
     @ManyToMany(fetch=FetchType.EAGER)
-    private List<UserRoleEntity> roles;
+    private Set<UserRoleEntity> roles;
     @OneToMany(mappedBy = "creator")
     private Set<ShoeEntity> shoes;
     @ManyToOne
@@ -88,11 +88,11 @@ public class UserEntity extends BaseEntity{
         return this;
     }
 
-    public List<UserRoleEntity> getRoles() {
+    public Set<UserRoleEntity> getRoles() {
         return roles;
     }
 
-    public UserEntity setRoles(List<UserRoleEntity> roles) {
+    public UserEntity setRoles(Set<UserRoleEntity> roles) {
         this.roles = roles;
         return this;
     }

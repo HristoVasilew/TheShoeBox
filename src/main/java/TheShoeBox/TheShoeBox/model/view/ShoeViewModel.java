@@ -1,5 +1,10 @@
 package TheShoeBox.TheShoeBox.model.view;
 
+import TheShoeBox.TheShoeBox.model.entity.ShoeCategoryEntity;
+import TheShoeBox.TheShoeBox.model.entity.ShoeConditionEntity;
+import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
+import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
+
 import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,7 +17,47 @@ public class ShoeViewModel {
     private String imageUrl;
     private String description;
     private LocalDateTime createdOn;
+    private BigDecimal size;
+    private String location;
+    private ShoeCategoryEnum shoeCategoryEnum;
+    private ConditionEnum conditionEnum;
 
+
+    public BigDecimal getSize() {
+        return size;
+    }
+
+    public ShoeViewModel setSize(BigDecimal size) {
+        this.size = size;
+        return this;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public ShoeViewModel setLocation(String location) {
+        this.location = location;
+        return this;
+    }
+
+    public ShoeCategoryEnum getShoeCategoryEnum() {
+        return shoeCategoryEnum;
+    }
+
+    public ShoeViewModel setShoeCategoryEnum(ShoeCategoryEnum shoeCategoryEnum) {
+        this.shoeCategoryEnum = shoeCategoryEnum;
+        return this;
+    }
+
+    public ConditionEnum getConditionEnum() {
+        return conditionEnum;
+    }
+
+    public ShoeViewModel setConditionEnum(ConditionEnum conditionEnum) {
+        this.conditionEnum = conditionEnum;
+        return this;
+    }
 
     public String getBrand() {
         return brand;
