@@ -26,7 +26,7 @@ public class UserEntity extends BaseEntity{
     private String lastName;
     @ManyToMany(fetch=FetchType.EAGER)
     private Set<UserRoleEntity> roles;
-    @OneToMany(mappedBy = "creator")
+    @OneToMany(mappedBy = "creator",fetch = FetchType.EAGER)
     private Set<ShoeEntity> shoes;
     @ManyToOne
     @JoinColumn(name = "collection_id")

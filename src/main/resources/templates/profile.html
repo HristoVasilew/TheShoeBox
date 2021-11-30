@@ -117,17 +117,25 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <tr th:each="t : ${user.roles}" th:object="${t}">
-                                        <th th:text="*{getRole().name()}">No</th>
+                                        <th th:text="*{getRole()}">No</th>
                                     </tr>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Since year</label>
+                                <label>Since date</label>
                             </div>
                             <div class="col-md-6">
-                                <p th:text="*{sinceFrom}">6 months</p>
+                                <p th:if="*{getSinceFrom()!=null}">
+                                    <span th:text="*{getSinceFrom().getYear()} ">2000</span> <span th:text=" *{getSinceFrom().getMonth()}"> 11</span><br>
+                                    <span th:text="*{getSinceFrom().getDayOfWeek()} ">2000</span><br> <span th:text=" *{getSinceFrom().getHour()}"> 11</span>
+                                    <span text=" : ">:</span> <span th:text=" *{getSinceFrom().getMinute()}"> 11</span>
+                                </p>
+                                <p th:if="*{getSinceFrom()==null}">
+                                    <span text="">1999 December <br> FRIDAY <br>
+                                                00:01 </span>
+                                </p>
                             </div>
                         </div>
                         <div class="row">
@@ -148,25 +156,26 @@
     line-height: 1.9;font-size: 42px;line-height: 48px;letter-spacing: 0.092em;font-weight: 600; font-style: italic;">
             Your Products
         </h1>
-        <div class="row p-3">
-            <div class="col">
+        <div  class="row row-cols-md-3 g-3">
+            <div th:each="t : ${user.getShoes()}" th:object="${t}" class="col">
                 <div class="card h-100">
-                    <img src="https://images.vans.com/is/image/Vans/VC0910-HERO?$CUSTOMS-PDP-MEDIUM$"
-                         class="card-img-top" alt="...">
+                    <img th:src="*{getImageUrl()}"
+                         class="card-img-top" alt="shoe photo">
                     <div class="card-body">
-                        <h5 class="card-title">Vans suits</h5>
-                        <p class="card-text">The Old Skool, the Vans classic skate...</p>
+                        <h5 class="card-title"><span th:text="*{brand}">Vans</span> <span
+                                th:text="*{model}"> Suit</span></h5>
+                        <p class="card-text" th:text="*{description}">The Old Skool, the Vans classic skate...</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Available</li>
-                        <li class="list-group-item">Price: $249.00</li>
+                        <li class="list-group-item" th:text="*{price}">Price: $249.00</li>
                     </ul>
                     <div class="card-body">
-                        <a href="/templates/edit.html" class="card-link">Edit!</a>
-                        <a href="/templates/details.html" class="card-link">Details</a>
+                        <a href="/collections/add-to-cart" class="card-link">Add to cart!</a>
+                        <a href="/collections/details" class="card-link">Details</a>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">Last updated 28 mins ago</small>
+                        <small class="text-muted" th:text="|Last updated *{createdOn.getHour()} : *{createdOn.getMinute()}|">Last updated 1 hour ago</small>
                     </div>
                 </div>
             </div>
@@ -179,6 +188,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
+</div>
 </body>
 
 </html>

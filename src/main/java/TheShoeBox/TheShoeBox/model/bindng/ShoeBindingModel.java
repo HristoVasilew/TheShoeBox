@@ -18,11 +18,11 @@ public class ShoeBindingModel {
     private BigDecimal size;
     @NotNull
     @Positive
-    @Max(1000)
+    @Max(9999)
     private BigDecimal price;
-    @Size(min = 2, max = 100)
+    @Size(min = 4, max = 140)
     private String location;
-    @Size(min = 2, max = 40)
+    @Size(min = 4, max = 140)
     private String description;
     private String imageUrl;
 

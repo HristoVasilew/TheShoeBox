@@ -58,8 +58,8 @@
             All products
         </h1>
 
-        <div th:each="t : ${allShoes}" th:object="${t}" class="row row-cols-md-3 g-3">
-            <div class="col">
+        <div  class="row row-cols-md-3 g-3">
+            <div th:each="t : ${allShoes}" th:object="${t}" class="col">
                 <div class="card h-100">
                     <img th:src="*{getImageUrl()}"
                          class="card-img-top" alt="shoe photo">

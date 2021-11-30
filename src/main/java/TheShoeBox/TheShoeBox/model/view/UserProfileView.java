@@ -1,6 +1,7 @@
 package TheShoeBox.TheShoeBox.model.view;
 
 
+import TheShoeBox.TheShoeBox.model.entity.ShoeEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
 
 import java.time.LocalDateTime;
@@ -15,10 +16,20 @@ public class UserProfileView {
     private String email;
     private Set<UserRoleEntity> roles;
     private LocalDateTime sinceFrom;
+    private Set<ShoeEntity> shoes;
 
     public UserProfileView() {
     }
 
+
+    public Set<ShoeEntity> getShoes() {
+        return shoes;
+    }
+
+    public UserProfileView setShoes(Set<ShoeEntity> shoes) {
+        this.shoes = shoes;
+        return this;
+    }
 
     public LocalDateTime getSinceFrom() {
         return sinceFrom;

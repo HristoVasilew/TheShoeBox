@@ -70,6 +70,8 @@ public class ProfileController {
         user.setEmail(userEntity.get().getEmail());
         user.setRoles(userEntity.get().getRoles());
         user.setUsername(userEntity.get().getUsername());
+        user.setShoes(userEntity.get().getShoes());
+        if (userEntity.get().getSinceFrom() != null)
         user.setSinceFrom(LocalDateTime.parse(userEntity.get().getSinceFrom().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'hh:mm"))));
         model.addAttribute("user", user);
 
