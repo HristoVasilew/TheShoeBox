@@ -41,21 +41,26 @@
                 Invalid email or password.
               </p>
               <div class="form-floating mb-3">
-                <input  name="email" type="email" class="form-control" required id="floatingInput"
-                  placeholder="name@example.com">
-                <label for="floatingInput">Email address<span class="text-danger">*</span></label>
+                <input
+                        name="email"
+                        type="text"
+                        class="form-control"
+                        required
+                        id="email"
+                        placeholder="name@example.com">
+                <label for="email">Email address<span class="text-danger">*</span></label>
 
               </div>
               <div class="form-floating">
-                <input name="password" type="password" class="form-control" required id="floatingPassword"
-                  placeholder="Password">
-                <label for="floatingPassword">Password<span class="text-danger">*</span></label>
+                <input name="password"
+                       type="password"
+                       class="form-control"
+                       required
+                       id="password"
+                       placeholder="Password">
+                <label for="password">Password<span class="text-danger">*</span></label>
 
               </div>
-
-<!--              <p th:if="${bad_credentials}" class="errors alert alert-danger">-->
-<!--                Invalid username or password.-->
-<!--              </p>-->
               <div class="form-row">
                 <div class="pt-1 mb-4">
                     <button type="submit" class="btn btn-dark btn-lg btn-block"
