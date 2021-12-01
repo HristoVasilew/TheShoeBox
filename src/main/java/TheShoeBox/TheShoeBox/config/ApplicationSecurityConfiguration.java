@@ -60,6 +60,10 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                         invalidateHttpSession(true).
                 //delete the cookie that references my session
                         deleteCookies("JSESSIONID");
+//        .rememberMe()
+//                .key(UUID.randomUUID().toString())
+//                .tokenValiditySeconds(1209600);
+
 
     }
 

@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/common::head">
+<head th:include="fragments/common::head">
     <style>@media screen and (max-width: 200px) {
         .column {
             width: 100%;
@@ -52,8 +52,8 @@
 
     <div th:action="@{/collections/all}" th:method="get" th:object="${allShoes}" class="container p-4"
          style="margin-top: 250px">
-
-        <h1 class="masthead-heading text-uppercase p-5 text-center border-bottom" style="letter-spacing: 10px;font-weight: 600;
+        <th:block th:if="${allShoes.size() > 0}">
+        <h1 class="masthead-heading text-uppercase p-5 text-center border-bottom pb-0" style="letter-spacing: 10px;font-weight: 600;
     line-height: 1.9;font-size: 42px;line-height: 48px;letter-spacing: 0.092em;font-weight: 600; font-style: italic;">
             All products
         </h1>
@@ -74,7 +74,8 @@
                     </ul>
                     <div class="card-body">
                         <a href="/collections/add-to-cart" class="card-link">Add to cart!</a>
-                        <a href="/collections/details" class="card-link">Details</a>
+
+                        <a th:href="@{/collections/{id}/details(id=*{id})}" class="card-link">Details</a>
                     </div>
                     <div class="card-footer">
                         <small class="text-muted" th:text="|Last updated *{createdOn.getHour()} : *{createdOn.getMinute()}|">Last updated 1 hour ago</small>
@@ -82,6 +83,14 @@
                 </div>
             </div>
         </div>
+        </th:block>
+        <th:block th:if="${allShoes.size() <= 0}">
+            <h1 class="masthead-heading p-5 border-bottom" style="letter-spacing: 10px;font-weight: 600;
+    line-height: 1.9;font-size: 42px;line-height: 48px;letter-spacing: 0.092em;font-weight: 600; font-style: italic;">
+                No Listings
+            </h1>
+        </th:block>
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
                 integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
                 crossorigin="anonymous"></script>

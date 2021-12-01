@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class ShoeViewModel {
-
+    private Long id;
     private String brand;
     private String model;
     private BigDecimal price;
@@ -21,7 +21,36 @@ public class ShoeViewModel {
     private String location;
     private ShoeCategoryEnum shoeCategoryEnum;
     private ConditionEnum conditionEnum;
+    private Boolean canDelete;
+    private String sellerFullName;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public ShoeViewModel setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Boolean getCanDelete() {
+        return canDelete;
+    }
+
+    public ShoeViewModel setCanDelete(Boolean canDelete) {
+        this.canDelete = canDelete;
+        return this;
+    }
+
+    public String getSellerFullName() {
+        return sellerFullName;
+    }
+
+    public ShoeViewModel setSellerFullName(String sellerFullName) {
+        this.sellerFullName = sellerFullName;
+        return this;
+    }
 
     public BigDecimal getSize() {
         return size;

@@ -13,6 +13,7 @@ public class DBInit implements CommandLineRunner {
     private final RoleEntityService roleEntityService;
     private final CategoryEntityService categoryEntityService;
     private final ShoeConditionService shoeConditionService;
+
     public DBInit(UserEntityService userEntityService, RoleEntityService roleEntityService, CategoryEntityService categoryEntityService, ShoeConditionService shoeConditionService) {
         this.userEntityService = userEntityService;
         this.roleEntityService = roleEntityService;
@@ -23,9 +24,9 @@ public class DBInit implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-       userEntityService.initUsers();
-       roleEntityService.initRoles();
-       categoryEntityService.initCategories();
-       shoeConditionService.initConditions();
+        categoryEntityService.initCategories();
+        shoeConditionService.initConditions();
+        roleEntityService.initRoles();
+        userEntityService.initUsers();
     }
 }
