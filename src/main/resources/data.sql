@@ -19,8 +19,8 @@ INSERT INTO users_roles (`user_entity_id`, `roles_id`)
 VALUES (2, 2);
 
 INSERT INTO shoes(id, brand, model, size, shoe_condition_entity_id, shoe_category_entity_id, location, description, price, image_url,creator_id, created_on)
-VALUES (1, 'Adidas', 'Speedrun', 45, 1, 2, 'onaq ulica etam na lqvo vtorata presechka v dqsno i na kraq na ulicata tretata kushta v dqsno', 'Mnogo zapazeni edna baba v germaniq gi e polzvala samo do magazina da hodi!', 349,
-        'https://media.gq-magazine.co.uk/photos/5edfa0838ed3b9c66debd302/master/w_1920,h_1280,c_limit/20200609-adidas-01.jpg', 1, '2021-11-30');
+VALUES (1, 'Vans', 'X USPS® AUTHENTIC', 45, 1, 2, 'onaq ulica etam na lqvo vtorata presechka v dqsno i na kraq na ulicata tretata kushta v dqsno', 'Mnogo zapazeni edna baba v germaniq gi e polzvala samo do magazina da hodi!', 349,
+        'https://images.vans.com/is/image/Vans/KRDJZ8-HERO?$583x583$', 1, '2021-11-30');
 
 INSERT INTO shoes(id, brand, model, size, shoe_condition_entity_id, shoe_category_entity_id, location, description, price, image_url,creator_id, created_on)
 VALUES (2, 'Vans', 'Old Scool', 45, 2, 4, 'ulica vishneva 33 N2 122', 'Mnogo zapazeni edna baba v germaniq gi e polzvala samo do magazina da hodi!', 349,
