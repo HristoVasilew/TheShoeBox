@@ -1,4 +1,4 @@
-package TheShoeBox.TheShoeBox.service.errors;
+package TheShoeBox.TheShoeBox.service.erorrs;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

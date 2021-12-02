@@ -24,8 +24,18 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+    #Cloudinary Properties
+    #cloudinary:
+    #  cloud_name: a69s69sbz
+    #    api_key: '175156172913596'
+    #    api_secret: ${CLOUDINARY_API_SECRET}

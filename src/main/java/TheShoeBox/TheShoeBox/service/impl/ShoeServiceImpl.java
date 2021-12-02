@@ -14,7 +14,7 @@ import TheShoeBox.TheShoeBox.service.CategoryEntityService;
 import TheShoeBox.TheShoeBox.service.ShoeConditionService;
 import TheShoeBox.TheShoeBox.service.ShoeService;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
-import TheShoeBox.TheShoeBox.service.errors.ObjectNotFoundException;
+import TheShoeBox.TheShoeBox.service.erorrs.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
