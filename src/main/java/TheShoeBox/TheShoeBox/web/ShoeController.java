@@ -1,7 +1,11 @@
 package TheShoeBox.TheShoeBox.web;
 
 import TheShoeBox.TheShoeBox.model.bindng.ShoeBindingModel;
+import TheShoeBox.TheShoeBox.model.bindng.ShoeUpdateBindingModel;
+import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
+import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 import TheShoeBox.TheShoeBox.model.service.ShoeServiceModel;
+import TheShoeBox.TheShoeBox.model.service.ShoeUpdateServiceModel;
 import TheShoeBox.TheShoeBox.model.view.ShoeViewModel;
 import TheShoeBox.TheShoeBox.service.ShoeService;
 import TheShoeBox.TheShoeBox.service.impl.ShoeBoxUser;
@@ -52,10 +56,10 @@ public class ShoeController {
     @PostMapping("/collections/create-shoe")
     public String createShoeConfirm(@Valid ShoeBindingModel shoeBindingModel,
                                     BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                                    @CurrentSecurityContext(expression="authentication?.name")
-                                                String username) {
+                                    @CurrentSecurityContext(expression = "authentication?.name")
+                                            String username) {
 
-         if (bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes
                     .addFlashAttribute("shoeBindingModel", shoeBindingModel)
                     .addFlashAttribute("org.springframework.validation.BindingResult.shoeBindingModel", bindingResult);
@@ -64,13 +68,14 @@ public class ShoeController {
 
         ShoeServiceModel saved = shoeService.addShoe(shoeBindingModel, username);
 
-        return "redirect:/collections/all";
+        return "redirect:/collections/" + saved.getId() + "/details";
     }
 
     @GetMapping("/collections/add-to-cart")
     public String addToCart() {
         return "add-to-cart";
     }
+
     //DETAILS
     @GetMapping("/collections/{id}/details")
     public String showOffer(
@@ -81,8 +86,8 @@ public class ShoeController {
     }
 
     // DELETE
-    @PreAuthorize("isOwner(#id)")
-    //@PreAuthorize("@offerServiceImpl.isOwner(#principal.name, #id)")
+    @PreAuthorize("@shoeServiceImpl.isOwner(#principal.name,#id)")
+    //@PreAuthorize("@shoeServiceImpl.isOwner(#principal.name, #id)")
     @DeleteMapping("/collections/{id}")
     public String deleteOffer(@PathVariable Long id,
                               Principal principal) {
@@ -95,6 +100,57 @@ public class ShoeController {
         shoeService.deleteOffer(id);
 
         return "redirect:/collections/all";
+    }
+
+
+    // UPDATE
+
+    @GetMapping("/collections/{id}/edit")
+    public String editOffer(@PathVariable Long id, Model model,
+                            @CurrentSecurityContext(expression = "authentication?.name")
+                                    String username) {
+
+        ShoeViewModel shoeViewModel = shoeService.findById(id, username);
+        ShoeUpdateBindingModel offerModel = modelMapper.map(
+                shoeViewModel,
+                ShoeUpdateBindingModel.class
+        );
+
+        model.addAttribute("categories", ShoeCategoryEnum.values());
+        model.addAttribute("condition", ConditionEnum.values());
+        model.addAttribute("offerModel", offerModel);
+        return "edit";
+    }
+
+    @GetMapping("/collections/{id}/edit/errors")
+    public String editOfferErrors(@PathVariable Long id, Model model) {
+        model.addAttribute("categories", ShoeCategoryEnum.values());
+        model.addAttribute("condition", ConditionEnum.values());
+        return "edit";
+    }
+
+    @PatchMapping("/collections/{id}/edit")
+    public String editOffer(
+            @PathVariable Long id,
+            @Valid ShoeUpdateBindingModel offerModel,
+            BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors()) {
+
+            redirectAttributes.addFlashAttribute("offerModel", offerModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.offerModel", bindingResult);
+
+            return "redirect:/collections/" + id + "/edit/errors";
+        }
+
+        ShoeUpdateServiceModel serviceModel = modelMapper.map(offerModel,
+                ShoeUpdateServiceModel.class);
+        serviceModel.setId(id);
+
+        shoeService.updateOffer(serviceModel);
+
+        return "redirect:/collections/" + id + "/details";
     }
 
 }

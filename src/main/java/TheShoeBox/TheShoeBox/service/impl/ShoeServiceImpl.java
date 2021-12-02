@@ -4,6 +4,7 @@ import TheShoeBox.TheShoeBox.model.bindng.ShoeBindingModel;
 import TheShoeBox.TheShoeBox.model.entity.*;
 import TheShoeBox.TheShoeBox.model.entity.enums.UserRoleEnum;
 import TheShoeBox.TheShoeBox.model.service.ShoeServiceModel;
+import TheShoeBox.TheShoeBox.model.service.ShoeUpdateServiceModel;
 import TheShoeBox.TheShoeBox.model.view.ShoeViewModel;
 import TheShoeBox.TheShoeBox.repository.CategoryRepository;
 import TheShoeBox.TheShoeBox.repository.ShoeConditionRepository;
@@ -13,6 +14,7 @@ import TheShoeBox.TheShoeBox.service.CategoryEntityService;
 import TheShoeBox.TheShoeBox.service.ShoeConditionService;
 import TheShoeBox.TheShoeBox.service.ShoeService;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
+import TheShoeBox.TheShoeBox.service.errors.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -86,6 +88,28 @@ public class ShoeServiceImpl implements ShoeService {
         shoeRepository.deleteById(id);
     }
 
+    @Override
+    public void updateOffer(ShoeUpdateServiceModel offerModel) {
+
+        ShoeEntity offerEntity =
+                shoeRepository.findById(offerModel.getId()).orElseThrow(() ->
+                        new ObjectNotFoundException("Offer with id " + offerModel.getId() + " not found!"));
+
+        offerEntity
+                .setBrand(offerModel.getBrand())
+                .setModel(offerModel.getModel())
+                .setPrice(offerModel.getPrice())
+                .setSize(offerModel.getSize())
+                .setDescription(offerModel.getDescription())
+                .setLocation(offerModel.getLocation())
+                .setShoeConditionEntity(shoeConditionRepository.findShoeConditionEntityByName(offerModel.getConditionEnum()))
+                .setImageUrl(offerModel.getImageUrl())
+                .setShoeCategoryEntity(categoryRepository.findShoeCategoryEntityByName(offerModel.getShoeCategoryEnum()))
+                .setCreatedOn(LocalDateTime.now());
+
+        shoeRepository.save(offerEntity);
+    }
+
     private ShoeViewModel mapDetailsView(String currentUser, ShoeEntity offer) {
         ShoeViewModel shoeViewModel = this.modelMapper.map(offer, ShoeViewModel.class);
         shoeViewModel.setCanDelete(isOwner(currentUser, offer.getId()));
@@ -96,7 +120,7 @@ public class ShoeServiceImpl implements ShoeService {
         return shoeViewModel;
     }
 
-    private Boolean isOwner(String userName, Long id) {
+    public boolean isOwner(String userName, Long id) {
 
         Optional<ShoeEntity> offerOpt = shoeRepository.
                 findById(id);
@@ -109,7 +133,7 @@ public class ShoeServiceImpl implements ShoeService {
             ShoeEntity shoeEntity = offerOpt.get();
 
             return isAdmin(caller.get()) ||
-                    shoeEntity.getCreator().getUsername().equals(userName);
+                    shoeEntity.getCreator().getEmail().equals(userName);
         }
 
     }

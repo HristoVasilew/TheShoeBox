@@ -302,6 +302,7 @@
             <div class="product-price">
                 <s style="color: red"><p class="last-price" th:text="|Old Price:  *{price+100}|">Old Price: <span>$257.00</span></p></s>
                 <p style="color: green" class="new-price" th:text="|New Price:  *{price}|">New Price: <span>$249.00 (5%)</span></p>
+                <p th:text="|Shoe size:  *{size}|">Size: <span>36</span></p>
             </div>
 
             <div class="product-detail">
@@ -329,14 +330,13 @@
                     <a class="text-white" href="/collections/add-to-cart">Add to cart!</a><i class="fas fa-shopping-cart"></i>
                 </button>
                 <br>
-                <button type="button" class="btn"><a href="/collections/edit">Edit</a></button>
-
+                <th:block th:if="*{canDelete}">
+                <button type="button" class="btn"><a th:href="@{/collections/{id}/edit(id=*{id})}">Edit</a></button>
                 <form th:action="@{/collections/{id}(id=*{id})}" th:method="delete">
-<!--                    <input type="submit" class="btn btn-link" value="Delete"/>-->
                     <button type="submit" class="btn btn-danger" value="Delete"
                             style="background: red;">Delete!</button>
                 </form>
-
+                </th:block>
 
             </div>
         </div>

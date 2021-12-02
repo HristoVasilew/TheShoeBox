@@ -27,62 +27,146 @@
                 <div class="row row1 g-0 justify-content-center" style="background-color: #fff; border-radius: 20px;">
                     <div class="col-lg-9 p-4">
                         <h1 class="font-weight-bold mb-4">Edit product 2</h1>
-                        <form>
-                            <div class="row ">
+                        <form th:object="${offerModel}"
+                              th:action="@{/collections/{id}/edit(id=*{id})}"
+                              th:method="patch" >
+                            <div class="row">
                                 <div class="col-lg-5" style="margin-right: 150px;">
                                     <div class="form-floating mb-3">
-                                        <input type="brand" class="form-control" required minlength="4" maxlength="20"
-                                            id="floatingInput" placeholder="Vans" value="Vans">
-                                        <label for="floatingInput">Brand<span class="text-danger">*</span></label>
-                                        <small id="brandHelpBlock" class="text-danger">
-                                            Brand must must be 4-20 characters long!
+                                        <input
+                                                th:field="*{brand}"
+                                                th:errorclass="is-invalid"
+                                                name="brand"
+                                                type="text"
+                                                class="form-control"
+                                                required minlength="2" maxlength="10"
+                                                id="brand">
+                                        <label for="brand">Brand name<span class="text-danger">*</span></label>
+                                        <small id="brandHelpBlock" class="invalid-feedback text-danger">
+                                            Brand length must be 2-10 characters long!
                                         </small>
                                     </div>
                                     <div class="form-floating mb-3">
-                                        <input type="model" class="form-control" required minlength="2" maxlength="20"
-                                            id="floatingInput" placeholder="Ivanov" value="Old's">
-                                        <label for="floatingInput">Model<span class="text-danger">*</span></label>
-                                        <small id="ModelHelpBlock" class="text-danger">
-                                            Model name must be 2-20 characters long!
+                                        <input
+                                                th:field="*{model}"
+                                                th:errorclass="is-invalid"
+                                                name="model"
+                                                type="text"
+                                                class="form-control"
+                                                required minlength="2" maxlength="10"
+                                                id="model">
+                                        <label for="model">Model Name<span class="text-danger">*</span></label>
+                                        <small id="modelHelpBlock" class="invalid-feedback text-danger">
+                                            Model name must be 2-10 characters long!
                                         </small>
                                     </div>
-                                    <div class="form-floating">
-                                        <input type="size" class="form-control" required minlength="1 " maxlength="20"
-                                            id="floatingsize" placeholder="Size" value="42">
-                                        <label for="floatingsize">Size<span class="text-danger">*</span></label>
-                                        <small id="sizeHelpBlock" class="text-danger">
-                                            Need to choose min one size!
-                                        </small>
-                                    </div>
-                                </div>
-                                <div class="col-lg-5">
-                                    <div class="form-floating mb-3">
-                                        <input type="location" class="form-control" required minlength="4"
-                                            maxlength="20" id="floatingInput" placeholder="location" value="8, 6550 Любимец">
-                                        <label for="floatingInput">Location<span class="text-danger">*</span></label>
-                                        <small id="locationHelpBlock" class="text-danger">
-                                            Your location cant be less than 2 and more than 20 characters long!
-                                        </small>
-                                    </div>
-                                    <div class="form-floating mb-3">
-                                        <input type="description" class="form-control" required minlength="4"
-                                            maxlength="40" id="floatingInput" placeholder="description" value="Some Description">
-                                        <label for="floatingInput">Description<span class="text-danger">*</span></label>
-                                        <small id="descriptionHelpBlock" class="text-danger">
-                                            Your description must be 2-40 characters long!
+                                    <div class="form-floating mb-2">
+                                        <input
+                                                th:field="*{size}"
+                                                th:errorclass="is-invalid"
+                                                name="size"
+                                                type="number"
+                                                class="form-control"
+                                                required minlength="1" maxlength="3"
+                                                id="size">
+                                        <label for="size">Size<span class="text-danger">*</span></label>
+                                        <small id="sizeHelpBlock" class="invalid-feedback text-danger">
+                                            Set size of the shoes!
                                         </small>
                                     </div>
                                     <div class="form-floating ">
-                                        <div class="mb-3">
-                                            <label for="formFileMultiple" class="form-label">Images</label>
-                                            <span class="text-danger">*</span>
-                                            <input class="form-control" type="file" id="formFileMultiple" multiple>
-                                        </div>
-                                        <small id="imageeHelpBlock" class="text-danger">
-                                            Too big file!
-                                        </small>
+                                        <fieldset class="row mb-3">
+                                            <legend class="col-form-label col-sm-2 pt-0" style="margin-left: 1px;">
+                                                Condition<span class="text-danger">*</span>:
+                                            </legend>
+                                            <div class="col-sm-10">
+                                                <div th:each="c : ${T(TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum).values()}"
+                                                     class="form-check">
+                                                    <input class="form-check-input" type="radio"
+                                                           th:field="${offerModel.conditionEnum}" th:value="${c.name()}">
+
+                                                    <label class="form-check-label" th:for="${c.name()}" th:text="${c}">
+                                                        conditions
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="col-lg-5">
+                                    <div class="form mb-4 ">
+                                        <label class="visually-hidden" for="shoeCategoryEntity">Preference</label>
+                                        <select th:field="*{shoeCategoryEnum}" class="form-select" id="shoeCategoryEntity"
+                                                name="shoeCategoryEntity">
+                                            <option value="" selected>Choose type of sneakers...</option>
+                                            <option th:each="c : ${T(TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum).values()}"
+                                                    th:value="${c}" th:text="${c}" th:selected="${c} == *{shoeCategoryEnum}">
+                                                Category
+                                            </option>
+
+                                        </select>
                                     </div>
 
+                                    <div class="form-floating mb-3">
+                                        <input
+                                                th:field="*{location}"
+                                                th:errorclass="is-invalid"
+                                                name="location"
+                                                type="text"
+                                                class="form-control"
+                                                required minlength="4" maxlength="140"
+                                                id="location"
+                                                placeholder="location">
+                                        <label for="location">Location<span class="text-danger">*</span></label>
+                                        <small id="locationHelpBlock" class="invalid-feedback text-danger">
+                                            Your location must be 4-140 characters long!
+                                        </small>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input
+                                                th:field="*{description}"
+                                                th:errorclass="is-invalid"
+                                                name="description"
+                                                type="text"
+                                                class="form-control"
+                                                required minlength="4" maxlength="140"
+                                                id="description"
+                                                placeholder="description">
+                                        <label for="description">Description<span class="text-danger">*</span></label>
+                                        <small id="descriptionHelpBlock" class="invalid-feedback text-danger">
+                                            Your description must be 4-140 characters long!
+                                        </small>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input
+                                                th:field="*{price}"
+                                                th:errorclass="is-invalid"
+                                                name="price"
+                                                type="number"
+                                                class="form-control"
+                                                required minlength="1" maxlength="4"
+                                                id="price"
+                                                placeholder="price">
+                                        <label for="price">Price<span class="text-danger">*</span></label>
+                                        <small id="priceHelpBlock" class="invalid-feedback text-danger">
+                                            Must be 1$-9999$k!
+                                        </small>
+                                    </div>
+                                    <div class="form-floating ">
+                                        <input
+                                                th:field="*{imageUrl}"
+                                                th:errorclass="is-invalid"
+                                                name="imageUrl"
+                                                type="url"
+                                                class="form-control"
+                                                required
+                                                id="imageUrl"
+                                                placeholder="imageUrl">
+                                        <label for="imageUrl">Image<span class="text-danger">*</span></label>
+                                        <small id="imageUrlHelpBlock" class="invalid-feedback text-danger">
+                                            One URL!
+                                        </small>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
