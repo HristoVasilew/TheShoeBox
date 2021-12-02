@@ -8,17 +8,17 @@ import java.util.Set;
 @Table(name = "collection")
 public class CollectionEntity extends BaseEntity {
 
-    @OneToMany(mappedBy = "collection")
-    private Set<UserEntity> users;
+    @OneToOne
+    private UserEntity user;
     @OneToMany(mappedBy = "collection")
     private Set<ShoeEntity> shoes;
 
-    public Set<UserEntity> getUsers() {
-        return users;
+    public UserEntity getUser() {
+        return user;
     }
 
-    public CollectionEntity setUsers(Set<UserEntity> users) {
-        this.users = users;
+    public CollectionEntity setUser(UserEntity user) {
+        this.user = user;
         return this;
     }
 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="/fragments/common :: head"></head>
+
+
+<body>
+
+<main class="index-main">
+    <header th:replace="/fragments/common :: nav">
+    </header>
+    <div class="position-relative p-7 p-md-3 m-md-3 mt-0 text-center">
+        <div id="main" class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 font-weight-normal">Admin panel</h1>
+            <p>Give rights to someone or delete someone
+            </p>
+
+        </div>
+
+        <div class="col-xl-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Make Admin</th>
+                    <th scope="col">Delete User</th>
+                </tr>
+                </thead>
+                <tbody th:each="u:${users}" th:object="${u}">
+                <tr>
+                    <td th:text="*{firstname}">User</td>
+                    <td th:text="*{lastname}">Userov</td>
+                    <td th:text="*{email}">user@user</td>
+
+                    <td >
+                        <form th:action="@{/admin/{id}(id = *{id})}" th:method="PATCH" class="m-1">
+                            <input type="submit" class="btn btn-warning" value="Make Admin"/>
+                        </form>
+                    </td>
+
+                    <td >
+                        <form th:action="@{/admin/{id}(id = *{id})}" th:method="DELETE" class="m-1">
+                            <input type="submit" class="btn btn-danger" value="Delete"/>
+                        </form>
+                    </td>
+
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+<script>var title = document.querySelector("title");
+title.textContent = "The-Shoe-Box | ADMIN"</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

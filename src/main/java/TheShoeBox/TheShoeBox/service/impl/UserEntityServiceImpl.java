@@ -4,8 +4,10 @@ import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
 import TheShoeBox.TheShoeBox.model.entity.enums.UserRoleEnum;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
+import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.repository.RoleRepository;
 import TheShoeBox.TheShoeBox.repository.UserRepository;
+import TheShoeBox.TheShoeBox.service.RoleEntityService;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserEntityServiceImpl implements UserEntityService {
@@ -25,15 +28,17 @@ public class UserEntityServiceImpl implements UserEntityService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final RoleEntityService roleEntityService;
     private final ModelMapper modelMapper;
     private final ShoeBoxUserDetails shoeBoxUserDetails;
     //private final CloudinaryService cloudinaryService;
 //    private final PictureRepository pictureRepository;
 
-    public UserEntityServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, ModelMapper modelMapper, ShoeBoxUserDetails shoeBoxUserDetails) {
+    public UserEntityServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, RoleEntityService roleEntityService, ModelMapper modelMapper, ShoeBoxUserDetails shoeBoxUserDetails) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
+        this.roleEntityService = roleEntityService;
         this.modelMapper = modelMapper;
         this.shoeBoxUserDetails = shoeBoxUserDetails;
     }
@@ -83,6 +88,31 @@ public class UserEntityServiceImpl implements UserEntityService {
         return userRepository.findByEmail(email)
                 .map(user -> modelMapper.map(user, UserServiceModel.class))
                 .orElse(null);
+    }
+
+    @Override
+    public List<UserViewModel> findAllUsers() {
+        return userRepository.findAll()
+                .stream().map(s->modelMapper.map(s, UserViewModel.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteUserById(Long id) {
+        UserEntity user = userRepository.findById(id).orElse(null);
+        if (user == null || user.getRoles().stream().anyMatch(r -> r.getRole().equals(UserRoleEnum.ADMIN))) {
+            return;
+        }
+        userRepository.delete(user);
+    }
+
+    @Override
+    public void makeUserAdmin(Long id) {
+        userRepository.findById(id)
+                .ifPresent(user -> {
+                    user.getRoles().add(roleEntityService.findByName(UserRoleEnum.ADMIN));
+                    userRepository.save(user);
+                });
     }
 
     @Override

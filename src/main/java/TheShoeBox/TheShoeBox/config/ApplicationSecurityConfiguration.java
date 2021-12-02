@@ -31,7 +31,8 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                         requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().
                 // the next line allows access to the home page, login page and registration for everyone
                         antMatchers("/", "/users/login", "/users/register", "/shop/about", "/shop/newsletter", "/shop/conditions").permitAll().
-                antMatchers("/home/**").permitAll().
+                        antMatchers("/home/**").permitAll().
+                        antMatchers("/admin/**").hasRole("ADMIN").
                 // next we forbid all other pages for unauthenticated users.
                         antMatchers("/**").authenticated().
                 and().
@@ -47,7 +48,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                         passwordParameter(
                                 UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_PASSWORD_KEY).
                 // The place where we should land in case that the login is successful
-                        defaultSuccessUrl("/").
+                        defaultSuccessUrl("/profile").
                 // the place where I should land if the login is NOT successful
                         failureForwardUrl("/users/login-error").
                 and().
@@ -55,7 +56,7 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
                 // This is the URL which spring will implement for me and will log the user out.
                         logoutUrl("/users/logout").
                 // where to go after the logout.
-                        logoutSuccessUrl("/login").
+                        logoutSuccessUrl("/users/login").
                 // remove the session from server
                         invalidateHttpSession(true).
                 //delete the cookie that references my session

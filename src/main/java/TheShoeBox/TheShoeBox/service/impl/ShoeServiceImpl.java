@@ -137,7 +137,7 @@ public class ShoeServiceImpl implements ShoeService {
 
     }
 
-    private Boolean isAdmin(UserEntity user) {
+    public Boolean isAdmin(UserEntity user) {
         return user.
                 getRoles().
                 stream().

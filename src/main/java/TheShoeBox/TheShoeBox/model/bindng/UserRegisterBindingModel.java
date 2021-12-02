@@ -1,5 +1,7 @@
 package TheShoeBox.TheShoeBox.model.bindng;
 
+import TheShoeBox.TheShoeBox.model.validator.anotations.ValidEmail;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -15,7 +17,7 @@ public class UserRegisterBindingModel {
     @NotNull
     @Size(min=4, max=20)
     private String lastname;
-    @Email
+    @ValidEmail
     @NotNull
     @Size(min=4, max=20)
     private String email;

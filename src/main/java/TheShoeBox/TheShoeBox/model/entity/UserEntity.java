@@ -26,10 +26,9 @@ public class UserEntity extends BaseEntity{
     private String lastName;
     @ManyToMany(fetch=FetchType.EAGER)
     private Set<UserRoleEntity> roles;
-    @OneToMany(mappedBy = "creator",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "creator",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Set<ShoeEntity> shoes;
-    @ManyToOne
-    @JoinColumn(name = "collection_id")
+    @OneToOne
     private CollectionEntity collection;
 
     private LocalDateTime sinceFrom = LocalDateTime.now();

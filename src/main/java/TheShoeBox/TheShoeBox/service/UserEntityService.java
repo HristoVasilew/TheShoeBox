@@ -2,7 +2,9 @@ package TheShoeBox.TheShoeBox.service;
 
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
+import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserEntityService {
@@ -16,4 +18,9 @@ public interface UserEntityService {
 
     UserServiceModel findByEmail(String email);
 
+    List<UserViewModel> findAllUsers();
+
+    void deleteUserById(Long id);
+
+    void makeUserAdmin(Long id);
 }

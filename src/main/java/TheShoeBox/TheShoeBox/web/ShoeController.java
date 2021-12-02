@@ -71,8 +71,11 @@ public class ShoeController {
         return "redirect:/collections/" + saved.getId() + "/details";
     }
 
-    @GetMapping("/collections/add-to-cart")
-    public String addToCart() {
+    //ADD TO CART AND BUY
+    @GetMapping("/collections/{id}/add-to-cart")
+    public String addToCart(@PathVariable Long id, Model model,
+                            Principal principal) {
+        model.addAttribute("shoe", this.shoeService.findById(id, principal.getName()));
         return "add-to-cart";
     }
 

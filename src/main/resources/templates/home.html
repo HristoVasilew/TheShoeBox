@@ -73,7 +73,7 @@
                         <li class="list-group-item" th:text="*{price}">Price: $249.00</li>
                     </ul>
                     <div class="card-body">
-                        <a href="/collections/add-to-cart" class="card-link">Add to cart!</a>
+                        <a th:href="@{/collections/{id}/add-to-cart(id=*{id})}" class="card-link">Add to cart!</a>
 
                         <a th:href="@{/collections/{id}/details(id=*{id})}" class="card-link">Details</a>
                     </div>
