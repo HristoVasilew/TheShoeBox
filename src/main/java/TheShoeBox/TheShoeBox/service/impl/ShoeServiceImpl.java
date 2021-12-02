@@ -77,10 +77,9 @@ public class ShoeServiceImpl implements ShoeService {
 
     @Override
     public ShoeViewModel findById(Long id, String name) {
-        ShoeViewModel shoeViewModel = shoeRepository.findById(id)
+        return shoeRepository.findById(id)
                 .map(s -> mapDetailsView(name, s))
                 .get();
-        return shoeViewModel;
     }
 
     @Override
