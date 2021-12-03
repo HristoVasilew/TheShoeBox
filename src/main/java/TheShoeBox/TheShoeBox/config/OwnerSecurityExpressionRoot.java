@@ -6,6 +6,7 @@ import org.springframework.security.access.expression.method.MethodSecurityExpre
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 public class OwnerSecurityExpressionRoot extends SecurityExpressionRoot implements
         MethodSecurityExpressionOperations {
 
@@ -31,7 +32,7 @@ public class OwnerSecurityExpressionRoot extends SecurityExpressionRoot implemen
     }
 
 
-    public void setOfferService(ShoeService shoeService) {
+    public void setShoeService(ShoeService shoeService) {
         this.shoeService = shoeService;
     }
 
@@ -41,6 +42,7 @@ public class OwnerSecurityExpressionRoot extends SecurityExpressionRoot implemen
             return ((UserDetails)auth.getPrincipal()).getUsername();
         }
         return null;
+        //todo
     }
 
     @Override

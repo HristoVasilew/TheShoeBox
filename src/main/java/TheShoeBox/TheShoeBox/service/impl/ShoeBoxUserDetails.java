@@ -8,6 +8,7 @@ import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,7 +26,7 @@ public class ShoeBoxUserDetails implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        var userEntity = userRepository.
+        UserEntity userEntity = userRepository.
                 findByEmail(email).
                 orElseThrow(() -> new UsernameNotFoundException("User with email " + email + " was not found."));
 
@@ -40,7 +41,7 @@ public class ShoeBoxUserDetails implements UserDetailsService {
                         map(r -> new SimpleGrantedAuthority("ROLE_" + r.getRole().name())).
                         collect(Collectors.toUnmodifiableSet());
 
-        return new org.springframework.security.core.userdetails.User(
+        return new User(
                 user.getEmail(),
                 user.getPassword(),
                 grantedAuthorities
