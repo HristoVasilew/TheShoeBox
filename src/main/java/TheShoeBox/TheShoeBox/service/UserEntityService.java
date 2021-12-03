@@ -23,4 +23,6 @@ public interface UserEntityService {
     void deleteUserById(Long id);
 
     void makeUserAdmin(Long id);
+
+    void makeAdminUser(Long id);
 }

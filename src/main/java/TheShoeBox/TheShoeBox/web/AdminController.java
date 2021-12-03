@@ -42,9 +42,16 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PatchMapping("/admin/{id}")
+    @PatchMapping("/admin/{id}/promote")
     public String makeAdmin(@PathVariable Long id) {
         userService.makeUserAdmin(id);
+
+        return "redirect:/admin";
+    }
+
+    @PatchMapping("/admin/{id}/demote")
+    public String makeUser(@PathVariable Long id) {
+        userService.makeAdminUser(id);
 
         return "redirect:/admin";
     }

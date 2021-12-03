@@ -1,11 +1,13 @@
 package TheShoeBox.TheShoeBox.service.impl;
 
+import TheShoeBox.TheShoeBox.model.entity.ShoeEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
 import TheShoeBox.TheShoeBox.model.entity.enums.UserRoleEnum;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
 import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.repository.RoleRepository;
+import TheShoeBox.TheShoeBox.repository.ShoeRepository;
 import TheShoeBox.TheShoeBox.repository.UserRepository;
 import TheShoeBox.TheShoeBox.service.RoleEntityService;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
@@ -17,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -31,16 +34,19 @@ public class UserEntityServiceImpl implements UserEntityService {
     private final RoleEntityService roleEntityService;
     private final ModelMapper modelMapper;
     private final ShoeBoxUserDetails shoeBoxUserDetails;
+    private final ShoeRepository shoeRepository;
     //private final CloudinaryService cloudinaryService;
 //    private final PictureRepository pictureRepository;
 
-    public UserEntityServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, RoleEntityService roleEntityService, ModelMapper modelMapper, ShoeBoxUserDetails shoeBoxUserDetails) {
+    public UserEntityServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, RoleRepository roleRepository, RoleEntityService roleEntityService, ModelMapper modelMapper, ShoeBoxUserDetails shoeBoxUserDetails, ShoeRepository shoeRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.roleRepository = roleRepository;
         this.roleEntityService = roleEntityService;
         this.modelMapper = modelMapper;
         this.shoeBoxUserDetails = shoeBoxUserDetails;
+
+        this.shoeRepository = shoeRepository;
     }
 
     @Override
@@ -103,7 +109,11 @@ public class UserEntityServiceImpl implements UserEntityService {
         if (user == null || user.getRoles().stream().anyMatch(r -> r.getRole().equals(UserRoleEnum.ADMIN))) {
             return;
         }
-        userRepository.delete(user);
+        for (ShoeEntity shoe : user.getShoes()) {
+            shoeRepository.deleteById(shoe.getId());
+        }
+
+        userRepository.deleteById(user.getId());
     }
 
     @Override
@@ -113,6 +123,17 @@ public class UserEntityServiceImpl implements UserEntityService {
                     user.getRoles().add(roleEntityService.findByName(UserRoleEnum.ADMIN));
                     userRepository.save(user);
                 });
+    }
+
+    @Override
+    public void makeAdminUser(Long id) {
+        UserEntity user = userRepository.findById(id).orElse(null);
+                if (user != null){
+                    Set<UserRoleEntity> roleToAdd = new HashSet<>();
+                    roleToAdd.add(roleEntityService.findByName(UserRoleEnum.USER));
+                    user.setRoles(roleToAdd);
+                    userRepository.save(user);
+                }
     }
 
     @Override

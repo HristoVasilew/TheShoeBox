@@ -1,11 +1,26 @@
 package TheShoeBox.TheShoeBox.model.view;
 
+import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
+
+import java.util.Set;
+
 public class AdminPanelUserViewModel {
     private Long id;
     private String username;
     private String firstname;
     private String lastname;
     private String email;
+    private Set<UserRoleEntity> roles;
+
+
+    public Set<UserRoleEntity> getRoles() {
+        return roles;
+    }
+
+    public AdminPanelUserViewModel setRoles(Set<UserRoleEntity> roles) {
+        this.roles = roles;
+        return this;
+    }
 
     public Long getId() {
         return id;

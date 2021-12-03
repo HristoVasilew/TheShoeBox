@@ -26,7 +26,7 @@ public class UserEntity extends BaseEntity{
     private String lastName;
     @ManyToMany(fetch=FetchType.EAGER)
     private Set<UserRoleEntity> roles;
-    @OneToMany(mappedBy = "creator",fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "creator",fetch = FetchType.EAGER)
     private Set<ShoeEntity> shoes;
     @OneToOne
     private CollectionEntity collection;

@@ -70,7 +70,7 @@ public class ShoeServiceImpl implements ShoeService {
     @Override
     public List<ShoeViewModel> findAllShoes() {
         return shoeRepository.findAll()
-                .stream().map(s-> modelMapper.map(s, ShoeViewModel.class))
+                .stream().map(s -> modelMapper.map(s, ShoeViewModel.class))
                 .collect(Collectors.toList());
 
     }
@@ -119,6 +119,7 @@ public class ShoeServiceImpl implements ShoeService {
         return shoeViewModel;
     }
 
+    @Override
     public boolean isOwner(String userName, Long id) {
 
         Optional<ShoeEntity> offerOpt = shoeRepository.

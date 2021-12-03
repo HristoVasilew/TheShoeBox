@@ -26,22 +26,6 @@ public class ProfileController {
         this.userEntityService = userEntityService;
     }
 
-
-    //@GetMapping("/users/profile")
-//    public String profile() {
-//        return "profile";
-//    }
-
-//    @GetMapping("/profile/{id}")
-//    private String profile(@PathVariable Long id, Model model){
-//
-//        model
-//                .addAttribute("user", modelMapper
-//                        .map(userEntityService.findById(id), UserViewModel.class));
-//
-//        return "profile";
-//    }
-
     @GetMapping("/profile/edit-profile")
     public String editProfile(Model model){
         Optional<UserEntity> userEntity = getCurrentUser();

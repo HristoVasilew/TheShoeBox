@@ -1,22 +1,21 @@
 package TheShoeBox.TheShoeBox.config;
 
+import TheShoeBox.TheShoeBox.web.interceptor.StatsInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 @Configuration
 public class WebConfiguration implements WebMvcConfigurer {
 
-//    private final LocaleChangeInterceptor changeInterceptor;
+    private final StatsInterceptor statsInterceptor;
 
-//
-//    public WebConfiguration(LocaleChangeInterceptor changeInterceptor) {
-//        this.changeInterceptor = changeInterceptor;
-//    }
-//
-//    @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(changeInterceptor);
-//    }
+    public WebConfiguration(StatsInterceptor statsInterceptor) {
+        this.statsInterceptor = statsInterceptor;
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(statsInterceptor);
+    }
 }

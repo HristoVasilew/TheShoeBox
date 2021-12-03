@@ -6,9 +6,9 @@
 
 <body>
 
+<nav th:replace="fragments/common::nav"></nav>
 <main class="index-main">
-    <header th:replace="/fragments/common :: nav">
-    </header>
+
     <div class="position-relative p-7 p-md-3 m-md-3 mt-0 text-center">
         <div id="main" class="col-md-5 p-lg-5 mx-auto my-5">
             <h1 class="display-4 font-weight-normal">Admin panel</h1>
@@ -17,36 +17,44 @@
 
         </div>
 
-        <div class="col-xl-12">
+        <div th:action="@{/admin}" th:object="${users}" class="col-xl-12">
             <table class="table">
                 <thead>
                 <tr>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email Address</th>
+                    <th scope="col">Roles</th>
+                    <th scope="col">Make User</th>
                     <th scope="col">Make Admin</th>
                     <th scope="col">Delete User</th>
                 </tr>
                 </thead>
-                <tbody th:each="u:${users}" th:object="${u}">
-                <tr>
-                    <td th:text="*{firstname}">User</td>
-                    <td th:text="*{lastname}">Userov</td>
-                    <td th:text="*{email}">user@user</td>
+                <tbody >
+                <tr th:each="user : ${users}" th:object="${user}">
+                    <td th:text="${user.firstname}">User</td>
+                    <td th:text="${user.lastname}">Userov</td>
+                    <td th:text="${user.email}">user@user</td>
 
-                    <td >
-                        <form th:action="@{/admin/{id}(id = *{id})}" th:method="PATCH" class="m-1">
+                    <th th:text="${user.getRoles()}">No</th>
+
+                    <td>
+                        <form th:action="@{/admin/{id}/demote(id = ${user.id})}" th:method="PATCH" class="m-1">
+                            <input type="submit" class="btn btn-warning" value="Make User"/>
+                        </form>
+                    </td>
+
+                    <td>
+                        <form th:action="@{/admin/{id}/promote(id = ${user.id})}" th:method="PATCH" class="m-1">
                             <input type="submit" class="btn btn-warning" value="Make Admin"/>
                         </form>
                     </td>
 
-                    <td >
-                        <form th:action="@{/admin/{id}(id = *{id})}" th:method="DELETE" class="m-1">
+                    <td>
+                        <form th:action="@{/admin/{id}(id = ${user.id})}" th:method="DELETE" class="m-1">
                             <input type="submit" class="btn btn-danger" value="Delete"/>
                         </form>
                     </td>
-
-
                 </tr>
                 </tbody>
             </table>

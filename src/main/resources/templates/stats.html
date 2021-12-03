@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments/common::head"></head>
+<body>
+<nav th:replace="fragments/common::nav"></nav>
+
+<div class="container-fluid">
+    <h1 class="text-center mt-5">Welcome to Stats!</h1>
+    <h3 class="text-center mt-5">Total requests <th:block th:text="${stats.getTotalRequests()}"></th:block></h3>
+    <h3 class="text-center mt-5">Anonymous requests <th:block th:text="${stats.getAnonRequests()}"></th:block></h3>
+    <h3 class="text-center mt-5">Authorized requests <th:block th:text="${stats.getAuthRequests()}"></th:block></h3>
+</div>
+
+<script>var title = document.querySelector("title");
+title.textContent = "The-Shoe-Box | Profile Page"</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+<footer th:replace="fragments/common::footer"></footer>
+
+</body>
+</html>

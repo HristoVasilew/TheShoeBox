@@ -18,4 +18,6 @@ public interface ShoeService {
     void deleteOffer(Long id);
 
     void updateOffer(ShoeUpdateServiceModel serviceModel);
+
+    boolean isOwner(String userName, Long id);
 }
