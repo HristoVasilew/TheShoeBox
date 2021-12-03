@@ -62,7 +62,7 @@ public class UserEntityServiceImpl implements UserEntityService {
                     .setFirstName("Admin")
                     .setLastName("Adminov")
                     .setEmail("admin@admin.com");
-            admin.setRoles(Set.of(adminRole,userRole));
+            admin.setRoles(Set.of(adminRole, userRole));
             userRepository.save(admin);
 
             UserEntity pesho = new UserEntity();
@@ -99,7 +99,7 @@ public class UserEntityServiceImpl implements UserEntityService {
     @Override
     public List<UserViewModel> findAllUsers() {
         return userRepository.findAll()
-                .stream().map(s->modelMapper.map(s, UserViewModel.class))
+                .stream().map(s -> modelMapper.map(s, UserViewModel.class))
                 .collect(Collectors.toList());
     }
 
@@ -128,12 +128,22 @@ public class UserEntityServiceImpl implements UserEntityService {
     @Override
     public void makeAdminUser(Long id) {
         UserEntity user = userRepository.findById(id).orElse(null);
-                if (user != null){
-                    Set<UserRoleEntity> roleToAdd = new HashSet<>();
-                    roleToAdd.add(roleEntityService.findByName(UserRoleEnum.USER));
-                    user.setRoles(roleToAdd);
-                    userRepository.save(user);
-                }
+        if (user != null) {
+            Set<UserRoleEntity> roleToAdd = new HashSet<>();
+            roleToAdd.add(roleEntityService.findByName(UserRoleEnum.USER));
+            user.setRoles(roleToAdd);
+            userRepository.save(user);
+        }
+    }
+
+    @Override
+    public boolean checkEmail(String email) {
+        return !userRepository.existsByEmail(email);
+    }
+
+    @Override
+    public boolean isUsernameFree(String username) {
+        return !userRepository.existsByUsername(username);
     }
 
     @Override

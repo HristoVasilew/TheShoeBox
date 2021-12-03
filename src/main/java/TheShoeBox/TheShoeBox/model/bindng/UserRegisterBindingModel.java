@@ -1,5 +1,7 @@
 package TheShoeBox.TheShoeBox.model.bindng;
 
+import TheShoeBox.TheShoeBox.model.validator.anotations.UniqueEmail;
+import TheShoeBox.TheShoeBox.model.validator.anotations.UniqueUsername;
 import TheShoeBox.TheShoeBox.model.validator.anotations.ValidEmail;
 
 import javax.validation.constraints.Email;
@@ -8,25 +10,29 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 public class UserRegisterBindingModel {
+
+    //todo ne validira email size
+    @UniqueUsername
     @NotBlank
-    @Size(min=4, max=20)
+    @Size(min = 4, max = 20, message = "Username should be between 4 and 20 characters.")
     private String username;
     @NotNull
-    @Size(min=4, max=20)
+    @Size(min = 4, max = 20, message = "First name should be between 4 and 20 characters.")
     private String firstname;
     @NotNull
-    @Size(min=4, max=20)
+    @Size(min = 4, max = 20, message = "Last name should be between 4 and 20 characters.")
     private String lastname;
-    @ValidEmail
+    @UniqueEmail
+    @ValidEmail(message = "Please enter a valid email address.")
     @NotNull
-    @Size(min=4, max=20)
+    @Size(min = 4, max = 50, message = "Maximum email length is 50 characters.")
     private String email;
-    @NotNull
-    @Size(min=4, max=20)
+    @NotNull(message = "Password is required and must not be blank.")
+    @Size(min = 4, max = 20, message = "Password should be between 4 and 20 characters.")
     private String password;
-    @NotNull
-    @Size(min=4, max=20)
-     private String confirmPassword;
+    @NotNull(message = "Confirm Password is required and must not be blank.")
+    @Size(min = 4, max = 20, message = "Password should be between 4 and 20 characters.")
+    private String confirmPassword;
 
     public UserRegisterBindingModel() {
     }

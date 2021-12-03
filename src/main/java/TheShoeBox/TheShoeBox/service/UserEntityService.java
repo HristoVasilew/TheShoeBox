@@ -25,4 +25,8 @@ public interface UserEntityService {
     void makeUserAdmin(Long id);
 
     void makeAdminUser(Long id);
+
+    boolean checkEmail(String email);
+
+    boolean isUsernameFree(String username);
 }

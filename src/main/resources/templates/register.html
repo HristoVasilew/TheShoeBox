@@ -41,7 +41,6 @@
 
                     <input
                             th:field="*{email}"
-                            th:errorclass="is-invalid"
                             name="email"
                             type="text"
                             class="form-control"
@@ -50,15 +49,17 @@
                       placeholder="name@example.com">
 
                     <label for="email">Email address<span class="text-danger">*</span></label>
-<!--<p class="invalid-feedback errors alert alert-danger">-->
                     <small id="emailHelpBlock" class="invalid-feedback text-danger">
                       Wrong pattern for email!
                     </small>
+                    <p th:if="${#fields.hasErrors('email')}"
+                       th:errors="*{email}"
+                       class="errors alert alert-danger"></p>
+
                   </div>
                   <div class="form-floating mb-3">
                     <input
                             th:field="*{firstname}"
-                            th:errorclass="is-invalid"
                             name="firstname"
                             type="text"
                             class="form-control"
@@ -69,6 +70,7 @@
                     <small id="firstnameHelpBlock" class="invalid-feedback text-danger">
                       Your first name must be 2-20 characters long!
                     </small>
+
                   </div>
                   <div class="form-floating">
                     <input
@@ -84,6 +86,9 @@
                     <small id="passwordHelpBlock" class="invalid-feedback text-danger">
                       Your password must be 4-20 characters long!
                     </small>
+                    <p th:if="${passwordMismatch}" class="errors alert alert-danger">
+                      Passwords must be the same.
+                    </p>
                   </div>
                   <div class="mb-3">
                     <input field="privacyPolicy"
@@ -108,9 +113,9 @@
                             id="username"
                             placeholder="username">
                     <label for="username">Username<span class="text-danger">*</span></label>
-                    <small id="usernameHelpBlock" class="invalid-feedback text-danger">
-                      Your username must be 4-20 characters long!
-                    </small>
+                    <p th:if="${#fields.hasErrors('username')}"
+                       th:errors="*{username}"
+                       class="errors alert alert-danger"></p>
                   </div>
                   <div class="form-floating mb-3">
                     <input
@@ -125,6 +130,7 @@
                     <small id="lastnameHelpBlock" class="invalid-feedback text-danger">
                       Your last name must be 4-20 characters long!
                     </small>
+
                   </div>
                   <div class="form-floating ">
                     <input
@@ -141,6 +147,9 @@
                     <small id="confirmPasswordHelpBlock" class="invalid-feedback text-danger">
                       Your password must be 4-20 characters long!
                     </small>
+                    <p th:if="${passwordMismatch}" class="errors alert alert-danger">
+                      Passwords must be the same.
+                    </p>
                   </div>
                   <div class="mb-3">
                     <input type="checkbox" name="newsletter" id="newsletter">
