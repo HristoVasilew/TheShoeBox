@@ -38,7 +38,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PatchMapping("/admin/{id}/promote")
     public String makeAdmin(@PathVariable Long id) {
         userService.makeUserAdmin(id);
@@ -47,7 +47,7 @@ public class AdminController {
     }
 
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/admin/{id}/demote")
     public String makeUser(@PathVariable Long id) {
         userService.makeAdminUser(id);

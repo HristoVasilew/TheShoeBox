@@ -13,7 +13,9 @@ public interface ShoeService {
 
     List<ShoeViewModel> findAllShoes();
 
-    ShoeViewModel findById(Long id, String name);
+    ShoeViewModel findByIdAndName(Long id, String name);
+
+    ShoeViewModel findById(Long id);
 
     void deleteOffer(Long id);
 

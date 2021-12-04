@@ -3,32 +3,38 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/common::head">
-  <title>The-Shoe-Box | Newsletter</title>
+    <title>The-Shoe-Box | Newsletter</title>
 
 </head>
 
 <body style="background: #ac0212;">
-  <div class="wrapper">
+<div class="wrapper">
     <nav th:replace="fragments/common::nav"></nav>
 
     <div class="master text-white text-center" style="margin-bottom: 93px;margin-top: 93px;">
-      <div class="container d-flex align-items-center flex-column "
-        style="line-height: 28px;letter-spacing: 0.085em;font-weight: 700; font-style: italic;font-size: 13px;">
+        <div class="container d-flex align-items-center flex-column "
+             style="line-height: 28px;letter-spacing: 0.085em;font-weight: 700; font-style: italic;font-size: 13px;">
 
-        <h1 class="masthead-heading text-uppercase mb-0"
-          style="letter-spacing: 10px;font-weight: 600;line-height: 1.9;font-size: 42px;">Newsletter
-        </h1>
-      </div>
+            <h1 class="masthead-heading text-uppercase mb-10"
+                style="letter-spacing: 10px;font-weight: 600;line-height: 1.9;font-size: 22px;">STAY UPDATED WITH THE
+                LATEST VANS NEWS, PRODUCT RELEASE DATES, AND PROMOTIONS.
+                DON’T MISS OUT ANY VANS EVENTS OR CONCERTS!
+                VANS, OFF THE WALL SINCE ’66
+            </h1>
+            <img src="/images/firstPageNews.png" alt="newsletter">
+            <img src="/images/secondPageNews.png" alt="newsletter">
+        </div>
     </div>
-  </div>
+    <footer th:replace="fragments/common::footer"></footer>
+</div>
 
-  <script>var title = document.querySelector("title");
-  title.textContent = "The-Shoe-Box | Newsletter"</script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+<script>var title = document.querySelector("title");
+title.textContent = "The-Shoe-Box | Newsletter"</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
-  <footer th:replace="fragments/common::footer"></footer>
+
 </body>
 
 </html>

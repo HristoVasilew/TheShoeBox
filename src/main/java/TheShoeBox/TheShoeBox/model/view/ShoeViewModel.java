@@ -2,6 +2,7 @@ package TheShoeBox.TheShoeBox.model.view;
 
 import TheShoeBox.TheShoeBox.model.entity.ShoeCategoryEntity;
 import TheShoeBox.TheShoeBox.model.entity.ShoeConditionEntity;
+import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
 import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 
@@ -23,7 +24,17 @@ public class ShoeViewModel {
     private ConditionEnum conditionEnum;
     private Boolean canDelete;
     private String sellerFullName;
+    private UserEntity creator;
 
+
+    public UserEntity getCreator() {
+        return creator;
+    }
+
+    public ShoeViewModel setCreator(UserEntity creator) {
+        this.creator = creator;
+        return this;
+    }
 
     public Long getId() {
         return id;

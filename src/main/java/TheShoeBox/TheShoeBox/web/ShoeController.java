@@ -80,7 +80,7 @@ public class ShoeController {
     @GetMapping("/collections/{id}/add-to-cart")
     public String addToCart(@PathVariable Long id, Model model,
                             Principal principal) {
-        model.addAttribute("shoe", this.shoeService.findById(id, principal.getName()));
+        model.addAttribute("shoe", this.shoeService.findByIdAndName(id, principal.getName()));
         return "add-to-cart";
     }
 
@@ -89,7 +89,7 @@ public class ShoeController {
     public String showOffer(
             @PathVariable Long id, Model model,
             Principal principal) {
-        model.addAttribute("shoe", this.shoeService.findById(id, principal.getName()));
+        model.addAttribute("shoe", this.shoeService.findByIdAndName(id, principal.getName()));
         return "details";
     }
 
@@ -118,7 +118,7 @@ public class ShoeController {
                             @CurrentSecurityContext(expression = "authentication?.name")
                                     String username) {
 
-        ShoeViewModel shoeViewModel = shoeService.findById(id, username);
+        ShoeViewModel shoeViewModel = shoeService.findByIdAndName(id, username);
         ShoeUpdateBindingModel offerModel = modelMapper.map(
                 shoeViewModel,
                 ShoeUpdateBindingModel.class
