@@ -25,70 +25,123 @@
             <div class="row row1 g-0 justify-content-center" style="background-color: #fff; border-radius: 20px;">
                 <div class="col-lg-9 p-4">
                     <h1 class="font-weight-bold mb-4">Edit Profile Info</h1>
-                    <form th:action="@{/profile/edit-profile}" th:method="get" th:object="${user}">
-                        <div class="row ">
-                            <div class="col-lg-5" style="margin-right: 150px;">
+                    <form th:action="@{/users/register}" th:method="post" th:object="${userRegisterBindingModel}">
+                        <div class="row">
+                            <div class="col-md-5">
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingemail" placeholder="name@example.com" th:value="*{email}">
-                                    <label for="floatingemail">Email address<span class="text-danger">*</span></label>
-                                    <small id="emailHelpBlock" class="text-danger">
-                                        Your email must contains @ characters long!
-                                    </small>
+
+                                    <input
+                                            th:field="*{email}"
+                                            th:value="*{email}"
+                                            name="email"
+                                            type="text"
+                                            class="form-control"
+                                            required minlength="6" maxlength="50"
+                                            id="email"
+                                            placeholder="name@example.com">
+
+                                    <label for="email">Email address<span class="text-danger">*</span></label>
+                                    <p th:if="${#fields.hasErrors('email')}"
+                                       th:errors="*{email}"
+                                       class="errors alert alert-danger"></p>
+
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input  type="firstname" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingfirstname" placeholder="Ivanov" th:value="*{firstname}">
-                                    <label for="floatingfirstname">First Name<span class="text-danger">*</span></label>
-                                    <small id="firstnameHelpBlock" class="text-danger">
-                                        Your first name must be 2-20 characters long!
-                                    </small>
+                                    <input
+                                            th:field="*{firstname}"
+                                            name="firstname"
+                                            type="text"
+                                            class="form-control"
+                                            required minlength="2" maxlength="20"
+                                            id="firstname"
+                                            placeholder="name">
+                                    <label for="firstname">First Name<span class="text-danger">*</span></label>
+                                    <p th:if="${#fields.hasErrors('firstname')}"
+                                       th:errors="*{firstname}"
+                                       class="errors alert alert-danger"></p>
+
                                 </div>
                                 <div class="form-floating">
-                                    <input type="password" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingpassword" placeholder="Password" value="******">
-                                    <label for="floatingpassword">Password<span class="text-danger">*</span></label>
-                                    <small id="passwordHelpBlock" class="text-danger">
+                                    <input
+                                            th:field="*{password}"
+                                            th:errorclass="is-invalid"
+                                            name="password"
+                                            type="password"
+                                            class="form-control"
+                                            required minlength="4" maxlength="20"
+                                            id="password"
+                                            placeholder="Password">
+                                    <label for="password">Password<span class="text-danger">*</span></label>
+                                    <small id="passwordHelpBlock" class="invalid-feedback text-danger">
                                         Your password must be 4-20 characters long!
                                     </small>
+                                    <p th:if="${passwordMismatch}" class="errors alert alert-danger">
+                                        Passwords must be the same.
+                                    </p>
+                                </div>
+                                <div class="mb-3">
+                                    <input field="privacyPolicy"
+                                           type="checkbox"
+                                           name="privacyPolicy"
+                                           id="privacy-policy" required>
+                                    <label for="privacy-policy"
+                                           class="text-start">Confirm our
+                                        <a href="/shop/conditions" class="text-dark">privacy policy.</a>
+                                        <span class="text-danger">*</span></label>
                                 </div>
                             </div>
-                            <div class="col-lg-5">
+                            <div class="col-md-5">
                                 <div class="form-floating mb-3">
-                                    <input  type="username" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatingusername" placeholder="Lecture" th:value="*{username}">
-                                    <label for="floatingusername">Username<span class="text-danger">*</span></label>
-                                    <small id="usernameHelpBlock" class="text-danger">
-                                        Your username must be 2-20 characters long!
-                                    </small>
+                                    <input
+                                            th:field="*{username}"
+                                            name="username"
+                                            type="text"
+                                            class="form-control"
+                                            required minlength="4" maxlength="20"
+                                            id="username"
+                                            placeholder="username">
+                                    <label for="username">Username<span class="text-danger">*</span></label>
+                                    <p th:if="${#fields.hasErrors('username')}"
+                                       th:errors="*{username}"
+                                       class="errors alert alert-danger"></p>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input  type="lastName" class="form-control" required minlength="4" maxlength="20"
-                                        id="floatinglastName" placeholder="Ivanov" th:value="*{lastname}">
-                                    <label for="floatinglastName">Last Name<span class="text-danger">*</span></label>
-                                    <small id="lastnameHelpBlock" class="text-danger">
-                                        Your last name must be 2-20 characters long!
+                                    <input
+                                            th:field="*{lastname}"
+                                            th:errorclass="is-invalid"
+                                            name="lastname"
+                                            type="text" class="form-control"
+                                            required minlength="4" maxlength="20"
+                                            id="lastname"
+                                            placeholder="Ivanov">
+                                    <label for="lastname">Last Name<span class="text-danger">*</span></label>
+                                    <small id="lastnameHelpBlock" class="invalid-feedback text-danger">
+                                        Your last name must be 4-20 characters long!
                                     </small>
+
                                 </div>
                                 <div class="form-floating ">
-                                    <input type="password" class="form-control" required minlength="4"
-                                        maxlength="20" id="floatingConfirmPassword" placeholder="ConfirmPassword" value="******">
-                                    <label for="floatingConfirmPassword">Confirm Password<span
-                                            class="text-danger">*</span></label>
+                                    <input
+                                            th:field="*{confirmPassword}"
+                                            th:errorclass="is-invalid"
+                                            name="confirmPassword"
+                                            type="password"
+                                            class="form-control"
+                                            required minlength="4" maxlength="20"
+                                            id="confirmPassword"
+                                            placeholder="Password">
+                                    <label for="confirmPassword">Confirm Password<span class="text-danger">*</span></label>
 
-                                    <small id="confirmPasswordHelpBlock" class="text-danger">
+                                    <small id="confirmPasswordHelpBlock" class="invalid-feedback text-danger">
                                         Your password must be 4-20 characters long!
                                     </small>
+                                    <p th:if="${passwordMismatch}" class="errors alert alert-danger">
+                                        Passwords must be the same.
+                                    </p>
                                 </div>
-                                <div class="form-floating ">
-
-                                   <input type="image" class="form-control" accept="image/png, image/jpeg" required minlength="4" maxlength="20"
-                                   id="floatingimage" placeholder="image" >
-                                    <label for="floatingimage">Profile Picture</label>
-
-                                    <small id="imageHelpBlock" class="text-danger">
-                                        Too big file!
-                                    </small>
+                                <div class="mb-3">
+                                    <input type="checkbox" name="newsletter" id="newsletter">
+                                    <label for="newsletter">Subscribe for our newsletter.</label>
                                 </div>
                             </div>
                         </div>
@@ -98,14 +151,6 @@
                                     <button class="btn btn-dark btn-lg btn-block" type="submit">Save
                                         changes</button>
                                 </form>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <a href="#">Forgot password?</a>
-                            </div>
-                            <div class="col">
-                                <p>Back to <a href="collections/all">SHOP</a></p>
                             </div>
                         </div>
                     </form>

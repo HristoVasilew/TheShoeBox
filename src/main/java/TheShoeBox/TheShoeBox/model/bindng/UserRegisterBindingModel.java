@@ -17,15 +17,15 @@ public class UserRegisterBindingModel {
     @Size(min = 4, max = 20, message = "Username should be between 4 and 20 characters.")
     private String username;
     @NotNull
-    @Size(min = 4, max = 20, message = "First name should be between 4 and 20 characters.")
+    @Size(min = 2, max = 20, message = "First name should be between 4 and 20 characters.")
     private String firstname;
     @NotNull
-    @Size(min = 4, max = 20, message = "Last name should be between 4 and 20 characters.")
+    @Size(min = 2, max = 20, message = "Last name should be between 4 and 20 characters.")
     private String lastname;
     @UniqueEmail
     @ValidEmail(message = "Please enter a valid email address.")
     @NotNull
-    @Size(min = 4, max = 50, message = "Maximum email length is 50 characters.")
+    @Size(min = 6, max = 50, message = "Maximum email length is 50 characters.")
     private String email;
     @NotNull(message = "Password is required and must not be blank.")
     @Size(min = 4, max = 20, message = "Password should be between 4 and 20 characters.")

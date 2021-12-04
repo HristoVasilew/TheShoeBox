@@ -2,189 +2,188 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0053/4999/8661/files/SDotFavicon_32x32.png?v=1600905425"
-        type="image/png">
-  <link href="/css/login.css" rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-  <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0053/4999/8661/files/SDotFavicon_32x32.png?v=1600905425"
-        type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <title>The-Shoe-Box | Register</title>
+    <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0053/4999/8661/files/SDotFavicon_32x32.png?v=1600905425"
+          type="image/png">
+    <link href="/css/login.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0053/4999/8661/files/SDotFavicon_32x32.png?v=1600905425"
+          type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <title>The-Shoe-Box | Register</title>
 </head>
 
 <body style="background-color: #d21736;">
 
-  <nav th:replace="fragments/common::nav"></nav>
+<nav th:replace="fragments/common::nav"></nav>
 
-    <div class="Form py-5">
-      <div class="container p-5">
+<div class="Form py-5">
+    <div class="container p-5">
         <div class="row row1 g-0">
-          <div class="col-md-6 col-ld-5 d-none d-lg-block ">
-            <img src="/images/man.jpg" class="img-fluid" alt=""
-              style="border-top-left-radius: 30px ;border-bottom-left-radius: 30px ;">
-          </div>
-          <div class="col-lg-6 p-4 p-lg-1">
-            <h1 class="font-weight-bold py-">Register</h1>
-            <h4>Sign into your account</h4>
-            <form th:action="@{/users/register}" th:method="post" th:object="${userRegisterBindingModel}" >
-              <div class="row">
-                <div class="col-md-5">
-                  <div class="form-floating mb-3">
+            <div class="col-md-6 col-ld-5 d-none d-lg-block ">
+                <img src="/images/man.jpg" class="img-fluid" alt=""
+                     style="border-top-left-radius: 30px ;border-bottom-left-radius: 30px ;">
+            </div>
+            <div class="col-lg-6 p-4 p-lg-1">
+                <h1 class="font-weight-bold py-">Register</h1>
+                <h4>Sign into your account</h4>
+                <form th:action="@{/users/register}" th:method="post" th:object="${userRegisterBindingModel}">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-floating mb-3">
 
-                    <input
-                            th:field="*{email}"
-                            name="email"
-                            type="text"
-                            class="form-control"
-                            required minlength="6" maxlength="20"
-                            id="email"
-                      placeholder="name@example.com">
+                                <input
+                                        th:field="*{email}"
+                                        name="email"
+                                        type="text"
+                                        class="form-control"
+                                        required minlength="6" maxlength="50"
+                                        id="email"
+                                        placeholder="name@example.com">
 
-                    <label for="email">Email address<span class="text-danger">*</span></label>
-                    <small id="emailHelpBlock" class="invalid-feedback text-danger">
-                      Wrong pattern for email!
-                    </small>
-                    <p th:if="${#fields.hasErrors('email')}"
-                       th:errors="*{email}"
-                       class="errors alert alert-danger"></p>
+                                <label for="email">Email address<span class="text-danger">*</span></label>
+                                <p th:if="${#fields.hasErrors('email')}"
+                                   th:errors="*{email}"
+                                   class="errors alert alert-danger"></p>
 
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input
-                            th:field="*{firstname}"
-                            name="firstname"
-                            type="text"
-                            class="form-control"
-                            required minlength="2" maxlength="20"
-                            id="firstname"
-                            placeholder="name">
-                    <label for="firstname">First Name<span class="text-danger">*</span></label>
-                    <small id="firstnameHelpBlock" class="invalid-feedback text-danger">
-                      Your first name must be 2-20 characters long!
-                    </small>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input
+                                        th:field="*{firstname}"
+                                        name="firstname"
+                                        type="text"
+                                        class="form-control"
+                                        required minlength="2" maxlength="20"
+                                        id="firstname"
+                                        placeholder="name">
+                                <label for="firstname">First Name<span class="text-danger">*</span></label>
+                                <p th:if="${#fields.hasErrors('firstname')}"
+                                   th:errors="*{firstname}"
+                                   class="errors alert alert-danger"></p>
 
-                  </div>
-                  <div class="form-floating">
-                    <input
-                            th:field="*{password}"
-                            th:errorclass="is-invalid"
-                            name="password"
-                            type="password"
-                            class="form-control"
-                            required minlength="4" maxlength="20"
-                            id="password"
-                            placeholder="Password">
-                    <label for="password">Password<span class="text-danger">*</span></label>
-                    <small id="passwordHelpBlock" class="invalid-feedback text-danger">
-                      Your password must be 4-20 characters long!
-                    </small>
-                    <p th:if="${passwordMismatch}" class="errors alert alert-danger">
-                      Passwords must be the same.
-                    </p>
-                  </div>
-                  <div class="mb-3">
-                    <input field="privacyPolicy"
-                           type="checkbox"
-                           name="privacyPolicy"
-                           id="privacy-policy" required>
-                    <label for="privacy-policy"
-                           class="text-start">Confirm our
-                      <a href="/shop/conditions" class="text-dark">privacy policy.</a>
-                      <span class="text-danger">*</span></label>
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div class="form-floating mb-3">
-                    <input
-                            th:field="*{username}"
-                            th:errorclass="is-invalid"
-                            name="username"
-                            type="text"
-                            class="form-control"
-                            required minlength="4" maxlength="20"
-                            id="username"
-                            placeholder="username">
-                    <label for="username">Username<span class="text-danger">*</span></label>
-                    <p th:if="${#fields.hasErrors('username')}"
-                       th:errors="*{username}"
-                       class="errors alert alert-danger"></p>
-                  </div>
-                  <div class="form-floating mb-3">
-                    <input
-                            th:field="*{lastname}"
-                            th:errorclass="is-invalid"
-                            name="lastname"
-                           type="text" class="form-control"
-                           required minlength="4" maxlength="20"
-                           id="lastname"
-                      placeholder="Ivanov">
-                    <label for="lastname">Last Name<span class="text-danger">*</span></label>
-                    <small id="lastnameHelpBlock" class="invalid-feedback text-danger">
-                      Your last name must be 4-20 characters long!
-                    </small>
+                            </div>
+                            <div class="form-floating">
+                                <input
+                                        th:field="*{password}"
+                                        th:errorclass="is-invalid"
+                                        name="password"
+                                        type="password"
+                                        class="form-control"
+                                        required minlength="4" maxlength="20"
+                                        id="password"
+                                        placeholder="Password">
+                                <label for="password">Password<span class="text-danger">*</span></label>
+                                <small id="passwordHelpBlock" class="invalid-feedback text-danger">
+                                    Your password must be 4-20 characters long!
+                                </small>
+                                <p th:if="${passwordMismatch}" class="errors alert alert-danger">
+                                    Passwords must be the same.
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <input field="privacyPolicy"
+                                       type="checkbox"
+                                       name="privacyPolicy"
+                                       id="privacy-policy" required>
+                                <label for="privacy-policy"
+                                       class="text-start">Confirm our
+                                    <a href="/shop/conditions" class="text-dark">privacy policy.</a>
+                                    <span class="text-danger">*</span></label>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-floating mb-3">
+                                <input
+                                        th:field="*{username}"
+                                        name="username"
+                                        type="text"
+                                        class="form-control"
+                                        required minlength="4" maxlength="20"
+                                        id="username"
+                                        placeholder="username">
+                                <label for="username">Username<span class="text-danger">*</span></label>
+                                <p th:if="${#fields.hasErrors('username')}"
+                                   th:errors="*{username}"
+                                   class="errors alert alert-danger"></p>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input
+                                        th:field="*{lastname}"
+                                        th:errorclass="is-invalid"
+                                        name="lastname"
+                                        type="text" class="form-control"
+                                        required minlength="4" maxlength="20"
+                                        id="lastname"
+                                        placeholder="Ivanov">
+                                <label for="lastname">Last Name<span class="text-danger">*</span></label>
+                                <small id="lastnameHelpBlock" class="invalid-feedback text-danger">
+                                    Your last name must be 4-20 characters long!
+                                </small>
 
-                  </div>
-                  <div class="form-floating ">
-                    <input
-                            th:field="*{confirmPassword}"
-                            th:errorclass="is-invalid"
-                            name="confirmPassword"
-                            type="password"
-                            class="form-control"
-                            required minlength="4" maxlength="20"
-                            id="confirmPassword"
-                            placeholder="Password">
-                    <label for="confirmPassword">Confirm Password<span class="text-danger">*</span></label>
+                            </div>
+                            <div class="form-floating ">
+                                <input
+                                        th:field="*{confirmPassword}"
+                                        th:errorclass="is-invalid"
+                                        name="confirmPassword"
+                                        type="password"
+                                        class="form-control"
+                                        required minlength="4" maxlength="20"
+                                        id="confirmPassword"
+                                        placeholder="Password">
+                                <label for="confirmPassword">Confirm Password<span class="text-danger">*</span></label>
 
-                    <small id="confirmPasswordHelpBlock" class="invalid-feedback text-danger">
-                      Your password must be 4-20 characters long!
-                    </small>
-                    <p th:if="${passwordMismatch}" class="errors alert alert-danger">
-                      Passwords must be the same.
-                    </p>
-                  </div>
-                  <div class="mb-3">
-                    <input type="checkbox" name="newsletter" id="newsletter">
-                    <label for="newsletter">Subscribe for our newsletter.</label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="pt-1 mb-2">
-                  <form action="post" class="inline">
-                    <a href="/collections/all"><button class="btn btn-dark btn-lg btn-block"
-                                                       type="submit">Register</button> </a>
-                  </form>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <a href="#">Forgot password?</a>
-                </div>
-                <div class="col">
-                  <p>Have account? <a href="/users/login">Login</a></p>
-                </div>
-              </div>
-            </form>
-          </div>
+                                <small id="confirmPasswordHelpBlock" class="invalid-feedback text-danger">
+                                    Your password must be 4-20 characters long!
+                                </small>
+                                <p th:if="${passwordMismatch}" class="errors alert alert-danger">
+                                    Passwords must be the same.
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <input type="checkbox" name="newsletter" id="newsletter">
+                                <label for="newsletter">Subscribe for our newsletter.</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="pt-1 mb-2">
+                            <form action="post" class="inline">
+                                <a href="/collections/all">
+                                    <button class="btn btn-dark btn-lg btn-block"
+                                            type="submit">Register
+                                    </button>
+                                </a>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <a href="#">Forgot password?</a>
+                        </div>
+                        <div class="col">
+                            <p>Have account? <a href="/users/login">Login</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
     </div>
+</div>
 
-    <footer th:replace="fragments/common::footer"></footer>
+<footer th:replace="fragments/common::footer"></footer>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
 </body>
 

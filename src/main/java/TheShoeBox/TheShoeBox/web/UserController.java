@@ -2,15 +2,18 @@ package TheShoeBox.TheShoeBox.web;
 
 import TheShoeBox.TheShoeBox.model.bindng.UserRegisterBindingModel;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
+import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.repository.UserRepository;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -58,11 +61,6 @@ public class UserController {
         return "register";
     }
 
-    @ModelAttribute("userRegisterBindingModel")
-    public UserRegisterBindingModel userRegisterBindingModel() {
-        return new UserRegisterBindingModel();
-    }
-
     @PostMapping("/users/register")
     public String register(
             @Valid UserRegisterBindingModel userRegisterBindingModel,
@@ -100,6 +98,15 @@ public class UserController {
         return "redirect:/users/login";
     }
 
+    @ModelAttribute("userRegisterBindingModel")
+    public UserRegisterBindingModel userRegisterBindingModel() {
+        return new UserRegisterBindingModel();
+    }
+
+    @ModelAttribute("passwordMismatch")
+    public Boolean passwordMismatch() {
+        return false;
+    }
 
 //    @RequestMapping(value="/updateUserInfo", method=RequestMethod.POST)
 //    public ResponseEntity profileInfo(

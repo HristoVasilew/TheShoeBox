@@ -1,5 +1,7 @@
 package TheShoeBox.TheShoeBox.service.impl;
 
+import TheShoeBox.TheShoeBox.exeptions.ObjectNotFoundException;
+import TheShoeBox.TheShoeBox.exeptions.UserNotLoggedInException;
 import TheShoeBox.TheShoeBox.model.bindng.ShoeBindingModel;
 import TheShoeBox.TheShoeBox.model.entity.*;
 import TheShoeBox.TheShoeBox.model.entity.enums.UserRoleEnum;
@@ -14,7 +16,6 @@ import TheShoeBox.TheShoeBox.service.CategoryEntityService;
 import TheShoeBox.TheShoeBox.service.ShoeConditionService;
 import TheShoeBox.TheShoeBox.service.ShoeService;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
-import TheShoeBox.TheShoeBox.service.erorrs.ObjectNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -128,7 +129,7 @@ public class ShoeServiceImpl implements ShoeService {
                 findByEmail(userName);
 
         if (offerOpt.isEmpty() || caller.isEmpty()) {
-            return false;
+            throw new UserNotLoggedInException("You must be logged in.");
         } else {
             ShoeEntity shoeEntity = offerOpt.get();
 
