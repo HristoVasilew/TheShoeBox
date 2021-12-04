@@ -26,7 +26,7 @@ public class ShoeUpdateBindingModel {
     private BigDecimal price;
     @Size(min = 4, max = 140)
     private String location;
-    @Size(min = 4, max = 140)
+    @Size(min = 4, max = 200)
     private String description;
     private String imageUrl;
 

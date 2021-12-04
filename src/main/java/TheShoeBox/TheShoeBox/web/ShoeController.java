@@ -8,10 +8,9 @@ import TheShoeBox.TheShoeBox.model.service.ShoeServiceModel;
 import TheShoeBox.TheShoeBox.model.service.ShoeUpdateServiceModel;
 import TheShoeBox.TheShoeBox.model.view.ShoeViewModel;
 import TheShoeBox.TheShoeBox.service.ShoeService;
-import TheShoeBox.TheShoeBox.service.impl.ShoeBoxUser;
+import TheShoeBox.TheShoeBox.service.UserEntityService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,17 +27,23 @@ public class ShoeController {
 
     private final ModelMapper modelMapper;
     private final ShoeService shoeService;
+    private final UserEntityService userEntityService;
 
 
-    public ShoeController(ModelMapper modelMapper, ShoeService shoeService) {
+    public ShoeController(ModelMapper modelMapper, ShoeService shoeService, UserEntityService userEntityService) {
         this.modelMapper = modelMapper;
         this.shoeService = shoeService;
+        this.userEntityService = userEntityService;
     }
 
     @GetMapping("/collections/all")
-    public String home(Model model) {
+    public String home(Model model, @CurrentSecurityContext(expression = "authentication?.name")
+            String username) {
         List<ShoeViewModel> shoes = shoeService.findAllShoes();
         model.addAttribute("allShoes", shoes);
+
+        long owner = userEntityService.findUserByEmail(username).get().getId();
+        model.addAttribute("owner", owner);
 
         return "home";
     }
