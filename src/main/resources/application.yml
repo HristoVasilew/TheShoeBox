@@ -35,7 +35,11 @@ logging:
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
 
     #Cloudinary Properties
-    #cloudinary:
-    #  cloud_name: a69s69sbz
-    #    api_key: '175156172913596'
-    #    api_secret: ${CLOUDINARY_API_SECRET}
+cloudinary:
+         cloud-name: a69s69sbz
+         api-key: '175156172913596'
+         api-secret: G8WCm4t_225kGJXuH8pTmRqCIlw
+
+
+
+
