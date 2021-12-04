@@ -33,4 +33,9 @@ public class UserRoleEntity{
         this.role = role;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "role=" + role;
+    }
 }

@@ -2,6 +2,7 @@ package TheShoeBox.TheShoeBox.service;
 
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
+import TheShoeBox.TheShoeBox.model.view.AdminPanelUserViewModel;
 import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 
 import java.util.List;
@@ -29,4 +30,6 @@ public interface UserEntityService {
     boolean checkEmail(String email);
 
     boolean isUsernameFree(String username);
+
+    List<AdminPanelUserViewModel> getAllUsersByFetch();
 }

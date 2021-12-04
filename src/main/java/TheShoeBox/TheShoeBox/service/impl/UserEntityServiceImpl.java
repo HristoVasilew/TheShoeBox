@@ -5,6 +5,7 @@ import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
 import TheShoeBox.TheShoeBox.model.entity.enums.UserRoleEnum;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
+import TheShoeBox.TheShoeBox.model.view.AdminPanelUserViewModel;
 import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.repository.RoleRepository;
 import TheShoeBox.TheShoeBox.repository.ShoeRepository;
@@ -144,6 +145,11 @@ public class UserEntityServiceImpl implements UserEntityService {
     @Override
     public boolean isUsernameFree(String username) {
         return !userRepository.existsByUsername(username);
+    }
+
+    @Override
+    public List<AdminPanelUserViewModel> getAllUsersByFetch() {
+        return userRepository.getAllUsersByFetch().stream().map(u->modelMapper.map(u, AdminPanelUserViewModel.class)).collect(Collectors.toList());
     }
 
     @Override

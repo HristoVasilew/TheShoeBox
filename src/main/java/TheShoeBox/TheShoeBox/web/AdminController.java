@@ -28,12 +28,7 @@ public class AdminController {
     @Transactional
     @GetMapping("/admin")
     public String admin(Model model) {
-        List<AdminPanelUserViewModel> users
-                = userService.findAllUsers()
-                .stream()
-                .map(s->modelMapper.map(s,AdminPanelUserViewModel.class))
-                .collect(Collectors.toList());
-        model.addAttribute("users", users);
+        model.addAttribute("users", userService.getAllUsersByFetch());
         return "admin";
     }
     @DeleteMapping("/admin/{id}")
@@ -43,6 +38,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PatchMapping("/admin/{id}/promote")
     public String makeAdmin(@PathVariable Long id) {
         userService.makeUserAdmin(id);
@@ -50,6 +46,8 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PatchMapping("/admin/{id}/demote")
     public String makeUser(@PathVariable Long id) {
         userService.makeAdminUser(id);

@@ -26,7 +26,8 @@
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email Address</th>
-<!--                    <th scope="col">Roles</th>-->
+                    <th scope="col">Roles</th>
+                    <th scope="col"></th>
                     <th scope="col">Make User</th>
                     <th scope="col">Make Admin</th>
                     <th scope="col">Delete User</th>
@@ -40,9 +41,10 @@
                     <td th:text="*{lastname}">Userov</td>
                     <td th:text="*{email}">user@user</td>
 
-<!--                    <th:foreach th:each="r : ${user.getRoles()}" th:object="${r}">-->
-<!--                        <td th:text="*{getRole()}"></td>-->
-<!--                    </th:foreach>-->
+                    <td th:each="r : ${user.roles}" th:object="${r}" th:text="*{getRole().name()}">
+<!--                        <p th:text="*{getRole().name()}">empty</p>-->
+                    </td>
+
                     <td>
                         <form th:action="@{/admin/{id}/demote(id = *{id})}" th:method="PATCH" class="m-1">
                             <input type="submit" class="btn btn-warning" value="Make User"/>
@@ -72,6 +74,9 @@ title.textContent = "The-Shoe-Box | ADMIN"</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+
+<footer th:replace="fragments/common::footer"></footer>
+
 </body>
 
 </html>

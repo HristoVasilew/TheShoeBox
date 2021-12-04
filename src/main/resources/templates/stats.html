@@ -4,12 +4,45 @@
 <body>
 <nav th:replace="fragments/common::nav"></nav>
 
-<div class="container-fluid">
-    <h1 class="text-center mt-5">Welcome to Stats!</h1>
-    <h3 class="text-center mt-5">Total requests <th:block th:text="${stats.getTotalRequests()}"></th:block></h3>
-    <h3 class="text-center mt-5">Anonymous requests <th:block th:text="${stats.getAnonRequests()}"></th:block></h3>
-    <h3 class="text-center mt-5">Authorized requests <th:block th:text="${stats.getAuthRequests()}"></th:block></h3>
-</div>
+
+<main class="index-main">
+
+    <div class="position-relative p-7 p-md-3 m-md-3 mt-0 text-center">
+        <div id="main" class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 font-weight-normal">Admin panel</h1>
+            <p>Give rights to someone or delete someone
+            </p>
+
+        </div>
+
+        <div class="col-xl-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Anonymous requests</th>
+                    <th scope="col">Authorized requests</th>
+                    <th scope="col">Total requests</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <th:block th:text="${stats.getAnonRequests()}"></th:block>
+                    </td>
+                    <td>
+                        <th:block th:text="${stats.getAuthRequests()}"></th:block>
+                    </td>
+                    <td>
+                        <th:block th:text="${stats.getTotalRequests()}"></th:block>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
 
 <script>var title = document.querySelector("title");
 title.textContent = "The-Shoe-Box | Profile Page"</script>
