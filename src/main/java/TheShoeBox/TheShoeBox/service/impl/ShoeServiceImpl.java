@@ -122,6 +122,8 @@ public class ShoeServiceImpl implements ShoeService {
         shoeViewModel.setCanDelete(isOwner(currentUser, offer.getId()));
         shoeViewModel.setModel(offer.getModel());
         shoeViewModel.setBrand(offer.getBrand());
+        shoeViewModel.setConditionEnum(offer.getShoeConditionEntity().getName());
+        shoeViewModel.setShoeCategoryEnum(offer.getShoeCategoryEntity().getName());
         shoeViewModel.setSellerFullName(
                 offer.getCreator().getFirstName() + " " + offer.getCreator().getLastName());
         return shoeViewModel;

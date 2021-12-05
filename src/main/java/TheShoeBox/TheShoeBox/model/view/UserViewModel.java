@@ -1,5 +1,11 @@
 package TheShoeBox.TheShoeBox.model.view;
 
+import TheShoeBox.TheShoeBox.model.entity.ShoeEntity;
+import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
+
+import java.time.LocalDateTime;
+import java.util.Set;
+
 public class UserViewModel {
     private Long id;
     private String username;

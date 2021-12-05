@@ -9,4 +9,6 @@ public interface OrderService {
     List<OrderViewModel> findAllOrders();
 
     OrderServiceModel addOrder(Long productId, String buyer);
+
+    void deleteAll();
 }

@@ -11,12 +11,12 @@ import java.util.Map;
 
 @Configuration
 public class ApplicationBeanConfiguration {
-
-    private final CloudinaryConfiguration config;
-
-    public ApplicationBeanConfiguration(CloudinaryConfiguration config) {
-        this.config = config;
-    }
+//
+//    private final CloudinaryConfiguration config;
+//
+//    public ApplicationBeanConfiguration(CloudinaryConfiguration config) {
+//        this.config = config;
+//    }
 
     @Bean
     public ModelMapper modelMapper() {
@@ -28,16 +28,16 @@ public class ApplicationBeanConfiguration {
         return new Pbkdf2PasswordEncoder();
     }
 
-    @Bean
-    public Cloudinary cloudinary() {
-        return new Cloudinary(
-                Map.of(
-                        "cloud_name", config.getCloudName(),
-                        "api_key", config.getApiKey(),
-                        "api_secret", config.getApiSecret()
-                )
-        );
-    }
+//    @Bean
+//    public Cloudinary cloudinary() {
+//        return new Cloudinary(
+//                Map.of(
+//                        "cloud_name", config.getCloudName(),
+//                        "api_key", config.getApiKey(),
+//                        "api_secret", config.getApiSecret()
+//                )
+//        );
+//    }
 
 
 }

@@ -317,6 +317,12 @@
                     <li><i class="fas fa-map-marker-alt"></i>
                         <span>Store Pickup Availability</span>
                     </li>
+                    <li><i class="fas fa-air-freshener"></i>
+                        <span th:text="|Category: *{shoeCategoryEnum}|">New</span>
+                    </li>
+                    <li><i class="fab fa-algolia"></i>
+                        <span th:text="|Condition: *{conditionEnum}|">New</span>
+                    </li>
                     <li><i class="fas fa-user-astronaut"></i> <span
                             th:text="|Seller: *{getSellerFullName()}|">Seller: <span>Gosho</span></span></li>
                     <li><i class="fas fa-map-marked-alt"></i><span th:text="| Location: *{location}|">Location: 86 ул. Републиканска

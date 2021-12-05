@@ -1,11 +1,13 @@
 package TheShoeBox.TheShoeBox.service.impl;
 
+import TheShoeBox.TheShoeBox.exeptions.ObjectNotFoundException;
 import TheShoeBox.TheShoeBox.model.entity.ShoeEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
 import TheShoeBox.TheShoeBox.model.entity.enums.UserRoleEnum;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
 import TheShoeBox.TheShoeBox.model.view.AdminPanelUserViewModel;
+import TheShoeBox.TheShoeBox.model.view.UserProfileView;
 import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.repository.RoleRepository;
 import TheShoeBox.TheShoeBox.repository.ShoeRepository;
@@ -86,8 +88,10 @@ public class UserEntityServiceImpl implements UserEntityService {
     }
 
     @Override
-    public Optional<UserEntity> findUserByEmail(String username) {
-        return userRepository.findByEmail(username);
+    public UserProfileView findUserByEmail(String username) {
+        UserEntity byEmail = userRepository.findByEmail(username)
+                .orElseThrow(() -> new ObjectNotFoundException("User with " + username + " not found!"));
+        return modelMapper.map(byEmail, UserProfileView.class);
     }
 
     @Override
@@ -149,7 +153,22 @@ public class UserEntityServiceImpl implements UserEntityService {
 
     @Override
     public List<AdminPanelUserViewModel> getAllUsersByFetch() {
-        return userRepository.getAllUsersByFetch().stream().map(u->modelMapper.map(u, AdminPanelUserViewModel.class)).collect(Collectors.toList());
+        return userRepository.getAllUsersByFetch().stream().map(u -> modelMapper.map(u, AdminPanelUserViewModel.class)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void editProfile(UserServiceModel profileModel) {
+        UserEntity userEntity = userRepository.findById(profileModel.getId())
+                .orElseThrow(() ->
+                        new ObjectNotFoundException("User with id " + profileModel.getId() + " not found!"));
+
+        userEntity
+                .setFirstName(profileModel.getFirstname())
+                .setLastName(profileModel.getLastname())
+                .setEmail(profileModel.getEmail())
+                .setUsername(profileModel.getUsername());
+
+        userRepository.save(userEntity);
     }
 
     @Override

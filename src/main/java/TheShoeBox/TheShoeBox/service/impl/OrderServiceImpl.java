@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderServiceModel addOrder(Long productId, String email) {
-        Optional<UserViewModel> buyer = userEntityService.findUserByEmail(email). map(u->modelMapper.map(u, UserViewModel.class));
+        UserViewModel buyer = modelMapper.map(userEntityService.findUserByEmail(email), UserViewModel.class);
         ShoeViewModel shoe = shoeService.findById(productId);
         UserEntity creator = shoe.getCreator();
 
@@ -52,13 +52,18 @@ public class OrderServiceImpl implements OrderService {
                 .setPrice(shoe.getPrice())
                 .setSellerId(creator.getId())
                 .setSellerFullName(creator.getFirstName()+ " " + creator.getLastName())
-                .setBuyerId(buyer.get().getId())
-                .setBuyerFullName(buyer.get().getFirstname() + " " + buyer.get().getLastname())
+                .setBuyerId(buyer.getId())
+                .setBuyerFullName(buyer.getFirstname() + " " + buyer.getLastname())
                 .setProductId(productId);
 
         shoeService.deleteOffer(shoe.getId());
         OrderEntity save = orderRepository.save(order);
 
         return modelMapper.map(save,OrderServiceModel.class);
+    }
+
+    @Override
+    public void deleteAll() {
+        orderRepository.deleteAll();
     }
 }

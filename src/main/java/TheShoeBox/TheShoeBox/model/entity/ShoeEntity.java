@@ -19,9 +19,11 @@ public class ShoeEntity extends BaseEntity{
     private BigDecimal size;
     @Column(nullable = false)
     private BigDecimal price;
+
     @Column(nullable = false)
     private String location;
-    @Column(nullable = false,columnDefinition = "TEXT")
+    @Lob
+    @Column(nullable = false)
     private String description;
     private String imageUrl;
     private LocalDateTime createdOn;

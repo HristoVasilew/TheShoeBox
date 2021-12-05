@@ -42,7 +42,7 @@ public class ShoeController {
         List<ShoeViewModel> shoes = shoeService.findAllShoes();
         model.addAttribute("allShoes", shoes);
 
-        String owner = userEntityService.findUserByEmail(username).get().getFirstName() + userEntityService.findUserByEmail(username).get().getLastName();
+        String owner = userEntityService.findUserByEmail(username).getFirstname() + userEntityService.findUserByEmail(username).getLastname();
         model.addAttribute("owner", owner);
 
         return "home";

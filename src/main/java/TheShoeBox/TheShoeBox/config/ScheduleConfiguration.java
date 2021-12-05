@@ -1,5 +1,6 @@
 package TheShoeBox.TheShoeBox.config;
 
+import TheShoeBox.TheShoeBox.service.OrderService;
 import TheShoeBox.TheShoeBox.service.ShoeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,17 +16,24 @@ public class ScheduleConfiguration {
 
     Logger logger = LoggerFactory.getLogger(ScheduleConfiguration.class);
     private final ShoeService shoeService;
+    private final OrderService orderService;
 
-    public ScheduleConfiguration(ShoeService shoeService) {
+    public ScheduleConfiguration(ShoeService shoeService, OrderService orderService) {
         this.shoeService = shoeService;
+        this.orderService = orderService;
     }
 
     @Scheduled(cron = "0 0 20 * * *")
     public void listingsCountSchedule(){
 
         Integer listingsCount = shoeService.findAllShoes().size();
+        Integer ordersCount = orderService.findAllOrders().size();
 
         logger.info("Current listings count is: {}" , listingsCount);
+        logger.info("Current listings count is: {}" , ordersCount);
+
+         if (ordersCount > 0)
+          orderService.deleteAll();
 
     }
 }
