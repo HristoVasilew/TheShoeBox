@@ -1,22 +1,22 @@
-INSERT INTO roles (id, role)
-VALUES (1, 'ADMIN');
-INSERT INTO roles (id, role)
-VALUES (2, 'USER');
-
--- some test users
-INSERT INTO users (id, email, first_name, last_name, password, username)
-VALUES (1, 'admin@admin.com', 'Admin' ,'Adminov', 'f3f62bb27ba9d73fed9f9fb3ff3fa6782f4803d2db38fc45a2100030f030a328efd9d13872e97ba8', 'admin');
-
-INSERT INTO users (id, email, first_name, last_name, password, username)
-VALUES (2, 'user@user.com', 'User', 'Userov', 'f3f62bb27ba9d73fed9f9fb3ff3fa6782f4803d2db38fc45a2100030f030a328efd9d13872e97ba8',
-        'user');
-
-INSERT INTO users_roles (`user_entity_id`, `roles_id`)
-VALUES (1, 1);
-INSERT INTO users_roles (`user_entity_id`, `roles_id`)
-VALUES (1, 2);
-INSERT INTO users_roles (`user_entity_id`, `roles_id`)
-VALUES (2, 2);
+# INSERT INTO roles (id, role)
+# VALUES (1, 'ADMIN');
+# INSERT INTO roles (id, role)
+# VALUES (2, 'USER');
+#
+# -- some test users
+# INSERT INTO users (id, email, first_name, last_name, password, username)
+# VALUES (1, 'admin@admin.com', 'Admin' ,'Adminov', 'f3f62bb27ba9d73fed9f9fb3ff3fa6782f4803d2db38fc45a2100030f030a328efd9d13872e97ba8', 'admin');
+#
+# INSERT INTO users (id, email, first_name, last_name, password, username)
+# VALUES (2, 'user@user.com', 'User', 'Userov', 'f3f62bb27ba9d73fed9f9fb3ff3fa6782f4803d2db38fc45a2100030f030a328efd9d13872e97ba8',
+#         'user');
+#
+# INSERT INTO users_roles (`user_entity_id`, `roles_id`)
+# VALUES (1, 1);
+# INSERT INTO users_roles (`user_entity_id`, `roles_id`)
+# VALUES (1, 2);
+# INSERT INTO users_roles (`user_entity_id`, `roles_id`)
+# VALUES (2, 2);
 
 INSERT INTO shoes(id, brand, model, size, shoe_condition_entity_id, shoe_category_entity_id, location, description, price, image_url,creator_id, created_on)
 VALUES (1, 'Vans', 'X USPS® AUTHENTIC', 45, 1, 2, 'onaq ulica etam na lqvo vtorata presechka v dqsno i na kraq na ulicata tretata kushta v dqsno',
