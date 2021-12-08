@@ -3,7 +3,7 @@ spring:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://localhost:3306/shoe_box?useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
     username: root
-    password: 1234
+    password: ${pass}
   sql:
     init:
       mode: never
@@ -38,7 +38,7 @@ logging:
 cloudinary:
          cloud-name: a69s69sbz
          api-key: '175156172913596'
-         api-secret: G8WCm4t_225kGJXuH8pTmRqCIlw
+         api-secret: ${CLOUDINARY_API_SECRET}
 
 
 
