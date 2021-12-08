@@ -6,6 +6,7 @@ import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "shoes")
@@ -28,6 +29,9 @@ public class ShoeEntity extends BaseEntity{
     private String imageUrl;
     private LocalDateTime createdOn;
 
+    @OneToMany(mappedBy = "shoe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Comment> comments;
+
     @ManyToOne
     private ShoeCategoryEntity shoeCategoryEntity;
 
@@ -47,6 +51,16 @@ public class ShoeEntity extends BaseEntity{
 
     public ShoeEntity setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public ShoeEntity setComments(List<Comment> comments) {
+        this.comments = comments;
         return this;
     }
 

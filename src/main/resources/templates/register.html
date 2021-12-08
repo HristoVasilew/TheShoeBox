@@ -34,7 +34,9 @@
             <div class="col-lg-6 p-4 p-lg-1">
                 <h1 class="font-weight-bold py-">Register</h1>
                 <h4>Sign into your account</h4>
-                <form th:action="@{/users/register}" th:method="post" th:object="${userRegisterBindingModel}">
+                <form th:action="@{/users/register}"
+                      th:method="post"
+                      th:object="${userRegisterBindingModel}">
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-floating mb-3">

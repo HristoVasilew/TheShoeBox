@@ -25,6 +25,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 @SpringBootTest
 @AutoConfigureMockMvc
 class UserControllerTest {
@@ -85,7 +86,7 @@ class UserControllerTest {
 
     @Test
     void testLoginUserNotSuccessful() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post( "/users/login-error")
+        mockMvc.perform(MockMvcRequestBuilders.post("/users/login-error")
                         .param("email", "asx@y.z")
                         .param("password", "1111")
                         .with(csrf()))
@@ -133,6 +134,27 @@ class UserControllerTest {
         Assertions.assertEquals(4, userRepository.count());
     }
 
+    @Test
+    void testRegisterUserWithDifferntPasswords() throws Exception {
+        mockMvc.perform(post("/users/register").param("username", "username").//
+                param("password", "passs").//
+                param("confirmPassword", "confirmPassword").//
+                param("firstname", "fullanem").//
+                param("lastname", "fullanem").//
+                param("email", "adss@ad.com").//
+                with(csrf())).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/users/register"));
+    }
 
+    @Test
+    void testRegisterUserWithNotUniqueName() throws Exception {
+        mockMvc.perform(post("/users/register")
+                .param("username", "admin").//
+                param("password", "passs").//
+                param("confirmPassword", "passs").//
+                param("firstname", "fullanem").//
+                param("lastname", "fullanem").//
+                param("email", "adss@ad.com").//
+                with(csrf())).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/users/register"));
+    }
 
 }

@@ -37,7 +37,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderViewModel> findAllOrders() {
-        return orderRepository.findAll().stream().map(o-> modelMapper.map(o, OrderViewModel.class)).collect(Collectors.toList());
+        return orderRepository.findAll().stream().map(o -> modelMapper.map(o, OrderViewModel.class)).collect(Collectors.toList());
     }
 
     @Override
@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
                 .setImageUrl(shoe.getImageUrl())
                 .setPrice(shoe.getPrice())
                 .setSellerId(creator.getId())
-                .setSellerFullName(creator.getFirstName()+ " " + creator.getLastName())
+                .setSellerFullName(creator.getFirstName() + " " + creator.getLastName())
                 .setBuyerId(buyer.getId())
                 .setBuyerFullName(buyer.getFirstname() + " " + buyer.getLastname())
                 .setProductId(productId);
@@ -59,11 +59,16 @@ public class OrderServiceImpl implements OrderService {
         shoeService.deleteOffer(shoe.getId());
         OrderEntity save = orderRepository.save(order);
 
-        return modelMapper.map(save,OrderServiceModel.class);
+        return modelMapper.map(save, OrderServiceModel.class);
     }
 
     @Override
     public void deleteAll() {
         orderRepository.deleteAll();
+    }
+
+    @Override
+    public List<OrderViewModel> getAllOrders() {
+        return orderRepository.findAll().stream().map(u -> modelMapper.map(u, OrderViewModel.class)).collect(Collectors.toList());
     }
 }

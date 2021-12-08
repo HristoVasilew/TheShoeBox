@@ -11,4 +11,6 @@ public interface OrderService {
     OrderServiceModel addOrder(Long productId, String buyer);
 
     void deleteAll();
+
+    List<OrderViewModel> getAllOrders();
 }

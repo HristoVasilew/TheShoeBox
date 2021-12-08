@@ -84,7 +84,7 @@ public class UserController {
 
         userEntityService.registerUser(user);
 
-        return "redirect:/profile";
+        return "redirect:/users/login";
     }
 
     @RequestMapping(value = "/users/logout", method = RequestMethod.GET)

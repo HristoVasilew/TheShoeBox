@@ -1,17 +1,10 @@
 package TheShoeBox.TheShoeBox.web;
 
 import TheShoeBox.TheShoeBox.model.bindng.UserUpdateBindingModel;
-import TheShoeBox.TheShoeBox.model.entity.UserEntity;
-import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
-import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
 import TheShoeBox.TheShoeBox.model.view.UserProfileView;
-import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
 import org.modelmapper.ModelMapper;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,9 +16,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Optional;
 
 @Controller
 public class ProfileController {
@@ -46,34 +36,38 @@ public class ProfileController {
     }
 
 
-    @GetMapping("/profile/{id}/edit-profile")
-    public String editUser(@PathVariable Long id, Model model, Principal principal) {
-        UserProfileView view = modelMapper.map(userEntityService.findById(id), UserProfileView.class);
-        UserUpdateBindingModel map = modelMapper.map(view, UserUpdateBindingModel.class);
-        model.addAttribute("user", map);
+    @GetMapping("/profile/edit-profile")
+    public String editUser(Model model, Principal principal) {
+
+        Long id = userEntityService.findUserByEmail(principal.getName()).getId();
+        UserServiceModel userServiceModel = userEntityService.findById(id);
+
+        model.addAttribute("userUpdateBindingModel", modelMapper.map(userServiceModel,UserUpdateBindingModel.class));
         return "edit-profile";
     }
 
-    @PatchMapping("/profile/{id}/edit-profile")
-    public String editUser(@PathVariable Long id, @Valid UserUpdateBindingModel profileUpdateBindingModel,
+    @PatchMapping("/profile/edit-profile")
+    public String editUser(@Valid UserUpdateBindingModel userUpdateBindingModel,
                            BindingResult bindingResult, RedirectAttributes redirectAttributes,
                            Principal principal) throws IOException {
 
+        Long id = userEntityService.findUserByEmail(principal.getName()).getId();
+
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("profileUpdateBindingModel", profileUpdateBindingModel);
+            redirectAttributes.addFlashAttribute("userUpdateBindingModel", userUpdateBindingModel);
             redirectAttributes
-                    .addFlashAttribute("org.springframework.validation.BindingResult.profileUpdateBindingModel",
-                            bindingResult);
+                    .addFlashAttribute("org.springframework.validation.BindingResult.userUpdateBindingModel", bindingResult);
 
             return "redirect:/profile/" + id + "/edit-profile";
         }
-        UserServiceModel model = modelMapper.map(profileUpdateBindingModel, UserServiceModel.class);
 
-        userEntityService.editProfile(model);
+
+        UserServiceModel model = modelMapper.map(userUpdateBindingModel, UserServiceModel.class);
+
+        userEntityService.editProfile(model,id);
 
         return "redirect:/profile";
     }
-
 
 //    private Optional<UserEntity> getCurrentUser() {
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -16,19 +16,19 @@ import java.util.List;
 @RequestMapping("/orders")
 public class OrdersRestController {
 
-    private final OrderService orderService;
-
-    public OrdersRestController(OrderService orderService) {
-        this.orderService = orderService;
-    }
-
+//    private final OrderService orderService;
+//
+//    public OrdersRestController(OrderService orderService) {
+//        this.orderService = orderService;
+//    }
+//
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")
 //    @GetMapping("/all")
 //    public ResponseEntity<List<OrderViewModel>> getAllOrders() {
 //        List<OrderViewModel> orders = this.orderService.getAllOrders();
 //        return ResponseEntity.ok(orders);
 //    }
-//
+
 //    @GetMapping("/user")
 //    public ResponseEntity<List<OrderProfileViewModel>> getUserOrders(@AuthenticationPrincipal User user) {
 //        List<OrderProfileViewModel> userOrders = this.orderService.getUserOrdersByUsername(user.getUsername());

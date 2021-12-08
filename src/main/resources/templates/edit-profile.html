@@ -25,7 +25,8 @@
             <div class="row row1 g-0 justify-content-center" style="background-color: #fff; border-radius: 20px;">
                 <div class="col-lg-9 p-4">
                     <h1 class="font-weight-bold mb-4">Edit Profile Info</h1>
-                    <form th:object="${user}" th:action="@{/profile/{id}/edit-profile(id=*{id})}"
+                    <form th:object="${userUpdateBindingModel}"
+                          th:action="@{/profile/{id}/edit-profile(id=*{id})}"
                           th:method="patch" >
                         <div class="row">
                             <div class="col-md-5">
@@ -33,7 +34,6 @@
 
                                     <input
                                             th:field="*{email}"
-                                            th:value="*{email}"
                                             name="email"
                                             type="text"
                                             class="form-control"

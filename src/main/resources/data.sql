@@ -18,6 +18,7 @@
 # INSERT INTO users_roles (`user_entity_id`, `roles_id`)
 # VALUES (2, 2);
 
+
 INSERT INTO shoes(id, brand, model, size, shoe_condition_entity_id, shoe_category_entity_id, location, description, price, image_url,creator_id, created_on)
 VALUES (1, 'Vans', 'X USPS® AUTHENTIC', 45, 1, 2, 'onaq ulica etam na lqvo vtorata presechka v dqsno i na kraq na ulicata tretata kushta v dqsno',
         'This season, Vans is proud to collaborate with the United States Postal Service® on a licensed collection inspired by the tireless
@@ -45,3 +46,19 @@ VALUES (4, 'Vans', 'Skate', 42, 1, 2, 'peron 9 3/4 hogwarts express', 'The USPS�
 INSERT INTO shoes(id, brand, model, size, shoe_condition_entity_id, shoe_category_entity_id, location, description, price, image_url,creator_id, created_on)
 VALUES (5, 'Vans', 'Skate', 42, 1, 2, 'peron 9 3/4 hogwarts express', 'The Sk8-Hi, Vans legendary lace-up high-top built for skating, has an Off the Wall persona thanks to the iconic leather sidestripe', 549,
         'https://images.vans.com/is/image/Vans/CS0058-HERO?$CUSTOMS-PDP-LARGE$', 1, '2021-11-30');
+
+
+insert into comments(approved, created, text_content, author_id, shoe_id)
+values (true, '2021-11-30 11:31:39', 'OT tuk natam bez da bugvam', 1, 1);
+
+insert into comments(approved, created, text_content, author_id, shoe_id)
+values (true, '2021-11-30 11:31:39', 'много точен. и преди съм поръчвал от
+него много съм доволен.препоръчвам! ! !', 1, 1);
+
+insert into comments(approved, created, text_content, author_id, shoe_id)
+values (true, '2021-11-30 11:31:39', 'Голям лъжец преди месец ги имаше пуснати
+същите за половин цена аз не бих се доверил! ! !', 2, 1);
+
+
+insert into comments(approved, created, text_content, author_id, shoe_id)
+values (true, '2021-11-30 11:31:39', 'OT tuk natam bez da bugvam', 2, 2);

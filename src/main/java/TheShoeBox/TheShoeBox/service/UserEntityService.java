@@ -34,5 +34,5 @@ public interface UserEntityService {
 
     List<AdminPanelUserViewModel> getAllUsersByFetch();
 
-    void editProfile(UserServiceModel model);
+    void editProfile(UserServiceModel model, Long idUserEdited);
 }

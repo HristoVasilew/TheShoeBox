@@ -19,6 +19,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -157,16 +158,17 @@ public class UserEntityServiceImpl implements UserEntityService {
     }
 
     @Override
-    public void editProfile(UserServiceModel profileModel) {
-        UserEntity userEntity = userRepository.findById(profileModel.getId())
-                .orElseThrow(() ->
-                        new ObjectNotFoundException("User with id " + profileModel.getId() + " not found!"));
+    public void editProfile(UserServiceModel profileModel,Long idUserEdited) {
+        UserEntity userEntity = userRepository.findById(idUserEdited)
+                .orElseThrow(() -> new UsernameNotFoundException("User with id " + idUserEdited + " not exists."));
 
         userEntity
                 .setFirstName(profileModel.getFirstname())
                 .setLastName(profileModel.getLastname())
                 .setEmail(profileModel.getEmail())
-                .setUsername(profileModel.getUsername());
+                .setUsername(profileModel.getUsername())
+                .setId(idUserEdited);
+        userEntity.setPassword(profileModel.getPassword());
 
         userRepository.save(userEntity);
     }
