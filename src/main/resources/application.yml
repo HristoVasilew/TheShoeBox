@@ -36,8 +36,8 @@ logging:
 
     #Cloudinary Properties
 cloudinary:
-         cloud-name: a69s69sbz
-         api-key: '175156172913596'
+         cloud-name: ${cloud-name}
+         api-key: ${api_key}
          api-secret: ${CLOUDINARY_API_SECRET}
 
 
