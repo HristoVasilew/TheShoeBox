@@ -1,5 +1,6 @@
 package TheShoeBox.TheShoeBox.web;
 
+import TheShoeBox.TheShoeBox.model.validator.anotations.PageTitle;
 import TheShoeBox.TheShoeBox.service.StatsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ public class StatsController {
     }
 
     @GetMapping("/statistics")
+    @PageTitle("Live Statistics Page")
     public ModelAndView statistics() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("stats", statsService.getStats());

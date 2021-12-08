@@ -2,9 +2,8 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/common::head">
-  <title>The-Shoe-Box</title>
-</head>
+<th:block th:include="~{fragments/common::head}"/>
+
 
 <body style="background: #ac0212;">
 <div class="wrapper">
@@ -29,8 +28,8 @@
           integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
           crossorigin="anonymous"></script>
 
-  <script>var title = document.querySelector("title");
-  title.textContent = "The-Shoe-Box | Home"</script>
+<!--  <script>var title = document.querySelector("title");-->
+<!--  title.textContent = "The-Shoe-Box | Home"</script>-->
   <footer th:replace="fragments/common::footer"></footer>
 </div>
 </body>

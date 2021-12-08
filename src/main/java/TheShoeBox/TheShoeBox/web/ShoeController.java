@@ -6,6 +6,7 @@ import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
 import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 import TheShoeBox.TheShoeBox.model.service.ShoeServiceModel;
 import TheShoeBox.TheShoeBox.model.service.ShoeUpdateServiceModel;
+import TheShoeBox.TheShoeBox.model.validator.anotations.PageTitle;
 import TheShoeBox.TheShoeBox.model.view.ShoeViewModel;
 import TheShoeBox.TheShoeBox.service.ShoeService;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
@@ -37,6 +38,7 @@ public class ShoeController {
     }
 
     @GetMapping("/collections/all")
+    @PageTitle("All Shoe Page")
     public String home(Model model, @CurrentSecurityContext(expression = "authentication?.name")
             String username) {
         List<ShoeViewModel> shoes = shoeService.findAllShoes();
@@ -50,6 +52,7 @@ public class ShoeController {
 
 
     @GetMapping("/collections/create-shoe")
+    @PageTitle("Create Shoe Page")
     public String createShoe(Model model) {
         if (!model.containsAttribute("shoeBindingModel")) {
             model.
@@ -78,6 +81,7 @@ public class ShoeController {
 
     //ADD TO CART AND BUY
     @GetMapping("/collections/{id}/add-to-cart")
+    @PageTitle("Purchase Page")
     public String addToCart(@PathVariable Long id, Model model,
                             Principal principal) {
         model.addAttribute("shoe", this.shoeService.findByIdAndName(id, principal.getName()));
@@ -86,6 +90,7 @@ public class ShoeController {
 
     //DETAILS
     @GetMapping("/collections/{id}/details")
+    @PageTitle("Item Details Page")
     public String showOffer(
             @PathVariable Long id, Model model,
             Principal principal) {
@@ -114,6 +119,7 @@ public class ShoeController {
     // UPDATE
 
     @GetMapping("/collections/{id}/edit")
+    @PageTitle("Edit Item Page")
     public String editOffer(@PathVariable Long id, Model model,
                             @CurrentSecurityContext(expression = "authentication?.name")
                                     String username) {
@@ -131,6 +137,7 @@ public class ShoeController {
     }
 
     @GetMapping("/collections/{id}/edit/errors")
+    @PageTitle("Edit Item Page")
     public String editOfferErrors(@PathVariable Long id, Model model) {
         model.addAttribute("categories", ShoeCategoryEnum.values());
         model.addAttribute("condition", ConditionEnum.values());

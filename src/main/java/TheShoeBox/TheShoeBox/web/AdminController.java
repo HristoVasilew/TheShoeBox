@@ -1,5 +1,6 @@
 package TheShoeBox.TheShoeBox.web;
 
+import TheShoeBox.TheShoeBox.model.validator.anotations.PageTitle;
 import TheShoeBox.TheShoeBox.model.view.AdminPanelUserViewModel;
 import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
@@ -26,11 +27,14 @@ public class AdminController {
         this.userEntityService = userEntityService;
     }
     @Transactional
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PageTitle("Home Page")
     @GetMapping("/admin")
     public String admin(Model model) {
         model.addAttribute("users", userService.getAllUsersByFetch());
         return "admin";
     }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/admin/{id}")
     public String deleteUser(@PathVariable Long id) {
         userService.deleteUserById(id);
@@ -38,7 +42,7 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PatchMapping("/admin/{id}/promote")
     public String makeAdmin(@PathVariable Long id) {
         userService.makeUserAdmin(id);

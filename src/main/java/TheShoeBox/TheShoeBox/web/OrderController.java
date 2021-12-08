@@ -4,6 +4,7 @@ import TheShoeBox.TheShoeBox.model.bindng.OrderBindingModel;
 import TheShoeBox.TheShoeBox.model.bindng.ShoeBindingModel;
 import TheShoeBox.TheShoeBox.model.service.OrderServiceModel;
 import TheShoeBox.TheShoeBox.model.service.ShoeServiceModel;
+import TheShoeBox.TheShoeBox.model.validator.anotations.PageTitle;
 import TheShoeBox.TheShoeBox.model.view.OrderViewModel;
 import TheShoeBox.TheShoeBox.service.OrderService;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
@@ -25,6 +26,7 @@ public class OrderController {
     }
 
     @GetMapping("/orders/all")
+    @PageTitle("Order Page")
     public String getAllOrders(Model model){
         List<OrderViewModel> orders = orderService.findAllOrders();
 

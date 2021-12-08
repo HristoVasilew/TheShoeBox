@@ -2,6 +2,7 @@ package TheShoeBox.TheShoeBox.web;
 
 import TheShoeBox.TheShoeBox.model.bindng.UserUpdateBindingModel;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
+import TheShoeBox.TheShoeBox.model.validator.anotations.PageTitle;
 import TheShoeBox.TheShoeBox.model.view.UserProfileView;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
 import org.modelmapper.ModelMapper;
@@ -28,6 +29,7 @@ public class ProfileController {
     }
 
     @GetMapping("/profile")
+    @PageTitle("Profile Page")
     public String getUserProfile(Model model, Principal principal) {
         UserProfileView userEntity = userEntityService.findUserByEmail(principal.getName());
         model.addAttribute("isAuthorize", true);
@@ -37,6 +39,7 @@ public class ProfileController {
 
 
     @GetMapping("/profile/edit-profile")
+    @PageTitle("Edit Profile Page")
     public String editUser(Model model, Principal principal) {
 
         Long id = userEntityService.findUserByEmail(principal.getName()).getId();

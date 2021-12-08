@@ -2,6 +2,7 @@ package TheShoeBox.TheShoeBox.web;
 
 import TheShoeBox.TheShoeBox.model.bindng.UserRegisterBindingModel;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
+import TheShoeBox.TheShoeBox.model.validator.anotations.PageTitle;
 import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.repository.UserRepository;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
@@ -39,12 +40,14 @@ public class UserController {
     }
 
     @GetMapping("/users/login")
+    @PageTitle("Login Page")
     public String login() {
 
         return "login";
     }
 
     @PostMapping("/users/login-error")
+    @PageTitle("Login Page")
     public String failedLogin(@ModelAttribute String email,
             RedirectAttributes attributes) {
 
@@ -55,11 +58,13 @@ public class UserController {
     }
 
     @GetMapping("users/register")
+    @PageTitle("Register Page")
     public String register() {
         return "register";
     }
 
     @PostMapping("/users/register")
+    @PageTitle("Register Page")
     public String register(
             @Valid UserRegisterBindingModel userRegisterBindingModel,
             BindingResult bindingResult,

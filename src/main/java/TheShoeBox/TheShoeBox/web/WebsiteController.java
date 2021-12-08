@@ -1,5 +1,6 @@
 package TheShoeBox.TheShoeBox.web;
 
+import TheShoeBox.TheShoeBox.model.validator.anotations.PageTitle;
 import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
 import org.springframework.stereotype.Controller;
@@ -17,16 +18,19 @@ public class WebsiteController {
     }
 
     @GetMapping("/shop/about")
+    @PageTitle("About Us Page")
     public String about() {
         return "about";
     }
 
     @GetMapping("/shop/newsletter")
+    @PageTitle("Newsletter Page")
     public String newsletter() {
         return "newsletter";
     }
 
     @GetMapping("/shop/conditions")
+    @PageTitle("Conditions Page")
     public String conditions() {
         return "conditions";
     }

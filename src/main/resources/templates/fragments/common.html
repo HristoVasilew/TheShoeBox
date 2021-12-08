@@ -6,12 +6,15 @@
 
 
 <head th:fragment="head">
-    <title>The-Shoe-Box</title>
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${title}"></title>
+
+
     <link rel="shortcut icon" href="//cdn.shopify.com/s/files/1/0053/4999/8661/files/SDotFavicon_32x32.png?v=1600905425"
           type="image/png">
     <link href="/css/style.css" rel="stylesheet"/>
