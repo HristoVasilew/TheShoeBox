@@ -23,7 +23,7 @@ public class ScheduleConfiguration {
         this.orderService = orderService;
     }
 
-//    @Scheduled(cron = "/*10 * * * * *")
+    @Scheduled(cron = "* * * 20 * *")
     public void listingsCountSchedule(){
 
         Integer listingsCount = shoeService.findAllShoes().size();

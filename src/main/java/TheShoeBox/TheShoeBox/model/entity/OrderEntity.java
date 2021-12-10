@@ -17,6 +17,7 @@ public class OrderEntity extends BaseEntity {
     private String imageUrl;
     private String brandAndModelProduct;
     private BigDecimal price;
+    private Boolean shipped;
 
 
     public Long getBuyerId() {
@@ -25,6 +26,15 @@ public class OrderEntity extends BaseEntity {
 
     public OrderEntity setBuyerId(Long buyerId) {
         this.buyerId = buyerId;
+        return this;
+    }
+
+    public Boolean getShipped() {
+        return shipped;
+    }
+
+    public OrderEntity setShipped(Boolean shipped) {
+        this.shipped = shipped;
         return this;
     }
 
