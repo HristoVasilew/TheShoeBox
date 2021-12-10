@@ -27,7 +27,7 @@ public class ScheduleConfiguration {
     public void listingsCountSchedule(){
 
         Integer listingsCount = shoeService.findAllShoes().size();
-        Integer ordersCount = orderService.findAllOrders().size();
+        int ordersCount = orderService.findAllOrders().size();
 
         logger.info("Current listings count is: {}" , listingsCount);
         logger.info("Current listings count is: {}" , ordersCount);
