@@ -79,11 +79,15 @@
                             <li>
                                 <a class="dropdown-item" href="/profile">Profile</a>
                             </li>
+                            <li sec:authorize="!hasRole('ADMIN')">
+                                <a class="dropdown-item" th:href="@{/orders/all}">Order History</a>
+                            </li>
                             <li>
                                 <form th:action="@{/users/logout}" method="post">
                                     <input class="dropdown-item" type="submit" value="LOGOUT">
                                 </form>
                             </li>
+
                         </th:block>
                         <th:block sec:authorize="!isAuthenticated()">
                             <li>
@@ -169,7 +173,7 @@
                         <a href="/shop/about" class="text-reset">About Us</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-reset">Privaci polici</a>
+                        <a href="/shop/conditions" class="text-reset">Privacy policy</a>
                     </p>
                     <p>
                         <a href="/shop/newsletter" class="text-reset">Newsletter</a>
