@@ -7,6 +7,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -24,10 +26,10 @@ class HomeControllerTest {
     }
 
     @Test
-    @WithMockUser("lucho@example.com")
+    @WithMockUser("spring")
     public void testHomeShouldReturnCorrectPage() throws Exception {
         this.mockMvc
-                .perform(MockMvcRequestBuilders.get("/collections"))
+                .perform(get("/collections/all"))
                 .andExpect(view().name("home"));
     }
 

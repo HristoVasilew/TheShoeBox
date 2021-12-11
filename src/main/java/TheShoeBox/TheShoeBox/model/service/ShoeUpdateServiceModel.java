@@ -22,6 +22,16 @@ public class ShoeUpdateServiceModel {
     private LocalDateTime createdOn;
     private UserEntity user;
     private String imageUrl;
+    private Boolean ordered;
+
+    public Boolean getOrdered() {
+        return ordered;
+    }
+
+    public ShoeUpdateServiceModel setOrdered(Boolean ordered) {
+        this.ordered = ordered;
+        return this;
+    }
 
     public Long getId() {
         return id;

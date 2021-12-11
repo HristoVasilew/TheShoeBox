@@ -12,4 +12,5 @@ public interface CommentService {
 
     List<CommentViewModel> getComments(Long shoeId);
 
+    void initComments();
 }

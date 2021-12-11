@@ -21,6 +21,17 @@ public class OrderServiceModel {
 
     private BigDecimal price;
 
+    private Boolean shipped;
+
+    public Boolean getShipped() {
+        return shipped;
+    }
+
+    public OrderServiceModel setShipped(Boolean shipped) {
+        this.shipped = shipped;
+        return this;
+    }
+
     public Long getBuyerId() {
         return buyerId;
     }

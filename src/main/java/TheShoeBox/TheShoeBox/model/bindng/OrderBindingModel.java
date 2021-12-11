@@ -20,6 +20,16 @@ public class OrderBindingModel {
 
     private BigDecimal price;
 
+    private Boolean shipped;
+
+    public Boolean getShipped() {
+        return shipped;
+    }
+
+    public OrderBindingModel setShipped(Boolean shipped) {
+        this.shipped = shipped;
+        return this;
+    }
 
     public Long getBuyerId() {
         return buyerId;

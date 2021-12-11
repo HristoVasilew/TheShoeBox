@@ -1,12 +1,9 @@
 package TheShoeBox.TheShoeBox.web;
 
-import java.util.Optional;
-
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
 import TheShoeBox.TheShoeBox.model.entity.enums.UserRoleEnum;
 import TheShoeBox.TheShoeBox.repository.RoleRepository;
-import TheShoeBox.TheShoeBox.repository.ShoeRepository;
 import TheShoeBox.TheShoeBox.repository.UserRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -17,12 +14,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import java.util.Optional;
+
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -131,7 +128,7 @@ class UserControllerTest {
         Assertions.assertEquals(newUser.getEmail(), "email@abv.com");
         Assertions.assertEquals(newUser.getFirstName(), "firstname");
         Assertions.assertEquals(newUser.getLastName(), "lastname");
-        Assertions.assertEquals(4, userRepository.count());
+        Assertions.assertEquals(2, userRepository.count());
     }
 
     @Test
@@ -147,6 +144,16 @@ class UserControllerTest {
 
     @Test
     void testRegisterUserWithNotUniqueName() throws Exception {
+        mockMvc.perform(post("/users/register").
+                param("username", "admin").
+                param("email", "email@abv.com").
+                param("firstname", "firstname").
+                param("lastname", "lastname").
+                param("password", "11111").
+                param("confirmPassword", "11111").
+                with(csrf()).
+                contentType(MediaType.APPLICATION_FORM_URLENCODED));
+
         mockMvc.perform(post("/users/register")
                 .param("username", "admin").//
                 param("password", "passs").//

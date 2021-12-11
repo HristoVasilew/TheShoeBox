@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 
-<head th:replace="/fragments/common :: head"></head>
+<head th:replace="fragments/common :: head"></head>
 
 
 <body>
@@ -27,7 +27,7 @@
                     <th scope="col">Last Name</th>
                     <th scope="col">Email Address</th>
                     <th scope="col">Roles</th>
-                    <th scope="col"></th>
+                    <th scope="col">||-||</th>
                     <th scope="col">Make User</th>
                     <th scope="col">Make Admin</th>
                     <th scope="col">Delete User</th>
@@ -42,7 +42,7 @@
                     <td th:text="*{email}">user@user</td>
 
                     <td th:each="r : ${user.roles}" th:object="${r}" th:text="*{getRole().name()}">
-<!--                        <p th:text="*{getRole().name()}">empty</p>-->
+                        Not ADMIN
                     </td>
 
                     <td>

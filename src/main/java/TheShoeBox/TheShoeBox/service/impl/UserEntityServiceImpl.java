@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -153,8 +153,12 @@ public class UserEntityServiceImpl implements UserEntityService {
     }
 
     @Override
-    public List<AdminPanelUserViewModel> getAllUsersByFetch() {
-        return userRepository.getAllUsersByFetch().stream().map(u -> modelMapper.map(u, AdminPanelUserViewModel.class)).collect(Collectors.toList());
+    public List<AdminPanelUserViewModel> getAllUsersByFetch(Long id) {
+
+        return userRepository.getAllUsersByFetch()
+                .stream()
+                .filter(u -> (!Objects.equals(u.getId(), id)))
+                .map(u -> modelMapper.map(u, AdminPanelUserViewModel.class)).collect(Collectors.toList());
     }
 
     @Override

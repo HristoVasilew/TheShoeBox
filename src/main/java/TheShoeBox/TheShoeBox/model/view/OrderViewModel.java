@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public class OrderViewModel {
 
+    private Long orderId;
+
     private Long buyerId;
 
     private String buyerFullName;
@@ -20,6 +22,25 @@ public class OrderViewModel {
 
     private BigDecimal price;
 
+    private Boolean shipped = false;
+
+    public Boolean getShipped() {
+        return shipped;
+    }
+
+    public OrderViewModel setShipped(Boolean shipped) {
+        this.shipped = shipped;
+        return this;
+    }
+
+    public Long getOrderId() {
+        return orderId;
+    }
+
+    public OrderViewModel setOrderId(Long orderId) {
+        this.orderId = orderId;
+        return this;
+    }
 
     public Long getBuyerId() {
         return buyerId;

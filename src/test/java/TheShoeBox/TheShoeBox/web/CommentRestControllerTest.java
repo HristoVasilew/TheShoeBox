@@ -18,23 +18,16 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
-
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 @WithMockUser("lucho@example.com")
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -61,17 +54,17 @@ class CommentRestControllerTest {
     void setUp() {
         testUser = new UserEntity();
         testUser.setPassword("password");
-        testUser.setUsername("lucho");
-        testUser.setEmail("lucho@example.com");
-        testUser.setFirstName("lucho balev");
-        testUser.setLastName("lucho balev");
+        testUser.setUsername("hristo");
+        testUser.setEmail("hristo@example.com");
+        testUser.setFirstName("hristo hristov");
+        testUser.setLastName("hristo hristov");
 
         testUser = userRepository.save(testUser);
     }
 
     @AfterEach
     void tearDown() {
-        shoeRepository.deleteAll();
+        //shoeRepository.deleteAll();
         userRepository.deleteAll();
     }
     private ShoeEntity initShoe() {
@@ -134,7 +127,7 @@ class CommentRestControllerTest {
         NewCommentBindingModel testComment = new NewCommentBindingModel().
                 setMessage(COMMENT_1);
 
-        var emptyShoe = initShoe();
+        ShoeEntity emptyShoe = initShoe();
 
         mockMvc.perform(
                         post("/api/" + emptyShoe.getId() + "/comments")

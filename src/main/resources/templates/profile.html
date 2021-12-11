@@ -69,7 +69,8 @@
                                                                          style="color: #fff;">Create product</a>
                         </button>
                         <button type="button" class="btn btn-danger" style="background: red;"><a
-                                th:href="@{/profile/{id}/edit-profile(id=*{id})}" style="color: #fff;">Edit profile!</a></button>
+                                th:href="@{/profile/{id}/edit-profile(id=*{id})}" style="color: #fff;">Edit profile!</a>
+                        </button>
                     </div>
 
                 </div>
@@ -128,8 +129,10 @@
                             </div>
                             <div class="col-md-6">
                                 <p th:if="*{getSinceFrom()!=null}">
-                                    <span th:text="*{getSinceFrom().getYear()} ">2000</span> <span th:text=" *{getSinceFrom().getMonth()}"> 11</span><br>
-                                    <span th:text="*{getSinceFrom().getDayOfWeek()} ">2000</span><br> <span th:text=" *{getSinceFrom().getHour()}"> 11</span>
+                                    <span th:text="*{getSinceFrom().getYear()} ">2000</span> <span
+                                        th:text=" *{getSinceFrom().getMonth()}"> 11</span><br>
+                                    <span th:text="*{getSinceFrom().getDayOfWeek()} ">2000</span><br> <span
+                                        th:text=" *{getSinceFrom().getHour()}"> 11</span>
                                     <span text=" : ">:</span> <span th:text=" *{getSinceFrom().getMinute()}"> 11</span>
                                 </p>
                                 <p th:if="*{getSinceFrom()==null}">
@@ -153,34 +156,40 @@
     </form>
     <div class="container-fluid text-center" style="background-color: #fff; border-radius: 10px;">
         <th:block th:if="${user.getShoes().size() > 0}">
-        <h1 class="masthead-heading p-5 border-bottom pb-0" style="letter-spacing: 10px;font-weight: 600;
+            <h1 class="masthead-heading p-5 border-bottom pb-0" style="letter-spacing: 10px;font-weight: 600;
     line-height: 1.9;font-size: 42px;line-height: 48px;letter-spacing: 0.092em;font-weight: 600; font-style: italic;">
-            Your Listings
-        </h1>
-        <div  class="row row-cols-md-3 g-3">
-            <div th:each="t : ${user.getShoes()}" th:object="${t}" class="col">
-                <div class="card h-100">
-                    <img th:src="*{getImageUrl()}"
-                         class="card-img-top" alt="shoe photo">
-                    <div class="card-body">
-                        <h5 class="card-title"><span th:text="*{brand}">Vans</span> <span
-                                th:text="*{model}"> Suit</span></h5>
-                        <p class="card-text" th:text="*{description}">The Old Skool, the Vans classic skate...</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Available</li>
-                        <li class="list-group-item" th:text="*{price}">Price: $249.00</li>
-                    </ul>
-                    <div class="card-body">
-                        <a href="/collections/add-to-cart" class="card-link">Add to cart!</a>
-                        <a  th:href="@{/collections/{id}/details(id=*{id})}" class="card-link">Details</a>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted" th:text="|Last updated *{createdOn.getHour()} : *{createdOn.getMinute()}|">Last updated 1 hour ago</small>
-                    </div>
-                </div>
+                Your Listings
+            </h1>
+            <div class="row row-cols-md-3 g-3">
+                <th:block th:each="t : ${user.getShoes()}" th:object="${t}">
+                    <th:block th:if="*{ordered == false}">
+                        <div class="col">
+                            <div class="card h-100">
+                                <img th:src="*{getImageUrl()}"
+                                     class="card-img-top" alt="shoe photo">
+                                <div class="card-body">
+                                    <h5 class="card-title"><span th:text="*{brand}">Vans</span> <span
+                                            th:text="*{model}"> Suit</span></h5>
+                                    <p class="card-text" th:text="*{description}" style="white-space: nowrap;  overflow: hidden;text-overflow: ellipsis;">The Old Skool, the Vans classic
+                                        skate...</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Available</li>
+                                    <li class="list-group-item" th:text="*{price}">Price: $249.00</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a th:href="@{/collections/{id}/details(id=*{id})}" class="card-link">Details</a>
+                                </div>
+                                <div class="card-footer">
+                                    <small class="text-muted"
+                                           th:text="|Last updated *{createdOn.getHour()} : *{createdOn.getMinute()}|">Last
+                                        updated 1 hour ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </th:block>
             </div>
-        </div>
         </th:block>
 
         <th:block th:if="${user.getShoes().size() <= 0}">

@@ -74,6 +74,55 @@ public class CommentServiceImpl implements CommentService {
                 collect(Collectors.toList());
     }
 
+    @Override
+    public void initComments() {
+
+        if (commentRepository.count() == 0) {
+
+            Comment comment1 = new Comment();
+            comment1.setId(1L);
+            comment1.setShoe(shoeRepository.getById(1L));
+            comment1.setApproved(false);
+            comment1.setCreated(LocalDateTime.now());
+            comment1.setTextContent("много точен. и преди съм поръчвал от него много съм доволен.препоръчвам! ! !");
+            comment1.setAuthor(userRepository.getById(1L));
+
+            commentRepository.save(comment1);
+
+
+            Comment comment2 = new Comment();
+            comment2.setId(2L);
+            comment2.setShoe(shoeRepository.getById(2L));
+            comment2.setApproved(false);
+            comment2.setCreated(LocalDateTime.now());
+            comment2.setTextContent("Голям лъжец преди месец ги имаше пуснати същите за половин цена аз не бих се доверил! ! !");
+            comment2.setAuthor(userRepository.getById(1L));
+
+            commentRepository.save(comment2);
+
+            Comment comment3 = new Comment();
+            comment3.setId(3L);
+            comment3.setShoe(shoeRepository.getById(3L));
+            comment3.setApproved(false);
+            comment3.setCreated(LocalDateTime.now());
+            comment3.setTextContent("много точен. и преди съм поръчвал от него много съм доволен.препоръчвам! ! !");
+            comment3.setAuthor(userRepository.getById(2L));
+
+            commentRepository.save(comment3);
+
+
+            Comment comment4 = new Comment();
+            comment4.setId(4L);
+            comment4.setShoe(shoeRepository.getById(4L));
+            comment4.setApproved(false);
+            comment4.setCreated(LocalDateTime.now());
+            comment4.setTextContent("Голям лъжец преди месец ги имаше пуснати същите за половин цена аз не бих се доверил! ! !");
+            comment4.setAuthor(userRepository.getById(2L));
+
+            commentRepository.save(comment4);
+        }
+    }
+
     private CommentViewModel mapAsComment(Comment commentEntity) {
         CommentViewModel commentViewModel = new CommentViewModel();
 
@@ -83,7 +132,7 @@ public class CommentServiceImpl implements CommentService {
                 setCanDelete(true).
                 setCreated(commentEntity.getCreated()).
                 setMessage(commentEntity.getTextContent()).
-                setUser(String.format("%s %s",commentEntity.getAuthor().getFirstName(),commentEntity.getAuthor().getLastName()));
+                setUser(String.format("%s %s", commentEntity.getAuthor().getFirstName(), commentEntity.getAuthor().getLastName()));
 
 
         return commentViewModel;

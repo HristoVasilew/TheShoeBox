@@ -3,48 +3,80 @@
       xmlns:th="http://www.thymeleaf.org">
 
 
-<head th:replace="/fragments/common :: head"></head>
+<head th:replace="fragments/common :: head"></head>
 <body>
 
 <nav th:replace="fragments/common::nav"></nav>
 <main class="index-main">
 
-  <div class="position-relative p-7 p-md-3 m-md-3 mt-0 text-center">
-    <div id="main" class="col-md-5 p-lg-5 mx-auto my-5">
-      <h1 class="display-4 font-weight-normal">Order List</h1>
+    <div class="position-relative p-7 p-md-3 m-md-3 mt-0 text-center">
+        <div id="main" class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 font-weight-normal">Order List</h1>
+        </div>
+
+        <div th:action="@{/orders/all}" th:object="${orders}" class="col-xl-12">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Order Id</th>
+                    <th scope="col">Buyer Id</th>
+                    <th scope="col">/ FullName</th>
+                    <th scope="col">Seller Id</th>
+                    <th scope="col">/ FullName</th>
+                    <th scope="col">Product Id</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Product details</th>
+                    <th scope="col">Price</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <th:block sec:authorize="hasRole('ADMIN')">
+                <tr th:each="o : ${allOrders}" th:object="${o}">
+                    <td th:text="*{orderId}">User</td>
+                    <td th:text="*{buyerId}">User</td>
+                    <td th:text="*{buyerFullName}">Userov</td>
+                    <td th:text="*{sellerId}">user@user</td>
+                    <td th:text="*{sellerFullName}">user@user</td>
+                    <td th:text="*{productId}">user@user</td>
+                    <td>
+                        <div class="col-5"><img class="img-fluid" th:src="*{imageUrl}"></div>
+                    </td>
+                    <td th:text="*{brandAndModelProduct}">user@user</td>
+                    <td th:text="*{price}">user@user</td>
+                    <td>
+                        <form th:action="@{/orders/{id}/shipped(id = *{getOrderId()})}" th:method="post" class="m-1">
+                            <input type="submit" class="btn btn-danger" value="Ship"/>
+                        </form>
+                    </td>
+                </tr>
+                </th:block>
+                <th:block sec:authorize="!hasRole('ADMIN')">
+                    <tr th:each="o : ${orders}" th:object="${o}">
+                        <td th:text="*{orderId}">User</td>
+                        <td th:text="*{buyerId}">User</td>
+                        <td th:text="*{buyerFullName}">Userov</td>
+                        <td th:text="*{sellerId}">user@user</td>
+                        <td th:text="*{sellerFullName}">user@user</td>
+                        <td th:text="*{productId}">user@user</td>
+                        <td>
+                            <div class="col-5"><img class="img-fluid" th:src="*{imageUrl}"></div>
+                        </td>
+                        <td th:text="*{brandAndModelProduct}">user@user</td>
+                        <td th:text="*{price}">user@user</td>
+                        <td>
+                            <form id="cancel" th:action="@{/orders/{id}/cancel(id = *{getOrderId()})}" th:method="post" class="m-1">
+                                <input type="submit" class="btn btn-danger" value="Cancel"/>
+                            </form>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+
+        </div>
     </div>
-
-    <div th:action="@{/orders/all}" th:object="${orders}" class="col-xl-12">
-      <table class="table">
-        <thead>
-        <tr>
-          <th scope="col">buyer Id</th>
-          <th scope="col">buyer FullName</th>
-          <th scope="col">seller Id</th>
-          <th scope="col">seller FullName</th>
-          <th scope="col">product Id</th>
-          <th scope="col">image Url</th>
-          <th scope="col">brand And Model Product</th>
-          <th scope="col">price</th>
-
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="o : ${orders}" th:object="${o}">
-
-          <td th:text="*{buyerId}">User</td>
-          <td th:text="*{buyerFullName}">Userov</td>
-          <td th:text="*{sellerId}">user@user</td>
-          <td th:text="*{sellerFullName}">user@user</td>
-          <td th:text="*{productId}">user@user</td>
-          <td><div class="col-2"><img class="img-fluid" th:src="*{imageUrl}"></div></td>
-          <td th:text="*{brandAndModelProduct}">user@user</td>
-          <td th:text="*{price}">user@user</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </main>
 
 

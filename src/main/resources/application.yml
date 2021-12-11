@@ -28,7 +28,6 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
-
 logging:
   level:
     org.hibernate.SQL: DEBUG
@@ -39,7 +38,4 @@ cloudinary:
          cloud-name: ${cloud-name}
          api-key: ${api_key}
          api-secret: ${CLOUDINARY_API_SECRET}
-
-
-
 

@@ -12,7 +12,6 @@ import TheShoeBox.TheShoeBox.service.OrderService;
 import TheShoeBox.TheShoeBox.service.ShoeService;
 import TheShoeBox.TheShoeBox.service.UserEntityService;
 import org.modelmapper.ModelMapper;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,15 +36,7 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    @Cacheable("orders")
     public List<OrderViewModel> findAllOrders() {
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            Thread.interrupted();
-        }
-
         return orderRepository.findAll().stream().map(o -> modelMapper.map(o, OrderViewModel.class)).collect(Collectors.toList());
     }
 
@@ -84,15 +75,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    @Cacheable("orders")
     public List<OrderViewModel> findAllUserOrder(Long id) {
-
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            Thread.interrupted();
-        }
-
         return orderRepository
                 .findAll()
                 .stream()

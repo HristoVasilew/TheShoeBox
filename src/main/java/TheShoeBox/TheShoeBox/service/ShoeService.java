@@ -22,4 +22,10 @@ public interface ShoeService {
     void updateOffer(ShoeUpdateServiceModel serviceModel);
 
     boolean isOwner(String userName, Long id);
+
+    void save(ShoeEntity shoe);
+
+    ShoeEntity findShoeById(Long productId);
+
+    void initShoes();
 }

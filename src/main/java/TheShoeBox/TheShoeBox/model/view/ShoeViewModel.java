@@ -1,12 +1,9 @@
 package TheShoeBox.TheShoeBox.model.view;
 
-import TheShoeBox.TheShoeBox.model.entity.ShoeCategoryEntity;
-import TheShoeBox.TheShoeBox.model.entity.ShoeConditionEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
 import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 
-import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -25,7 +22,16 @@ public class ShoeViewModel {
     private Boolean canDelete;
     private String sellerFullName;
     private UserEntity creator;
+    private Boolean ordered;
 
+    public Boolean getOrdered() {
+        return ordered;
+    }
+
+    public ShoeViewModel setOrdered(Boolean ordered) {
+        this.ordered = ordered;
+        return this;
+    }
 
     public UserEntity getCreator() {
         return creator;

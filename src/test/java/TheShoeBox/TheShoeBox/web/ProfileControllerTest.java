@@ -1,27 +1,23 @@
 package TheShoeBox.TheShoeBox.web;
 
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
-import TheShoeBox.TheShoeBox.model.entity.UserRoleEntity;
-import TheShoeBox.TheShoeBox.model.entity.enums.UserRoleEnum;
 import TheShoeBox.TheShoeBox.repository.RoleRepository;
 import TheShoeBox.TheShoeBox.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import javax.annotation.PostConstruct;
 
-import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -55,12 +51,16 @@ class ProfileControllerTest {
     }
 
     @Test
-    @WithMockUser(username="admin",roles={"USER","ADMIN"})
     void showProfileShouldVisualizeUserProfile() throws Exception {
-        mockMvc
-                .perform(get("/profile"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("profile"));
+        mockMvc.perform(post("/users/login")
+                        .param("email", "userTest@none.com")
+                        .param("password", "test")
+                        .with(csrf())
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                )
+                .andExpect(status().is3xxRedirection())
+
+                .andExpect(redirectedUrl("/profile"));
     }
 
     @Test
@@ -68,8 +68,10 @@ class ProfileControllerTest {
     void editProfileShouldVisualizeUserProfile() throws Exception {
         mockMvc
                 .perform(get("/profile/edit-profile"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("edit-profile"));
+                .andExpect(model().attributeExists("userUpdateBindingModel"));
     }
 
+    @Test
+    void getUserProfile() {
+    }
 }

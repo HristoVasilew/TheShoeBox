@@ -1,9 +1,6 @@
 package TheShoeBox.TheShoeBox.init;
 
-import TheShoeBox.TheShoeBox.service.CategoryEntityService;
-import TheShoeBox.TheShoeBox.service.RoleEntityService;
-import TheShoeBox.TheShoeBox.service.ShoeConditionService;
-import TheShoeBox.TheShoeBox.service.UserEntityService;
+import TheShoeBox.TheShoeBox.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -13,12 +10,16 @@ public class DBInit implements CommandLineRunner {
     private final RoleEntityService roleEntityService;
     private final CategoryEntityService categoryEntityService;
     private final ShoeConditionService shoeConditionService;
+    private final ShoeService shoeService;
+    private final CommentService commentService;
 
-    public DBInit(UserEntityService userEntityService, RoleEntityService roleEntityService, CategoryEntityService categoryEntityService, ShoeConditionService shoeConditionService) {
+    public DBInit(UserEntityService userEntityService, RoleEntityService roleEntityService, CategoryEntityService categoryEntityService, ShoeConditionService shoeConditionService, ShoeService shoeService, CommentService commentService) {
         this.userEntityService = userEntityService;
         this.roleEntityService = roleEntityService;
         this.categoryEntityService = categoryEntityService;
         this.shoeConditionService = shoeConditionService;
+        this.shoeService = shoeService;
+        this.commentService = commentService;
     }
 
 
@@ -27,6 +28,8 @@ public class DBInit implements CommandLineRunner {
         categoryEntityService.initCategories();
         shoeConditionService.initConditions();
         roleEntityService.initRoles();
-        userEntityService.initUsers();
+//        userEntityService.initUsers();
+//        shoeService.initShoes();
+//        commentService.initComments();
     }
 }

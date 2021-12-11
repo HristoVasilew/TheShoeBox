@@ -1,8 +1,5 @@
 package TheShoeBox.TheShoeBox.model.entity;
 
-import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
-import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -26,8 +23,13 @@ public class ShoeEntity extends BaseEntity{
     @Lob
     @Column(nullable = false)
     private String description;
+
     private String imageUrl;
+
     private LocalDateTime createdOn;
+
+    private Boolean ordered;
+
 
     @OneToMany(mappedBy = "shoe", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Comment> comments;
@@ -44,6 +46,16 @@ public class ShoeEntity extends BaseEntity{
     @ManyToOne
     @JoinColumn(name = "collection_id")
     private CollectionEntity collection;
+
+
+    public Boolean getOrdered() {
+        return ordered;
+    }
+
+    public ShoeEntity setOrdered(Boolean ordered) {
+        this.ordered = ordered;
+        return this;
+    }
 
     public String getImageUrl() {
         return imageUrl;

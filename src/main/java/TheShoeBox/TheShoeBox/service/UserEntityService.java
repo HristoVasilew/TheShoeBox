@@ -1,13 +1,11 @@
 package TheShoeBox.TheShoeBox.service;
 
-import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.service.UserServiceModel;
 import TheShoeBox.TheShoeBox.model.view.AdminPanelUserViewModel;
 import TheShoeBox.TheShoeBox.model.view.UserProfileView;
 import TheShoeBox.TheShoeBox.model.view.UserViewModel;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserEntityService {
     void registerUser(UserServiceModel userServiceModel);
@@ -32,7 +30,7 @@ public interface UserEntityService {
 
     boolean isUsernameFree(String username);
 
-    List<AdminPanelUserViewModel> getAllUsersByFetch();
+    List<AdminPanelUserViewModel> getAllUsersByFetch(Long id);
 
     void editProfile(UserServiceModel model, Long idUserEdited);
 }

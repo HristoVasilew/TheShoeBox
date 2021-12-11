@@ -1,11 +1,9 @@
 package TheShoeBox.TheShoeBox.model.service;
 
-import TheShoeBox.TheShoeBox.model.entity.ShoeCategoryEntity;
 import TheShoeBox.TheShoeBox.model.entity.UserEntity;
 import TheShoeBox.TheShoeBox.model.entity.enums.ConditionEnum;
 import TheShoeBox.TheShoeBox.model.entity.enums.ShoeCategoryEnum;
 
-import javax.persistence.Column;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -23,6 +21,16 @@ public class ShoeServiceModel {
     private LocalDateTime createdOn;
     private UserEntity user;
     private String imageUrl;
+    private Boolean ordered;
+
+    public Boolean getOrdered() {
+        return ordered;
+    }
+
+    public ShoeServiceModel setOrdered(Boolean ordered) {
+        this.ordered = ordered;
+        return this;
+    }
 
     public String getBrand() {
         return brand;
