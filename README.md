@@ -1,7 +1,7 @@
 ### TheShoeBox
 ### This is my first spring project. I used Spring boot, thymeleaf, bootstrap, java, javascript;
 
-My individual project for the SoftUni Spring Advanced course. Try it out(V2) -  https://shoeboutique.herokuapp.com/
+My individual project for the SoftUni Spring Advanced course. -  https://shoeboutique.herokuapp.com/
 
 This is a Spring MVC application that:
 
